@@ -1,0 +1,16 @@
+# NetBeans specific #
+/JOLT-FAP2609/nbproject/private/
+/JOLT-FAP2609/build/
+/JOLT-FAP2609/nbbuild/
+/JOLT-FAP2609/dist/
+/JOLT-FAP2609/nbdist/
+/JOLT-FAP2609/nbactions.xml
+/JOLT-FAP2609/nb-configuration.xml
+
+# Class Files #
+*.class
+
+# Package Files #
+*.jar
+*.war
+*.ear
