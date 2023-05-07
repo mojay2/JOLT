@@ -28,7 +28,7 @@ Connection conn;
 			String username = "app";
 			String password = "app";
 			String url = 
-			  "jdbc:derby://localhost:1527/JOLTTESTING"; 
+			  "jdbc:derby://localhost:1527/JoltDB"; 
 			conn = 
 			  DriverManager.getConnection(url,username,password);
 		} catch (SQLException sqle){
