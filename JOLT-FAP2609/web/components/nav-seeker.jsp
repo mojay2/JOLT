@@ -9,7 +9,7 @@
             <a class="nav-item nav-link" href="#">Applied Jobs</a>
             <a class="nav-item nav-link" href="#">User Profile</a>
             <%if(session.getAttribute("logged-id") == null){%>
-                <a class="btn btn-danger" href="login.jsp">Login</a> 
+                <a class="btn btn-primary" href="login.jsp">Login</a> 
             <%}else{
                 Integer userId = (Integer)session.getAttribute("logged-id");
             %>    
