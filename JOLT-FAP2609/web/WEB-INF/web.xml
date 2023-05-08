@@ -16,6 +16,10 @@
         <servlet-name>LogoutServlet</servlet-name>
         <servlet-class>controller.LogoutServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>LoadJobFeed</servlet-name>
+        <servlet-class>controller.LoadJobFeed</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>CreateJobServlet</servlet-name>
         <url-pattern>/CreateJobServlet</url-pattern>
@@ -31,6 +35,10 @@
     <servlet-mapping>
         <servlet-name>LogoutServlet</servlet-name>
         <url-pattern>/LogoutServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoadJobFeed</servlet-name>
+        <url-pattern>/LoadJobFeed</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
