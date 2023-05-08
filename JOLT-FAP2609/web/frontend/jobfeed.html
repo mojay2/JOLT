@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -35,7 +35,7 @@
               <a href="/jobfeed.html" class="border-blue-600 pb-1 hover:border-b-4">Job Feed</a>
             </li>
             <li>
-              <a href="" class="border-blue-600 pb-1 hover:border-b-4">Applied Jobs</a>
+              <a href="/applied.html" class="border-blue-600 pb-1 hover:border-b-4">Applied Jobs</a>
             </li>
             <li>
               <a href="" class="border-blue-600 pb-1 hover:border-b-4">User Profile</a>
@@ -47,8 +47,194 @@
     </nav>
 
     <!-- Content -->
-    <div class="container-sm mx-auto px-4">
-      <div class="">test</div>
+    <div class="container mx-auto">
+      <div class="mx-auto mt-10 w-3/5">
+        <!-- Search -->
+        <form>
+          <div class="mx-auto flex w-full items-center justify-around divide-x-2 divide-zinc-800 rounded-2xl border-[3px] border-zinc-800 p-3 text-zinc-800">
+            <div class="mx-auto flex flex-1 items-center gap-2">
+              <svg class="feather feather-search h-6 w-6" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+              <label class="text-base">What are you looking for?</label>
+              <input class="w-44 flex-1 appearance-none border-0 border-b-2 border-neutral-600 bg-slate-200 text-zinc-800 placeholder:text-center placeholder:font-light focus:border-neutral-600 focus:ring-0" id="search" name="search" type="text" placeholder="job title, keywords, or company" />
+            </div>
+            <div class="flex-0 flex w-fit gap-3 px-4">
+              <svg class="feather feather-users text-base" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+              </svg>
+              <select class="appearance-none border-0 bg-slate-200 text-base text-zinc-800 focus:outline-0 focus:ring-0" id="specialization" name="specialization">
+                <option value="" selected>Have a specialization in mind?</option>
+                <option class="text-bs hover:bg-black" value="Finance">Finance</option>
+                <option value="Human Resources">Human Resources</option>
+                <option value="Marketing">Marketing</option>
+                <option value="Communications">Communications</option>
+              </select>
+            </div>
+          </div>
+        </form>
+
+        <!-- Cards Container -->
+        <div class="relative mt-8 flex gap-5">
+          <form>
+            <!-- Job Cards -->
+            <div class="flex flex-col gap-3">
+              <!-- Start Card Template -->
+              <button class="inline-block w-80 overflow-hidden rounded-2xl border-[3px] border-zinc-800 p-4 text-left text-zinc-800" name="post" value="1">
+                <div class="text-2xl font-bold">Marketing Manager</div>
+                <div class="text-xl">24 Chicken</div>
+                <div class="text-xl">Manila, Philippines</div>
+                <div class="mt-2 flex gap-1 text-xs text-stone-100">
+                  <div class="rounded-full border-2 border-neutral-600 bg-blue-600 px-2 py-1">₱ 500,000 / month</div>
+                  <div class="rounded-full border-2 border-neutral-600 bg-blue-600 px-2 py-1">Full Time</div>
+                  <div class="rounded-full border-2 border-neutral-600 bg-blue-600 px-2 py-1">Senior</div>
+                </div>
+                <div class="mt-2 line-clamp-4 text-sm font-light">We are seeking an experienced Marketing Manager to lead our marketing efforts and drive growth for our business. The ideal candidate will have a proven track record of developing and executing successful marketing campaigns, as well as the ability to analyze data and identify opportunities for optimization.</div>
+              </button>
+              <!-- End Card Template -->
+              <button class="inline-block w-80 overflow-hidden rounded-2xl border-[3px] border-zinc-800 p-4 text-left text-zinc-800" name="post" value="1">
+                <div class="text-2xl font-bold">Marketing Manager</div>
+                <div class="text-xl">24 Chicken</div>
+                <div class="text-xl">Manila, Philippines</div>
+                <div class="mt-2 flex gap-1 text-xs text-stone-100">
+                  <div class="rounded-full border-2 border-neutral-600 bg-blue-600 px-2 py-1">₱ 500,000 / month</div>
+                  <div class="rounded-full border-2 border-neutral-600 bg-blue-600 px-2 py-1">Full Time</div>
+                  <div class="rounded-full border-2 border-neutral-600 bg-blue-600 px-2 py-1">Senior</div>
+                </div>
+                <div class="mt-2 line-clamp-4 text-sm font-light">We are seeking an experienced Marketing Manager to lead our marketing efforts and drive growth for our business. The ideal candidate will have a proven track record of developing and executing successful marketing campaigns, as well as the ability to analyze data and identify opportunities for optimization.</div>
+              </button>
+              <button class="inline-block w-80 overflow-hidden rounded-2xl border-[3px] border-zinc-800 p-4 text-left text-zinc-800" name="post" value="1">
+                <div class="text-2xl font-bold">Marketing Manager</div>
+                <div class="text-xl">24 Chicken</div>
+                <div class="text-xl">Manila, Philippines</div>
+                <div class="mt-2 flex gap-1 text-xs text-stone-100">
+                  <div class="rounded-full border-2 border-neutral-600 bg-blue-600 px-2 py-1">₱ 500,000 / month</div>
+                  <div class="rounded-full border-2 border-neutral-600 bg-blue-600 px-2 py-1">Full Time</div>
+                  <div class="rounded-full border-2 border-neutral-600 bg-blue-600 px-2 py-1">Senior</div>
+                </div>
+                <div class="mt-2 line-clamp-4 text-sm font-light">We are seeking an experienced Marketing Manager to lead our marketing efforts and drive growth for our business. The ideal candidate will have a proven track record of developing and executing successful marketing campaigns, as well as the ability to analyze data and identify opportunities for optimization.</div>
+              </button>
+              <button class="inline-block w-80 overflow-hidden rounded-2xl border-[3px] border-zinc-800 p-4 text-left text-zinc-800" name="post" value="1">
+                <div class="text-2xl font-bold">Marketing Manager</div>
+                <div class="text-xl">24 Chicken</div>
+                <div class="text-xl">Manila, Philippines</div>
+                <div class="mt-2 flex gap-1 text-xs text-stone-100">
+                  <div class="rounded-full border-2 border-neutral-600 bg-blue-600 px-2 py-1">₱ 500,000 / month</div>
+                  <div class="rounded-full border-2 border-neutral-600 bg-blue-600 px-2 py-1">Full Time</div>
+                  <div class="rounded-full border-2 border-neutral-600 bg-blue-600 px-2 py-1">Senior</div>
+                </div>
+                <div class="mt-2 line-clamp-4 text-sm font-light">We are seeking an experienced Marketing Manager to lead our marketing efforts and drive growth for our business. The ideal candidate will have a proven track record of developing and executing successful marketing campaigns, as well as the ability to analyze data and identify opportunities for optimization.</div>
+              </button>
+              <button class="inline-block w-80 overflow-hidden rounded-2xl border-[3px] border-zinc-800 p-4 text-left text-zinc-800" name="post" value="1">
+                <div class="text-2xl font-bold">Marketing Manager</div>
+                <div class="text-xl">24 Chicken</div>
+                <div class="text-xl">Manila, Philippines</div>
+                <div class="mt-2 flex gap-1 text-xs text-stone-100">
+                  <div class="rounded-full border-2 border-neutral-600 bg-blue-600 px-2 py-1">₱ 500,000 / month</div>
+                  <div class="rounded-full border-2 border-neutral-600 bg-blue-600 px-2 py-1">Full Time</div>
+                  <div class="rounded-full border-2 border-neutral-600 bg-blue-600 px-2 py-1">Senior</div>
+                </div>
+                <div class="mt-2 line-clamp-4 text-sm font-light">We are seeking an experienced Marketing Manager to lead our marketing efforts and drive growth for our business. The ideal candidate will have a proven track record of developing and executing successful marketing campaigns, as well as the ability to analyze data and identify opportunities for optimization.</div>
+              </button>
+              <button class="inline-block w-80 overflow-hidden rounded-2xl border-[3px] border-zinc-800 p-4 text-left text-zinc-800" name="post" value="1">
+                <div class="text-2xl font-bold">Marketing Manager</div>
+                <div class="text-xl">24 Chicken</div>
+                <div class="text-xl">Manila, Philippines</div>
+                <div class="mt-2 flex gap-1 text-xs text-stone-100">
+                  <div class="rounded-full border-2 border-neutral-600 bg-blue-600 px-2 py-1">₱ 500,000 / month</div>
+                  <div class="rounded-full border-2 border-neutral-600 bg-blue-600 px-2 py-1">Full Time</div>
+                  <div class="rounded-full border-2 border-neutral-600 bg-blue-600 px-2 py-1">Senior</div>
+                </div>
+                <div class="mt-2 line-clamp-4 text-sm font-light">We are seeking an experienced Marketing Manager to lead our marketing efforts and drive growth for our business. The ideal candidate will have a proven track record of developing and executing successful marketing campaigns, as well as the ability to analyze data and identify opportunities for optimization.</div>
+              </button>
+              <button class="inline-block w-80 overflow-hidden rounded-2xl border-[3px] border-zinc-800 p-4 text-left text-zinc-800" name="post" value="1">
+                <div class="text-2xl font-bold">Marketing Manager</div>
+                <div class="text-xl">24 Chicken</div>
+                <div class="text-xl">Manila, Philippines</div>
+                <div class="mt-2 flex gap-1 text-xs text-stone-100">
+                  <div class="rounded-full border-2 border-neutral-600 bg-blue-600 px-2 py-1">₱ 500,000 / month</div>
+                  <div class="rounded-full border-2 border-neutral-600 bg-blue-600 px-2 py-1">Full Time</div>
+                  <div class="rounded-full border-2 border-neutral-600 bg-blue-600 px-2 py-1">Senior</div>
+                </div>
+                <div class="mt-2 line-clamp-4 text-sm font-light">We are seeking an experienced Marketing Manager to lead our marketing efforts and drive growth for our business. The ideal candidate will have a proven track record of developing and executing successful marketing campaigns, as well as the ability to analyze data and identify opportunities for optimization.</div>
+              </button>
+            </div>
+          </form>
+          <!-- Job Single Post Card -->
+          <div class="sticky top-0 h-[900px] flex-1 overflow-auto rounded-2xl border-[3px] border-zinc-800 p-4 text-zinc-800">
+            <!-- Job Description -->
+            <div class="flex items-center justify-between">
+              <div class="text-4xl font-bold">Marketing Manager</div>
+              <svg class="feather feather-printer h-8 w-8 text-zinc-800" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="6 9 6 2 18 2 18 9"></polyline>
+                <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+                <rect x="6" y="14" width="12" height="8"></rect>
+              </svg>
+            </div>
+            <div class="mt-2 text-sm font-light text-neutral-600">
+              <span class="font-semibold">24 Chicken</span>
+              |
+              <span class="font-semibold">Manila, Philippines</span>
+              |
+              <span class="font-">Sales</span>
+              | Posted 2 days ago
+            </div>
+            <div class="mt-2 flex gap-1 border-b-2 border-neutral-600 pb-3 text-sm text-stone-100">
+              <div class="rounded-full border-2 border-neutral-600 bg-blue-600 px-2 py-1">₱ 500,000 / month</div>
+              <div class="rounded-full border-2 border-neutral-600 bg-blue-600 px-2 py-1">Full Time</div>
+              <div class="rounded-full border-2 border-neutral-600 bg-blue-600 px-2 py-1">Senior</div>
+            </div>
+            <div class="mt-2 text-base">We are seeking an experienced Marketing Manager to lead our marketing efforts and drive growth for our business. The ideal candidate will have a proven track record of developing and executing successful marketing campaigns, as well as the ability to analyze data and identify opportunities for optimization.</div>
+
+            <!-- Company Overview -->
+            <div class="mt-4 border-b-2 border-neutral-600 pb-3 text-3xl font-bold">Company Overview</div>
+            <div class="mt-2 text-base">[Company Name] is a leading provider of [product/service] solutions for [target audience]. Our mission is to [company mission statement]. We pride ourselves on our commitment to innovation, excellence, and customer satisfaction.</div>
+
+            <!-- Responsibilities -->
+            <div class="mt-4 border-b-2 border-neutral-600 pb-3 text-3xl font-bold">Responsibilities</div>
+            <div class="mt-2 text-base">
+              <ul class="ml-4 list-outside list-disc">
+                <li>Develop and execute comprehensive marketing strategies to increase brand awareness and drive sales.</li>
+                <li>Collaborate with internal teams to create compelling content and collateral for various channels.</li>
+                <li>Manage and optimize digital marketing campaigns across multiple platforms, including social media, email, and search.</li>
+                <li>Analyze marketing data and provide regular reports on campaign performance and ROI.</li>
+                <li>Monitor industry trends and competitor activity to inform marketing strategy and identify new opportunities.</li>
+              </ul>
+            </div>
+
+            <!-- Requirements -->
+            <div class="mt-4 border-b-2 border-neutral-600 pb-3 text-3xl font-bold">Requirements</div>
+            <div class="mt-2 text-base">
+              <ul class="ml-4 list-outside list-disc">
+                <li>Bachelor's degree in Marketing or related field.</li>
+                <li>5+ years of experience in marketing, with a focus on digital marketing.</li>
+                <li>Demonstrated success in developing and executing marketing campaigns.</li>
+                <li>Strong analytical skills and the ability to use data to inform decision-making.</li>
+                <li>Excellent communication and collaboration skills.</li>
+              </ul>
+            </div>
+
+            <!-- Benefits -->
+            <div class="mt-4 border-b-2 border-neutral-600 pb-3 text-3xl font-bold">Requirements</div>
+            <div class="mt-2 text-base">
+              <ul class="ml-4 list-outside list-disc">
+                <li>Competitive salary and bonus opportunities.</li>
+                <li>Comprehensive health, dental, and vision insurance.</li>
+                <li>401(k) with employer match.</li>
+                <li>Generous paid time off policy.</li>
+                <li>Flexible work arrangements.</li>
+              </ul>
+            </div>
+
+            <!-- Submit -->
+            <button class="mt-5 inline-block h-9 w-full rounded-3xl bg-yellow-400 text-center text-lg font-bold hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-400" type="submit">Apply Now</button>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- Scripts -->
