@@ -53,11 +53,19 @@ Connection conn;
                     ResultSet employee = ps.executeQuery();
                     int empID = 0;
                     if(employee.next()){
+                        session.setAttribute("logged-employer",employee.getString("EMP_NAME"));
                         empID = employee.getInt("EMP_ID");
                     }
-                    
+
                     //get all jobs with the emp id
-                    query = "SELECT * FROM JOBS WHERE EMP_ID = ? AND JOB_ISACTIVE = 0";
+                    query = "SELECT * FROM JOBS "
+                                + "INNER JOIN EMPLOYERS ON JOBS.EMP_ID = EMPLOYERS.EMP_ID "
+                                + "INNER JOIN INDUSTRIES ON INDUSTRY_ID = IND_ID "
+                                + "INNER JOIN TYPES ON JOB_TYPE = TYPE_ID "
+                                + "INNER JOIN LEVELS ON JOB_LEVEL = LEVEL_ID "
+                                + "WHERE JOBS.EMP_ID = ? AND JOB_ISACTIVE = 0"
+                    ;
+
                     ps = conn.prepareStatement(query);
                     ps.setInt(1, empID);
                     ResultSet jobs = ps.executeQuery();
@@ -68,7 +76,7 @@ Connection conn;
                     request.getRequestDispatcher("error.jsp").forward(request,response);
                 }
         } catch (SQLException sqle){
-                request.setAttribute("error-message", "Database Entry Error");
+                request.setAttribute("error-message", sqle.getMessage());
                 request.getRequestDispatcher("error.jsp").forward(request,response);
         } 
 

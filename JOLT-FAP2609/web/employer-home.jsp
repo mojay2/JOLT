@@ -17,7 +17,7 @@
             <%@include file="./components/nav-employer.jsp"%>
             
             <div class="content p-1 mt-2 d-block rounded text-center">
-                <h1 class="">You are an Employer with ID: <%=id%></h1>
+                <h3 class="">Welcome Back, <%=(String)session.getAttribute("logged-employer")%></h3>
                 <div class="row">
                     <div class="col">
                         <div class="card">
@@ -43,8 +43,8 @@
                                                 <tr>
                                                     <td><%=jobs.getString("JOB_ID")%></td>
                                                     <td><%=jobs.getString("JOB_TITLE")%></td>
-                                                    <td><%=jobs.getInt("JOB_TYPE")%></td>
-                                                    <td><%=jobs.getInt("JOB_LEVEL")%></td>            
+                                                    <td><%=jobs.getString("TYPE_NAME")%></td>
+                                                    <td><%=jobs.getString("LEVEL_NAME")%></td>            
                                                     <td>
                                                         <a href="#"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
                                                         <a href="#"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
