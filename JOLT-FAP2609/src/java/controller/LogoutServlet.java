@@ -1,7 +1,6 @@
 package controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -12,9 +11,10 @@ public class LogoutServlet extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            response.setContentType("text/html;charset=UTF-8");
             HttpSession session = request.getSession();
             session.removeAttribute("logged-id");
+            session.removeAttribute("logged-usertype");
+            session.removeAttribute("error-message"); 
             response.sendRedirect("index.jsp");        
     }
 
