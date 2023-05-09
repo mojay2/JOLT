@@ -45,7 +45,7 @@ Connection conn;
                 if (conn != null) {
                     HttpSession session = request.getSession();
                     Integer userID = (Integer)session.getAttribute("logged-id");
-                    
+                    String forwardURL;
                     //get emp id
                     String query = "SELECT * FROM EMPLOYERS WHERE USER_ID = ?";
                     PreparedStatement ps = conn.prepareStatement(query);
@@ -60,34 +60,49 @@ Connection conn;
                         empID = employee.getInt("EMP_ID");
                     }
 
-                    //get all job applications with the corresponding employer id
-                    if(request.getParameter("status")==null){
-                        query = "SELECT * FROM APPLICATIONS "
-                                + "INNER JOIN JOBSEEKERS ON JOBSEEKERS.SEEKER_ID = APPLICATIONS.SEEKER_ID "
-                                + "INNER JOIN EMPLOYERS ON EMP_ID = EMPLOYER_ID "
-                                + "INNER JOIN JOBS ON JOBS.JOB_ID = APPLICATIONS.JOB_ID "
-                                + "INNER JOIN STATUSES ON APP_STATUS = STATUS_ID "
-                                + "WHERE EMPLOYER_ID = ?"
-                        ;
-                        ps = conn.prepareStatement(query);
-                        ps.setInt(1, empID);
+                    if(request.getParameter("job-id") == null){
+                        forwardURL = "job-candidates.jsp";
+                        //get all job applications with the corresponding employer id
+                        if(request.getParameter("status")==null){
+                            query = "SELECT * FROM APPLICATIONS "
+                                    + "INNER JOIN JOBSEEKERS ON JOBSEEKERS.SEEKER_ID = APPLICATIONS.SEEKER_ID "
+                                    + "INNER JOIN EMPLOYERS ON EMP_ID = EMPLOYER_ID "
+                                    + "INNER JOIN JOBS ON JOBS.JOB_ID = APPLICATIONS.JOB_ID "
+                                    + "INNER JOIN STATUSES ON APP_STATUS = STATUS_ID "
+                                    + "WHERE EMPLOYER_ID = ?"
+                            ;
+                            ps = conn.prepareStatement(query);
+                            ps.setInt(1, empID);
+                        }else{
+                            query = "SELECT * FROM APPLICATIONS "
+                                    + "INNER JOIN JOBSEEKERS ON JOBSEEKERS.SEEKER_ID = APPLICATIONS.SEEKER_ID "
+                                    + "INNER JOIN EMPLOYERS ON EMP_ID = EMPLOYER_ID "
+                                    + "INNER JOIN JOBS ON JOBS.JOB_ID = APPLICATIONS.JOB_ID "
+                                    + "INNER JOIN STATUSES ON APP_STATUS = STATUS_ID "
+                                    + "WHERE EMPLOYER_ID = ? AND APP_STATUS = ?"
+                            ;   
+                            ps = conn.prepareStatement(query);
+                            ps.setInt(1, empID);
+                            ps.setInt(2, Integer.parseInt(request.getParameter("status"))); 
+                        }
                     }else{
-                        query = "SELECT * FROM APPLICATIONS "
-                                + "INNER JOIN JOBSEEKERS ON JOBSEEKERS.SEEKER_ID = APPLICATIONS.SEEKER_ID "
-                                + "INNER JOIN EMPLOYERS ON EMP_ID = EMPLOYER_ID "
-                                + "INNER JOIN JOBS ON JOBS.JOB_ID = APPLICATIONS.JOB_ID "
-                                + "INNER JOIN STATUSES ON APP_STATUS = STATUS_ID "
-                                + "WHERE EMPLOYER_ID = ? AND APP_STATUS = ?"
-                        ;   
-                        ps = conn.prepareStatement(query);
-                        ps.setInt(1, empID);
-                        ps.setInt(2, Integer.parseInt(request.getParameter("status"))); 
+                        forwardURL = "view-job-candidates.jsp";
+                                    query = "SELECT * FROM APPLICATIONS "
+                                    + "INNER JOIN JOBSEEKERS ON JOBSEEKERS.SEEKER_ID = APPLICATIONS.SEEKER_ID "
+                                    + "INNER JOIN EMPLOYERS ON EMP_ID = EMPLOYER_ID "
+                                    + "INNER JOIN JOBS ON JOBS.JOB_ID = APPLICATIONS.JOB_ID "
+                                    + "INNER JOIN STATUSES ON APP_STATUS = STATUS_ID "
+                                    + "WHERE EMPLOYER_ID = ? AND APPLICATIONS.JOB_ID = ?"
+                            ;
+                            ps = conn.prepareStatement(query);
+                            ps.setInt(1, empID);
+                            ps.setInt(2, Integer.parseInt(request.getParameter("job-id"))); 
                     }
-                    
+                   
                     ResultSet applications = ps.executeQuery();
 
                     request.setAttribute("applications", applications);
-                    request.getRequestDispatcher("job-candidates.jsp").forward(request,response);
+                    request.getRequestDispatcher(forwardURL).forward(request,response);
                 } else {
                     request.setAttribute("error-message", "Connection Error");
                     request.getRequestDispatcher("error.jsp").forward(request,response);

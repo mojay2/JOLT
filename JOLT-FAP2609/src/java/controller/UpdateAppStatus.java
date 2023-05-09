@@ -58,6 +58,10 @@ public class UpdateAppStatus extends HttpServlet {
 
                     ps.executeUpdate(); 
 
+                    if(request.getParameter("job-id") != null){
+                        request.setAttribute("job-id", request.getParameter("job-id"));
+                    }
+                    request.getRequestDispatcher("LoadJobCandidates").forward(request,response);
                     response.sendRedirect("LoadJobCandidates"); 
                 } else {
                     request.setAttribute("error-message", "Connection Error");

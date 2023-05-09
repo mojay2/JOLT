@@ -44,6 +44,14 @@
         <servlet-name>DeleteJobApplication</servlet-name>
         <servlet-class>controller.DeleteJobApplication</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UpdateAppStatus2</servlet-name>
+        <servlet-class>controller.UpdateAppStatus2</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteJobListing</servlet-name>
+        <servlet-class>controller.DeleteJobListing</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>CreateJobServlet</servlet-name>
         <url-pattern>/CreateJobServlet</url-pattern>
@@ -87,6 +95,14 @@
     <servlet-mapping>
         <servlet-name>DeleteJobApplication</servlet-name>
         <url-pattern>/DeleteJobApplication</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateAppStatus2</servlet-name>
+        <url-pattern>/UpdateAppStatus2</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteJobListing</servlet-name>
+        <url-pattern>/DeleteJobListing</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
