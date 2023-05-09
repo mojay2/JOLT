@@ -20,6 +20,30 @@
         <servlet-name>LoadJobFeed</servlet-name>
         <servlet-class>controller.LoadJobFeed</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ViewJobListing</servlet-name>
+        <servlet-class>controller.ViewJobListing</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CreateJobApp</servlet-name>
+        <servlet-class>controller.CreateJobApp</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LoadJobCandidates</servlet-name>
+        <servlet-class>controller.LoadJobCandidates</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateAppStatus</servlet-name>
+        <servlet-class>controller.UpdateAppStatus</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LoadAppliedJobs</servlet-name>
+        <servlet-class>controller.LoadAppliedJobs</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteJobApplication</servlet-name>
+        <servlet-class>controller.DeleteJobApplication</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>CreateJobServlet</servlet-name>
         <url-pattern>/CreateJobServlet</url-pattern>
@@ -39,6 +63,30 @@
     <servlet-mapping>
         <servlet-name>LoadJobFeed</servlet-name>
         <url-pattern>/LoadJobFeed</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewJobListing</servlet-name>
+        <url-pattern>/ViewJobListing</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CreateJobApp</servlet-name>
+        <url-pattern>/CreateJobApp</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoadJobCandidates</servlet-name>
+        <url-pattern>/LoadJobCandidates</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateAppStatus</servlet-name>
+        <url-pattern>/UpdateAppStatus</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoadAppliedJobs</servlet-name>
+        <url-pattern>/LoadAppliedJobs</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteJobApplication</servlet-name>
+        <url-pattern>/DeleteJobApplication</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -65,7 +65,7 @@ Connection conn;
                             request.getRequestDispatcher("/LoadJobFeed").forward(request,response);
                         }
                         else{
-                            session.setAttribute("logged-usertype", "admin");
+                            session.setAttribute("logged-usertype", "employer");
                             request.getRequestDispatcher("/employer-home").forward(request,response);
                         }
                     }
