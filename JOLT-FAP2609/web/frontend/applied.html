@@ -24,12 +24,16 @@
   <body class="bg-slate-200 font-display">
     <!-- Navbar -->
     <nav class="border-b-2 border-zinc-800 bg-slate-200">
-      <div class="max-w-screen flex flex-wrap items-center justify-between p-3">
-        <a href="/jobfeed.html" class="ml-16 flex flex-col items-center">
+      <div class="flex max-w-full flex-wrap items-center justify-between p-3">
+        <a href="/jobfeed.html" class="ml-3 flex flex-col items-center sm:ml-10 lg:ml-16">
           <img src="./public/assets/logo/JoltLogo.png" class="mb-1 h-14" alt="JOLT Logo" />
           <span class="text-sm text-neutral-600">(Job Opportunities Listing Tool)</span>
         </a>
-        <div class="">
+        <button type="button" class="ml-3 mr-3 inline-flex items-center rounded-lg p-2 text-sm text-zinc-800 hover:text-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-400 sm:mr-6 lg:hidden" data-drawer-target="drawer-navbar" data-drawer-show="drawer-navbar" data-drawer-placement="right" aria-controls="drawer-navbar">
+          <span class="sr-only">Open main menu</span>
+          <svg class="h-10 w-10" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path></svg>
+        </button>
+        <div class="mx-auto hidden w-full lg:block lg:w-auto">
           <ul class="flex justify-between gap-16 text-xl text-zinc-800">
             <li>
               <a href="/jobfeed.html" id="navbar1" class="border-blue-600 pb-1 hover:border-b-4">Job Feed</a>
@@ -42,20 +46,56 @@
             </li>
           </ul>
         </div>
-        <a href="/login.html" class="mr-16 inline-block h-10 rounded-xl bg-yellow-400 px-6 py-1 text-2xl font-bold hover:bg-yellow-500 focus:ring-4 focus:ring-blue-400">Login</a>
+        <a href="/login.html" class="mr-16 hidden h-10 rounded-xl bg-yellow-400 px-6 py-1 text-2xl font-bold hover:bg-yellow-500 focus:ring-4 focus:ring-blue-400 lg:inline-block">Login</a>
       </div>
     </nav>
 
+    <!-- Navbar Drawer -->
+    <div id="drawer-navbar" class="fixed right-0 top-0 z-40 h-screen w-80 translate-x-full divide-y-2 divide-zinc-800 overflow-y-auto bg-slate-200 text-zinc-800 transition-transform" tabindex="-1" aria-labelledby="drawer-navbar">
+      <button type="button" class="h-[104px] w-full" data-drawer-hide="drawer-navbar" aria-controls="drawer-navbar">
+        <div class="flex h-full cursor-pointer items-center justify-end pr-10 hover:bg-blue-400">
+          <svg class="feather feather-x h-12 w-12" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </div>
+      </button>
+      <div class="h-[60px]">
+        <div class="flex h-full cursor-pointer items-center justify-between pl-10 pr-10 font-semibold hover:bg-blue-400">
+          <a href="/jobfeed.html" id="navbarMobile1" class="text-lg">Job Feed</a>
+          <svg class="feather feather-chevron-right h-12 w-12" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </div>
+      </div>
+      <div class="h-[60px]">
+        <div class="flex h-full cursor-pointer items-center justify-between pl-10 pr-10 font-semibold hover:bg-blue-400">
+          <a href="/applied.html" id="navbarMobile2" class="text-lg">Applied Jobs</a>
+          <svg class="feather feather-chevron-right h-12 w-12" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </div>
+      </div>
+      <div class="h-[60px]">
+        <div class="flex h-full cursor-pointer items-center justify-between pl-10 pr-10 font-semibold hover:bg-blue-400">
+          <a href="/profile.html" id="navbarMobile3" class="text-lg">User Profile</a>
+          <svg class="feather feather-chevron-right h-12 w-12" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </div>
+      </div>
+      <div class="h-[60px]">
+        <div class="flex h-full cursor-pointer items-center justify-between border-b-2 border-zinc-800 pl-10 pr-10 font-semibold hover:bg-yellow-400">
+          <a href="/login.html" class="text-lg">Login</a>
+          <svg class="feather feather-chevron-right h-12 w-12" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </div>
+      </div>
+    </div>
+
     <!-- Content -->
     <div class="container mx-auto">
-      <div class="mx-auto mt-10 w-3/5 text-zinc-800">
+      <div class="mx-auto mt-5 w-3/5 text-zinc-800">
         <!-- Header -->
-        <div class="text-5xl font-bold">Your Applications</div>
-        <div class="mt-3 text-3xl font-light">Be ahead and keep track of your progress here</div>
+        <div class="text-center text-3xl font-bold md:text-left md:text-5xl">Your Applications</div>
+        <div class="mt-3 text-center text-xl font-light md:text-left md:text-3xl">Be ahead and keep track of your progress here</div>
 
         <!-- Categories -->
         <form action="">
-          <div class="mt-10 flex justify-around text-2xl">
+          <div class="mt-6 flex flex-wrap justify-around gap-x-5 gap-y-5 overscroll-x-auto text-xl md:mt-10 md:justify-around md:text-2xl">
             <button id="applied" class="border-b-4 border-neutral-600 pb-1 hover:border-yellow-400" name="category" value="applied">Applied</button>
             <button id="pending" class="border-b-4 border-neutral-600 pb-1 hover:border-yellow-400" name="category" value="pending">Pending</button>
             <button id="accepted" class="border-b-4 border-neutral-600 pb-1 hover:border-yellow-400" name="category" value="accepted">Accepted</button>
@@ -64,75 +104,75 @@
         </form>
 
         <!-- Applications Cards -->
-        <div class="relative mt-10 text-zinc-800">
+        <div class="relative mt-8 text-zinc-800">
           <!-- Card (Pending) -->
-          <div class="border-t-2 border-zinc-800 py-4">
-            <div class="flex justify-between">
-              <div class="flex items-center">
-                <button type="button" data-modal-target="jobModal" data-modal-toggle="jobModal">
-                  <div class="text-2xl font-bold">Marketing Manager</div>
-                </button>
-                <div class="ml-10 rounded-3xl bg-orange-400 px-4 py-1 text-center text-xl font-semibold">Pending</div>
+          <form id="withdraw" action="">
+            <div class="overflow-x-auto border-t-2 border-zinc-800 py-2 md:py-4">
+              <div class="item-center flex justify-between gap-8">
+                <div class="flex items-center">
+                  <button type="button" data-modal-target="jobModal" data-modal-toggle="jobModal">
+                    <div class="overflow-x-auto text-left text-lg font-bold md:text-2xl">Marketing Manager</div>
+                  </button>
+                  <div class="ml-5 rounded-3xl bg-orange-400 px-2 py-1 text-center text-sm font-semibold md:ml-10 md:px-3 md:text-lg">Pending</div>
+                </div>
+                <button class="mr-1 rounded-2xl bg-yellow-400 px-2 py-1 text-sm font-semibold hover:bg-yellow-500 focus:ring-4 focus:ring-blue-400 md:text-lg lg:px-5" data-modal-target="withdrawModal" data-modal-toggle="withdrawModal" type="button">Withdraw Application</button>
               </div>
-              <form id="withdraw" action="">
-                <button class="rounded-2xl bg-yellow-400 px-5 py-1 text-lg font-semibold hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-400" data-modal-target="withdrawModal" data-modal-toggle="withdrawModal" type="button">Withdraw Application</button>
-              </form>
+              <div class="text-extralight mt-1 text-base md:text-xl">24 Chicken</div>
+              <div class="text-extralight mt-1 text-base md:text-xl">Manila, Philippines</div>
+              <div class="mt-2 flex gap-1 text-center text-[9px] text-stone-100 md:text-sm">
+                <div class="rounded-full border-2 border-neutral-600 bg-blue-600 px-1 py-1 md:px-2">₱ 500,000 / month</div>
+                <div class="rounded-full border-2 border-neutral-600 bg-blue-600 px-1 py-1 md:px-2">Full Time</div>
+                <div class="rounded-full border-2 border-neutral-600 bg-blue-600 px-1 py-1 md:px-2">Senior</div>
+              </div>
+              <div class="text-thin mt-3 text-xs md:text-base">Applied two weeks ago</div>
             </div>
-            <div class="text-extralight mt-1 text-xl">24 Chicken</div>
-            <div class="text-extralight mt-1 text-xl">Manila, Philippines</div>
-            <div class="mt-2 flex gap-1 text-sm text-stone-100">
-              <div class="rounded-full border-2 border-neutral-600 bg-blue-600 px-2 py-1">₱ 500,000 / month</div>
-              <div class="rounded-full border-2 border-neutral-600 bg-blue-600 px-2 py-1">Full Time</div>
-              <div class="rounded-full border-2 border-neutral-600 bg-blue-600 px-2 py-1">Senior</div>
-            </div>
-            <div class="text-thin mt-3 text-base">Applied two weeks ago</div>
-          </div>
+          </form>
 
           <!-- Card (Rejected) -->
-          <div class="border-t-2 border-zinc-800 py-4">
-            <div class="flex justify-between">
-              <div class="flex items-center">
-                <button type="button" data-modal-target="jobModal" data-modal-toggle="jobModal">
-                  <div class="text-2xl font-bold">Marketing Manager</div>
-                </button>
-                <div class="ml-10 rounded-3xl bg-rose-400 px-4 py-1 text-center text-xl font-semibold">Rejected</div>
+          <form id="withdraw" action="">
+            <div class="overflow-x-auto border-t-2 border-zinc-800 py-2 md:py-4">
+              <div class="item-center flex justify-between gap-8">
+                <div class="flex items-center">
+                  <button type="button" data-modal-target="jobModal" data-modal-toggle="jobModal">
+                    <div class="overflow-x-auto text-left text-lg font-bold md:text-2xl">Marketing Manager</div>
+                  </button>
+                  <div class="ml-5 rounded-3xl bg-rose-400 px-2 py-1 text-center text-sm font-semibold md:ml-10 md:px-3 md:text-lg">Rejected</div>
+                </div>
+                <button class="mr-1 rounded-2xl bg-yellow-400 px-2 py-1 text-sm font-semibold hover:bg-yellow-500 focus:ring-4 focus:ring-blue-400 md:text-lg lg:px-5" data-modal-target="withdrawModal" data-modal-toggle="withdrawModal" type="button">Withdraw Application</button>
               </div>
-              <form id="withdraw" action="">
-                <button class="rounded-2xl bg-yellow-400 px-5 py-1 text-lg font-semibold hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-400" data-modal-target="withdrawModal" data-modal-toggle="withdrawModal" type="button">Withdraw Application</button>
-              </form>
+              <div class="text-extralight mt-1 text-base md:text-xl">24 Chicken</div>
+              <div class="text-extralight mt-1 text-base md:text-xl">Manila, Philippines</div>
+              <div class="mt-2 flex gap-1 text-center text-[9px] text-stone-100 md:text-sm">
+                <div class="rounded-full border-2 border-neutral-600 bg-blue-600 px-1 py-1 md:px-2">₱ 500,000 / month</div>
+                <div class="rounded-full border-2 border-neutral-600 bg-blue-600 px-1 py-1 md:px-2">Full Time</div>
+                <div class="rounded-full border-2 border-neutral-600 bg-blue-600 px-1 py-1 md:px-2">Senior</div>
+              </div>
+              <div class="text-thin mt-3 text-xs md:text-base">Applied two weeks ago</div>
             </div>
-            <div class="text-extralight mt-1 text-xl">24 Chicken</div>
-            <div class="text-extralight mt-1 text-xl">Manila, Philippines</div>
-            <div class="mt-2 flex gap-1 text-sm text-stone-100">
-              <div class="rounded-full border-2 border-neutral-600 bg-blue-600 px-2 py-1">₱ 500,000 / month</div>
-              <div class="rounded-full border-2 border-neutral-600 bg-blue-600 px-2 py-1">Full Time</div>
-              <div class="rounded-full border-2 border-neutral-600 bg-blue-600 px-2 py-1">Senior</div>
-            </div>
-            <div class="text-thin mt-3 text-base">Applied two weeks ago</div>
-          </div>
+          </form>
 
           <!-- Card (Accepted) -->
-          <div class="border-t-2 border-zinc-800 py-4">
-            <div class="flex justify-between">
-              <div class="flex items-center">
-                <button type="button" data-modal-target="jobModal" data-modal-toggle="jobModal">
-                  <div class="text-2xl font-bold">Marketing Manager</div>
-                </button>
-                <div class="ml-10 rounded-3xl bg-lime-400 px-4 py-1 text-center text-xl font-semibold">Accepted</div>
+          <form id="withdraw" action="">
+            <div class="overflow-x-auto border-t-2 border-zinc-800 py-2 md:py-4">
+              <div class="item-center flex justify-between gap-8">
+                <div class="flex items-center">
+                  <button type="button" data-modal-target="jobModal" data-modal-toggle="jobModal">
+                    <div class="overflow-x-auto text-left text-lg font-bold md:text-2xl">Marketing Manager</div>
+                  </button>
+                  <div class="ml-5 rounded-3xl bg-lime-400 px-2 py-1 text-center text-sm font-semibold md:ml-10 md:px-3 md:text-lg">Accepted</div>
+                </div>
+                <button class="mr-1 rounded-2xl bg-yellow-400 px-2 py-1 text-sm font-semibold hover:bg-yellow-500 focus:ring-4 focus:ring-blue-400 md:text-lg lg:px-5" data-modal-target="withdrawModal" data-modal-toggle="withdrawModal" type="button">Withdraw Application</button>
               </div>
-              <form id="withdraw" action="">
-                <button class="rounded-2xl bg-yellow-400 px-5 py-1 text-lg font-semibold hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-400" data-modal-target="withdrawModal" data-modal-toggle="withdrawModal" type="button">Withdraw Application</button>
-              </form>
+              <div class="text-extralight mt-1 text-base md:text-xl">24 Chicken</div>
+              <div class="text-extralight mt-1 text-base md:text-xl">Manila, Philippines</div>
+              <div class="mt-2 flex gap-1 text-center text-[9px] text-stone-100 md:text-sm">
+                <div class="rounded-full border-2 border-neutral-600 bg-blue-600 px-1 py-1 md:px-2">₱ 500,000 / month</div>
+                <div class="rounded-full border-2 border-neutral-600 bg-blue-600 px-1 py-1 md:px-2">Full Time</div>
+                <div class="rounded-full border-2 border-neutral-600 bg-blue-600 px-1 py-1 md:px-2">Senior</div>
+              </div>
+              <div class="text-thin mt-3 text-xs md:text-base">Applied two weeks ago</div>
             </div>
-            <div class="text-extralight mt-1 text-xl">24 Chicken</div>
-            <div class="text-extralight mt-1 text-xl">Manila, Philippines</div>
-            <div class="mt-2 flex gap-1 text-sm text-stone-100">
-              <div class="rounded-full border-2 border-neutral-600 bg-blue-600 px-2 py-1">₱ 500,000 / month</div>
-              <div class="rounded-full border-2 border-neutral-600 bg-blue-600 px-2 py-1">Full Time</div>
-              <div class="rounded-full border-2 border-neutral-600 bg-blue-600 px-2 py-1">Senior</div>
-            </div>
-            <div class="text-thin mt-3 text-base">Applied two weeks ago</div>
-          </div>
+          </form>
         </div>
       </div>
     </div>
@@ -145,10 +185,10 @@
           <!-- Modal body -->
           <div class="space-y-3 p-6">
             <div class="flex items-center justify-between">
-              <div class="text-4xl font-bold">Marketing Manager</div>
-              <div class="">
+              <div class="text-2xl font-bold md:text-4xl">Marketing Manager</div>
+              <div class="flex flex-row">
                 <button>
-                  <svg class="feather feather-printer h-8 w-8 text-zinc-800" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <svg class="feather feather-printer h-6 w-6 text-zinc-800 md:h-8 md:w-8" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <polyline points="6 9 6 2 18 2 18 9"></polyline>
                     <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
                     <rect x="6" y="14" width="12" height="8"></rect>
@@ -160,7 +200,7 @@
                 </button>
               </div>
             </div>
-            <div class="mt-1 text-sm font-light text-neutral-600">
+            <div class="mt-0 text-sm font-light text-neutral-600 md:mt-1">
               <span class="font-semibold">24 Chicken</span>
               |
               <span class="font-semibold">Manila, Philippines</span>
@@ -168,20 +208,20 @@
               <span class="font-">Sales</span>
               | Posted 2 days ago
             </div>
-            <div class="mt-2 flex gap-1 border-b-2 border-neutral-600 pb-3 text-sm text-stone-100">
+            <div class="mt-2 flex gap-1 border-b-2 border-neutral-600 pb-3 text-[10px] text-stone-100 md:text-sm">
               <div class="rounded-full border-2 border-neutral-600 bg-blue-600 px-2 py-1">₱ 500,000 / month</div>
               <div class="rounded-full border-2 border-neutral-600 bg-blue-600 px-2 py-1">Full Time</div>
               <div class="rounded-full border-2 border-neutral-600 bg-blue-600 px-2 py-1">Senior</div>
             </div>
-            <div class="mt-2 text-base">We are seeking an experienced Marketing Manager to lead our marketing efforts and drive growth for our business. The ideal candidate will have a proven track record of developing and executing successful marketing campaigns, as well as the ability to analyze data and identify opportunities for optimization.</div>
+            <div class="mt-2 text-sm md:text-base">We are seeking an experienced Marketing Manager to lead our marketing efforts and drive growth for our business. The ideal candidate will have a proven track record of developing and executing successful marketing campaigns, as well as the ability to analyze data and identify opportunities for optimization.</div>
 
             <!-- Company Overview -->
-            <div class="mt-4 border-b-2 border-neutral-600 pb-3 text-3xl font-bold">Company Overview</div>
-            <div class="mt-2 text-base">[Company Name] is a leading provider of [product/service] solutions for [target audience]. Our mission is to [company mission statement]. We pride ourselves on our commitment to innovation, excellence, and customer satisfaction.</div>
+            <div class="mt-4 border-b-2 border-neutral-600 pb-3 text-xl font-bold md:text-3xl">Company Overview</div>
+            <div class="mt-2 text-sm md:text-base">[Company Name] is a leading provider of [product/service] solutions for [target audience]. Our mission is to [company mission statement]. We pride ourselves on our commitment to innovation, excellence, and customer satisfaction.</div>
 
             <!-- Responsibilities -->
-            <div class="mt-4 border-b-2 border-neutral-600 pb-3 text-3xl font-bold">Responsibilities</div>
-            <div class="mt-2 text-base">
+            <div class="mt-4 border-b-2 border-neutral-600 pb-3 text-xl font-bold md:text-3xl">Responsibilities</div>
+            <div class="mt-2 text-sm md:text-base">
               <ul class="ml-4 list-outside list-disc">
                 <li>Develop and execute comprehensive marketing strategies to increase brand awareness and drive sales.</li>
                 <li>Collaborate with internal teams to create compelling content and collateral for various channels.</li>
@@ -192,8 +232,8 @@
             </div>
 
             <!-- Requirements -->
-            <div class="mt-4 border-b-2 border-neutral-600 pb-3 text-3xl font-bold">Requirements</div>
-            <div class="mt-2 text-base">
+            <div class="mt-4 border-b-2 border-neutral-600 pb-3 text-xl font-bold md:text-3xl">Requirements</div>
+            <div class="mt-2 text-sm md:text-base">
               <ul class="ml-4 list-outside list-disc">
                 <li>Bachelor's degree in Marketing or related field.</li>
                 <li>5+ years of experience in marketing, with a focus on digital marketing.</li>
@@ -204,8 +244,8 @@
             </div>
 
             <!-- Benefits -->
-            <div class="mt-4 border-b-2 border-neutral-600 pb-3 text-3xl font-bold">Requirements</div>
-            <div class="mt-2 text-base">
+            <div class="mt-4 border-b-2 border-neutral-600 pb-3 text-xl font-bold md:text-3xl">Requirements</div>
+            <div class="mt-2 text-sm md:text-base">
               <ul class="ml-4 list-outside list-disc">
                 <li>Competitive salary and bonus opportunities.</li>
                 <li>Comprehensive health, dental, and vision insurance.</li>
@@ -223,23 +263,23 @@
     <div id="withdrawModal" tabindex="-1" aria-hidden="true" class="fixed left-0 right-0 top-0 z-50 hidden h-[calc(100%-1rem)] max-h-full w-full overflow-y-auto overflow-x-hidden p-4 md:inset-0">
       <div class="relative max-h-full w-full max-w-lg">
         <!-- Modal content -->
-        <div class="relative rounded-lg bg-slate-300 shadow">
+        <div class="relative rounded-2xl bg-slate-300 shadow">
           <!-- Modal header -->
           <div class="flex items-start justify-between rounded-t border-b border-neutral-600 p-4">
-            <h3 class="flex-1 text-2xl font-semibold text-zinc-800">Confirm Job Application Withdrawal</h3>
+            <h3 class="flex-1 text-lg font-semibold text-zinc-800 md:text-2xl">Confirm Job Application Withdrawal</h3>
             <button type="button" class="ml-auto inline-flex items-center rounded-lg bg-transparent p-1.5 text-sm text-zinc-800 hover:bg-slate-600 hover:text-stone-100" data-modal-hide="withdrawModal">
               <svg aria-hidden="true" class="h-7 w-7" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
               <span class="sr-only">Close modal</span>
             </button>
           </div>
           <!-- Modal body -->
-          <div class="space-y-6 p-6">
-            <p class="text-base leading-relaxed text-slate-800">Are you sure you want to withdraw your job application? This action cannot be undone.</p>
+          <div class="space-y-2 p-4">
+            <p class="text-sm leading-relaxed text-slate-800 md:text-base">Are you sure you want to withdraw your job application? This action cannot be undone.</p>
           </div>
           <!-- Modal footer -->
-          <div class="flex items-center space-x-2 rounded-b border-t border-gray-200 p-6 dark:border-gray-600">
-            <button data-modal-hide="withdrawModal" type="submit" form="withdraw" name="id" value="1" class="rounded-2xl bg-yellow-400 px-5 py-2.5 text-center text-base font-semibold text-zinc-800 hover:bg-yellow-500 focus:outline-none focus:ring-4 focus:ring-blue-400">Confirm Submit</button>
-            <button data-modal-hide="withdrawModal" type="button" class="rounded-2xl border border-neutral-600 bg-neutral-600 px-5 py-2.5 text-base text-stone-100 hover:bg-neutral-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-blue-400">Back</button>
+          <div class="flex items-center space-x-2 rounded-b border-t border-gray-200 p-4 dark:border-gray-600">
+            <button data-modal-hide="withdrawModal" type="submit" form="withdraw" name="id" value="1" class="rounded-2xl bg-yellow-400 px-5 py-2 text-center text-sm font-semibold text-zinc-800 hover:bg-yellow-500 focus:outline-none focus:ring-4 focus:ring-blue-400 md:text-base">Confirm Submit</button>
+            <button data-modal-hide="withdrawModal" type="button" class="rounded-2xl border border-neutral-600 bg-neutral-600 px-5 py-2 text-sm text-stone-100 hover:bg-neutral-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-blue-400 md:text-base">Back</button>
           </div>
         </div>
       </div>
@@ -249,6 +289,5 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
     <script src="/public/js/navbar.js" defer></script>
     <script src="/public/js/appliedCategories.js" defer></script>
-
   </body>
 </html>
