@@ -15,6 +15,7 @@ public class LogoutServlet extends HttpServlet {
             session.removeAttribute("logged-id");
             session.removeAttribute("logged-usertype");
             session.removeAttribute("error-message"); 
+            session.removeAttribute("feedback-message"); 
             response.sendRedirect("index.jsp");        
     }
 

@@ -17,7 +17,9 @@
         <div class="container">
             
             <%@include file="./components/nav-employer.jsp"%>
-            
+            <%if(session.getAttribute("feedback-message") != null){%>
+            <%@include file="./components/feedback-message.jsp"%>
+            <%}%>
             <div class="content p-1 mt-2 d-block rounded text-center">
                 <h3 class="">Welcome Back, <%=(String)session.getAttribute("logged-employer")%></h3>
                 <div class="row">

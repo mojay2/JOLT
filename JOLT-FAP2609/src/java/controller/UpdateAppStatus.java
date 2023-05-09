@@ -57,7 +57,7 @@ public class UpdateAppStatus extends HttpServlet {
                     ps.setInt(2, appID);                    
 
                     ps.executeUpdate(); 
-
+session.setAttribute("feedback-message", "Successfully Updated Application Status");
                     if(request.getParameter("job-id") != null){
                         request.setAttribute("job-id", request.getParameter("job-id"));
                     }

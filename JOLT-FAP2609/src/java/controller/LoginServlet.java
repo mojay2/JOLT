@@ -72,7 +72,7 @@ Connection conn;
                     else{
                     //Failed login
                         counter++;
-                        session.setAttribute("error-message", "Wrong Login Credentials");
+                        session.setAttribute("feedback-message", "Wrong Login Credentials");
                         request.getRequestDispatcher("login.jsp").forward(request,response);
                     }
                 } else {

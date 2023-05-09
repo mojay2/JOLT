@@ -10,6 +10,9 @@
     <body>
         <div class="container">
             <%@include file="./components/nav-seeker.jsp"%>
+            <%if(session.getAttribute("feedback-message") != null){%>
+            <%@include file="./components/feedback-message.jsp"%>
+            <%}%>
             <div>
                 <h1 class="title text-center">JABOOOOOOOOOOOOARD</h1>  
             </div>

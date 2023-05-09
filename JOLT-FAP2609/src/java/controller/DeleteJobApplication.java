@@ -52,6 +52,8 @@ public class DeleteJobApplication extends HttpServlet {
                     PreparedStatement ps = conn.prepareStatement(query);            
                     ps.setInt(1, appID);                    
                     ps.executeUpdate(); 
+
+                    session.setAttribute("feedback-message", "Successfully Withdrew Application");
                     response.sendRedirect("LoadAppliedJobs"); 
                 } else {
                     request.setAttribute("error-message", "Connection Error");

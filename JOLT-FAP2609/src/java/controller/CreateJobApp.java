@@ -67,7 +67,7 @@ public class CreateJobApp extends HttpServlet {
                     ps.executeQuery();
                     ResultSet appCheck = ps.executeQuery();
                     if(appCheck.next()){
-                        session.setAttribute("error-message", "You have already Applied for this job.");
+                        session.setAttribute("feedback-message", "You have already Applied for this job.");
                         response.sendRedirect("LoadJobFeed"); 
                     }else{
                         //Create a new application 
@@ -81,7 +81,7 @@ public class CreateJobApp extends HttpServlet {
                         ps2.setInt(3, jobID);
 
                         ps2.executeUpdate(); 
-
+                        session.setAttribute("feedback-message", "Successfully Applied");
                         response.sendRedirect("LoadJobFeed"); 
                     }
                 } else {

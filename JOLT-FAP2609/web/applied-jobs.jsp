@@ -14,6 +14,9 @@
     <body>
         <div class="container">
             <%@include file="./components/nav-seeker.jsp"%>
+            <%if(session.getAttribute("feedback-message") != null){%>
+            <%@include file="./components/feedback-message.jsp"%>
+            <%}%>
             <div class="content p-1 mt-2 d-block rounded text-center">
                 <nav class="navbar navbar-expand-lg navbar-light bg-light">
                     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">

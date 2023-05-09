@@ -53,6 +53,7 @@ public class DeleteJobListing extends HttpServlet {
                     ps.setInt(1, jobID);                    
                     ps.executeUpdate(); 
 
+                    session.setAttribute("feedback-message", "Successfully Deleted Job Listing");
                     response.sendRedirect("employer-home"); 
                 } else {
                     request.setAttribute("error-message", "Connection Error");

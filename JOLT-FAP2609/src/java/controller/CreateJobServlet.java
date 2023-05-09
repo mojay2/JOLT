@@ -61,7 +61,7 @@ public class CreateJobServlet extends HttpServlet {
                     int jobIndustry = Integer.parseInt(request.getParameter("job-industry"));
                     int jobType = Integer.parseInt(request.getParameter("job-type"));
                     if(jobLevel == -1 || jobIndustry == -1 || jobType == -1 ){
-                        session.setAttribute("error-message", "Invalid User Input");
+                        session.setAttribute("feedback-message", "Invalid User Input");
                         response.sendRedirect("create-job-listing.jsp");
                         return;
                     }
@@ -88,7 +88,9 @@ public class CreateJobServlet extends HttpServlet {
                     ps2.setInt(12,   Integer.parseInt(request.getParameter("job-type")));
 
                     ps2.executeUpdate(); 
-                    response.sendRedirect("create-job-listing.jsp");
+
+                    session.setAttribute("feedback-message", "Successfully Created Job Listing");
+                    response.sendRedirect("employer-home");
                 } else {
                     request.setAttribute("error-message", "Connection Error");
                     request.getRequestDispatcher("error.jsp").forward(request,response);

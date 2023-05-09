@@ -18,6 +18,9 @@
         
         <div class="container">
             <%@include file="./components/nav-seeker.jsp"%>
+            <%if(session.getAttribute("feedback-message") != null){%>
+            <%@include file="./components/feedback-message.jsp"%>
+            <%}%>
             <div class="active-jobs content p-1 mt-1 d-block rounded text-center">
             </div>
             <div class="content p-1 mt-2 d-block rounded text-center">
