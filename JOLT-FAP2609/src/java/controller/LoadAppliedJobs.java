@@ -12,11 +12,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import nl.captcha.Captcha;
 
-public class DeleteJobApplication extends HttpServlet {
+public class LoadAppliedJobs extends HttpServlet {
 
-    Connection conn;
+Connection conn;
     int counter;
     public void init() throws ServletException
     {
@@ -40,19 +39,56 @@ public class DeleteJobApplication extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
         try {	
                 if (conn != null) {
                     HttpSession session = request.getSession();
-                    Integer loggedUser = (Integer)session.getAttribute("logged-id");
+                    Integer userID = (Integer)session.getAttribute("logged-id");
+                    
+                    //get jobseeker id
+                    String query = "SELECT * FROM JOBSEEKERS WHERE USER_ID = ?";
+                    PreparedStatement ps = conn.prepareStatement(query);
+                    ps.setInt(1, userID);
+                    ps.executeQuery();
+                    ResultSet jobseeker = ps.executeQuery();
+                    int seekerID = 0;
+                    if(jobseeker.next()){
+                        seekerID = jobseeker.getInt("SEEKER_ID");
+                    }
 
-                    int appID = Integer.parseInt(request.getParameter("app-id"));
 
-                    String query = "DELETE FROM APPLICATIONS WHERE APP_ID = ?" ;
+                    if(request.getParameter("status")==null){
+                    //get all JOB APPLICATIONS with the JOBSEEKERID
+                        query = "SELECT * FROM APPLICATIONS "
+                                    + "INNER JOIN JOBSEEKERS ON JOBSEEKERS.SEEKER_ID = APPLICATIONS.SEEKER_ID "
+                                    + "INNER JOIN EMPLOYERS ON EMP_ID = EMPLOYER_ID "
+                                    + "INNER JOIN JOBS ON JOBS.JOB_ID = APPLICATIONS.JOB_ID "
+                                    + "INNER JOIN STATUSES ON APP_STATUS = STATUS_ID "
+                                    + "INNER JOIN TYPES ON JOB_TYPE = TYPE_ID "
+                                    + "INNER JOIN LEVELS ON JOB_LEVEL = LEVEL_ID "
+                                    + "WHERE APPLICATIONS.SEEKER_ID = ?"
+                        ;   
+                        ps = conn.prepareStatement(query);
+                        ps.setInt(1, seekerID);
+                    }else{
+                        query = "SELECT * FROM APPLICATIONS "
+                                    + "INNER JOIN JOBSEEKERS ON JOBSEEKERS.SEEKER_ID = APPLICATIONS.SEEKER_ID "
+                                    + "INNER JOIN EMPLOYERS ON EMP_ID = EMPLOYER_ID "
+                                    + "INNER JOIN JOBS ON JOBS.JOB_ID = APPLICATIONS.JOB_ID "
+                                    + "INNER JOIN STATUSES ON APP_STATUS = STATUS_ID "
+                                    + "INNER JOIN TYPES ON JOB_TYPE = TYPE_ID "
+                                    + "INNER JOIN LEVELS ON JOB_LEVEL = LEVEL_ID "
+                                    + "WHERE APPLICATIONS.SEEKER_ID = ? AND APP_STATUS = ?"
+                        ;   
+                        ps = conn.prepareStatement(query);
+                        ps.setInt(1, seekerID);
+                        ps.setInt(2, Integer.parseInt(request.getParameter("status")));
+                    }
 
-                    PreparedStatement ps = conn.prepareStatement(query);            
-                    ps.setInt(1, appID);                    
-                    ps.executeUpdate(); 
-                    response.sendRedirect("LoadAppliedJobs"); 
+                    ResultSet applications = ps.executeQuery();
+
+                    request.setAttribute("applications", applications);
+                    request.getRequestDispatcher("applied-jobs.jsp").forward(request,response);
                 } else {
                     request.setAttribute("error-message", "Connection Error");
                     request.getRequestDispatcher("error.jsp").forward(request,response);
@@ -60,10 +96,8 @@ public class DeleteJobApplication extends HttpServlet {
         } catch (SQLException sqle){
                 request.setAttribute("error-message", sqle.getMessage());
                 request.getRequestDispatcher("error.jsp").forward(request,response);
-        } catch (Exception e){
-                request.setAttribute("error-message", e.toString());
-                request.getRequestDispatcher("error.jsp").forward(request,response);
-        }
+        } 
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
