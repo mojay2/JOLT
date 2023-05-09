@@ -59,7 +59,8 @@ CREATE TABLE JOBSEEKERS(
     SEEKER_EXP_BATCH VARCHAR(50),
     SEEKER_SKILLS VARCHAR(2000),
     SEEKER_ADDRESS VARCHAR(50),
-    SEEKER_NUMBER VARCHAR(50)
+    SEEKER_NUMBER VARCHAR(50),
+    SEEKER_ZOOMID VARCHAR(50)
 );
 
 CREATE TABLE JOBS(
@@ -170,14 +171,14 @@ INSERT INTO JOBSEEKERS(
     SEEKER_EDUC_COURSE, SEEKER_EDUC_SCHOOL, SEEKER_EDUC_BATCH,
     SEEKER_EXP_TITLE, SEEKER_EXP_COMPANY, SEEKER_EXP_BATCH,
     SEEKER_SKILLS,
-    SEEKER_ADDRESS, SEEKER_NUMBER
+    SEEKER_ADDRESS, SEEKER_NUMBER, SEEKER_ZOOMID
 ) VALUES (
-    1, 'JR', 'Gregg', 'Web Developer',
+    1, 'JR Gregg', 'Lagman', 'Web Developer',
     'Experienced web developer with a strong background in front-end development and expertise in HTML, CSS, and JavaScript. Skilled in developing responsive and user-friendly websites and applications using modern frameworks such as React and Angular. Passionate about staying up-to-date with the latest web technologies and trends. A collaborative team player with excellent communication skills and a focus on delivering high-quality work.',
     'University of Santo Tomas', 'B.S. Computer Science', '2018 - 2022',
     'Web Developer Intern', 'Canva',' 2022 - Present',
     'Strong Problem Solving and analytical Skills*Excellent communication and collaboration skills*Experience working in Agile Environments',
-    'Quezon City', '1234567890'
+    'Quezon City', '1234567890', 'jrgregglagman'
 );
 
 INSERT INTO JOBSEEKERS(
@@ -186,14 +187,14 @@ INSERT INTO JOBSEEKERS(
     SEEKER_EDUC_COURSE, SEEKER_EDUC_SCHOOL, SEEKER_EDUC_BATCH,
     SEEKER_EXP_TITLE, SEEKER_EXP_COMPANY, SEEKER_EXP_BATCH,
     SEEKER_SKILLS,
-    SEEKER_ADDRESS, SEEKER_NUMBER
+    SEEKER_ADDRESS, SEEKER_NUMBER, SEEKER_ZOOMID
 ) VALUES (
     2, 'Lancelot', 'Bulan', 'Civil Engineer',
     'Dynamic civil engineer with experience in infrastructure design, construction and project management. Skilled in AutoCAD, SAP2000 and MS Project. Strong analytical and problem-solving abilities with a focus on ensuring projects are completed on time and within budget. Proven ability to work in a team and to communicate effectively with clients and stakeholders.',
     'University of Santo Tomas', 'B.S. Civil Engineering', '2018 - 2022',
     'Project Engineer', 'Ayala', '2022 - Present',
     'Strong Problem Solving and analytical Skills*Excellent communication and collaboration skills*Experience working in Agile Environments',
-    'Quezon City', '1234567890'
+    'Quezon City', '1234567890', 'lancelotbulan'
 );
 
 INSERT INTO JOBSEEKERS(
@@ -202,14 +203,14 @@ INSERT INTO JOBSEEKERS(
     SEEKER_EDUC_COURSE, SEEKER_EDUC_SCHOOL, SEEKER_EDUC_BATCH,
     SEEKER_EXP_TITLE, SEEKER_EXP_COMPANY, SEEKER_EXP_BATCH,
     SEEKER_SKILLS,
-    SEEKER_ADDRESS, SEEKER_NUMBER
+    SEEKER_ADDRESS, SEEKER_NUMBER, SEEKER_ZOOMID
 ) VALUES (
     3, 'Jay', 'Ambal', 'Financial Analyst',
     'Experienced financial analyst with expertise in financial modeling and analysis, forecasting, and budgeting. Skilled in Excel, Bloomberg Terminal, and other financial software. Strong analytical and problem-solving abilities with a focus on delivering accurate and actionable insights to support investment decisions. Proven ability to work independently and as part of a team.',
     'University of Santo Tomas', 'B.S. Accountancy', '2018 - 2022',
     'Finance Intern', 'Some Company', '2022 - Present',
     'Strong Problem Solving and analytical Skills*Excellent communication and collaboration skills*Experience working in Agile Environments',
-    'Quezon City', '1234567890'
+    'Quezon City', '1234567890', 'jayambal'
 );
 
 INSERT INTO LEVELS (LEVEL_NAME) VALUES ('Entry-Level');
@@ -251,11 +252,3 @@ INSERT INTO LEVELS (LEVEL_NAME) VALUES ('Executive-Level');
 --JOB ISOPEN
 --0 = TRUE
 --1 = FALSE
-
--- INSERT INTO USERS (USER_EMAIL, USER_PASSWORD, USER_TYPE) VALUES ('user3@gmail.com', 'user3', 1);
--- 
--- INSERT INTO USERS (USER_EMAIL, USER_PASSWORD, USER_TYPE) VALUES ('user4@gmail.com', 'user4', 1);
--- 
--- INSERT INTO JOBSEEKERS (USER_ID, SEEKER_FNAME, SEEKER_LNAME, SEEKER_ADDRESS, SEEKER_NUMBER) VALUES (4, 'JAY', 'AMBAL', 'PROJECT 6', 123);
-
--- SELECT * FROM JOBS INNER JOIN EMPLOYERS ON JOBS.EMP_ID = EMPLOYERS.EMP_ID INNER JOIN INDUSTRIES ON INDUSTRY_ID = IND_ID;
