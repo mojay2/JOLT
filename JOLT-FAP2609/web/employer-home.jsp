@@ -46,8 +46,11 @@
                                                     <td><%=jobs.getString("TYPE_NAME")%></td>
                                                     <td><%=jobs.getString("LEVEL_NAME")%></td>            
                                                     <td>
-                                                        <a href="#"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
-                                                        <a href="#"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
+                                                        <form id="delete<%=jobs.getString("JOB_ID")%>" method = "post" action="DeleteJobListing">
+                                                            <input type="hidden" name="job-id" value ="<%=jobs.getString("JOB_ID")%>"/>
+                                                            <a class="btn btn-info" href="LoadJobCandidates?job-id=<%=jobs.getString("JOB_ID")%>">View</a>
+                                                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                                        </form>
                                                     </td>
                                                 </tr>
                                                 <%}%>
