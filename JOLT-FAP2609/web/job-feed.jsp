@@ -4,14 +4,15 @@
 <html>
     <head>
         <%@include file="./components/header.jsp"%>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <title>Job Feed</title>
     </head>
     <body>
         <%
             session = request.getSession();
             Integer id = (Integer)session.getAttribute("logged-id");
-            String user;
             String viewURL;
+            String user;
             String applyURL;
         %>
         
@@ -40,15 +41,21 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                        <%ResultSet jobs = (ResultSet)request.getAttribute("jobs");
+                                        <%ResultSet jobs = (ResultSet)request.getAttribute("jobs");      
+                                            int counter = 0;
+                                            int firstJobID = 1;
                                             while (jobs.next()) {
+                                                counter++;
+                                                if(counter == 1){
+                                                    firstJobID = jobs.getInt("JOB_ID");
+                                                }
                                                 if(id == null){
                                                     user = "guest";
-                                                    viewURL = "ViewJobListing?id="+jobs.getInt("JOB_ID");
+                                                    viewURL = "LoadProfileModalTest?id="+jobs.getInt("JOB_ID");
                                                     applyURL = "login.jsp";
                                                 }else{
                                                     user = "jobseeker";
-                                                    viewURL = "ViewJobListing?id="+jobs.getInt("JOB_ID");
+                                                    viewURL = "LoadProfileModalTest?id="+jobs.getInt("JOB_ID");
                                                     applyURL = "LoadJobFeed";
                                                 }%>
                                                 <tr>
@@ -60,7 +67,8 @@
                                                     <td><%=jobs.getString("TYPE_NAME")%></td>
                                                     <td><%=jobs.getString("LEVEL_NAME")%></td>            
                                                     <td>
-                                                        <a href="<%=viewURL%>"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>                                                    </td>
+                                                    <button class="btn btn-primary view-job" data-id="<%=jobs.getInt("JOB_ID")%>">View</button>
+                                                    </td>
                                                 </tr>
                                                 <%}%>
                                         </tbody>
@@ -71,6 +79,104 @@
                     </div>
                 </div>
             </div>
-        </div>	
+                                        
+            <!--POST INFO-->
+            <div class="card p-1 mt-1 rounded text-center" id="job-loader" data-id="<%=firstJobID%>">
+                <h1 id = "job-title"></h1>
+                <div class="d-flex justify-content-center">
+                    <h3 id = "emp-name"></h3>
+                    <h3 id = "job-location"></h3>
+                    <h3 id = "job-industry"></h3>
+                </div>
+
+                <div class="d-flex justify-content-center">
+                    <h5 id = "job-salary"></h5>
+                    <h5 id = "job-type"></h5>
+                    <h5 id = "job-level"></h5>
+                </div>
+
+                <hr>
+
+                <h5>Job Description</h5>
+                <p id = "job-desc"></p>
+                <hr>
+
+                <h5>Company Overview</h5>
+                <p id = "emp-overview"></p>
+                <hr>
+
+                <h5>Responsibilities</h5>
+                <ul>
+                    <p id = "job-resp"></p>
+                </ul>
+                <hr>                        
+
+                <h5>Requirements</h5>
+                <ul>
+                    <p id = "job-reqs"></p>
+                </ul>
+                <hr>
+
+                <h5>Benefits</h5>
+                <ul>
+                    <p id = "job-benefits"></p>
+                </ul>
+
+                <form action = "CreateJobApp" class="form-control" method="post">
+                    <input id="hidden-job-id" type="hidden" name="job-id" value=""/>
+                    <input id="hidden-emp-id" type="hidden" name="emp-id" value=""/>
+                    <%if(session.getAttribute("logged-id") == null){%>
+                        <a class="btn btn-warning" href="login.jsp">Apply</a>
+                    <%}else{%>
+                        <button class="btn btn-warning" type="submit">Apply</button>
+                    <%}%>
+                </form>
+            </div>
+                                        
+        <script>
+          
+        const viewButtons = document.querySelectorAll('.view-job');
+        
+        document.addEventListener("DOMContentLoaded", loadFirstJob());
+        function loadFirstJob(){
+          const jobID = document.getElementById("job-loader").getAttribute("data-id");
+          loadJobInfo(jobID);
+        }
+        
+        viewButtons.forEach(button => {
+          button.addEventListener('click', () => {
+            const jobID = button.getAttribute('data-id');
+            // retrieve job info from the server
+            loadJobInfo(jobID);
+          });
+        });
+          
+          
+          
+        function loadJobInfo(jobID){
+            fetch('./ViewJobInfo?id='+jobID)
+                .then(response => response.json())
+                .then(job => {
+                    document.getElementById('job-title').innerHTML = job.jobtitle;
+                    document.getElementById('emp-name').innerHTML = job.empname + "||";
+                    document.getElementById('job-location').innerHTML = job.joblocation + "||";
+                    document.getElementById('job-industry').innerHTML = job.jobindustry;
+
+                    document.getElementById('job-salary').innerHTML = job.jobsalary +"/month||";
+                    document.getElementById('job-type').innerHTML = job.jobtype+"||";
+                    document.getElementById('job-level').innerHTML = job.joblevel;
+
+                    document.getElementById('job-desc').innerHTML = job.jobdesc;
+                    document.getElementById('emp-overview').innerHTML = job.empoverview;
+                    document.getElementById('job-resp').innerHTML = job.jobresp;
+                    document.getElementById('job-reqs').innerHTML = job.jobreqs;
+                    document.getElementById('job-benefits').innerHTML = job.jobbenefits;
+
+                    document.getElementById('hidden-job-id').value = job.jobid;
+                    document.getElementById('hidden-emp-id').value = job.empid;
+                })
+            .catch(error => console.log(error));
+        }
+        </script>
     </body>
 </html>

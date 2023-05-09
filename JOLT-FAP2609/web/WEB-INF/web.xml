@@ -68,6 +68,10 @@
         <servlet-name>LoadJobFeedTesting</servlet-name>
         <servlet-class>controller.LoadJobFeedTesting</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ViewJobInfo</servlet-name>
+        <servlet-class>controller.ViewJobInfo</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>CreateJobServlet</servlet-name>
         <url-pattern>/CreateJobServlet</url-pattern>
@@ -135,6 +139,10 @@
     <servlet-mapping>
         <servlet-name>LoadJobFeedTesting</servlet-name>
         <url-pattern>/LoadJobFeedTesting</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewJobInfo</servlet-name>
+        <url-pattern>/ViewJobInfo</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
