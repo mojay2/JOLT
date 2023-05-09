@@ -28,20 +28,36 @@
                         </h5>
                         <hr>
                         
+                        <h5>Job Description</h5>
                         <p><%=job.getString("JOB_DESC")%></p>
                         <hr>
                         
                         <h5>Responsibilities</h5>
-                        <p><%=job.getString("JOB_RESP")%></p>
+                        <%String[] jobResp = job.getString("JOB_RESP").split("\\*");%>
+                        <ul>
+                            <% for (String bullet: jobResp){%>
+                            <li><%=bullet%></li>
+                            <%}%>
+                        </ul>
                         <hr>                        
 
                         
                         <h5>Requirements</h5>
-                        <p><%=job.getString("JOB_REQS")%></p>
+                        <%String[] jobReqs = job.getString("JOB_REQS").split("\\*");%>
+                        <ul>
+                            <% for (String bullet: jobReqs){%>
+                            <li><%=bullet%></li>
+                            <%}%>
+                        </ul>
                         <hr>
                         
                         <h5>Benefits</h5>
-                        <p><%=job.getString("JOB_BENEFIT")%></p>
+                        <%String[] jobBnfts = job.getString("JOB_BENEFIT").split("\\*");%>
+                        <ul>
+                            <% for (String bullet: jobBnfts){%>
+                            <li><%=bullet%></li>
+                            <%}%>
+                        </ul>
                         
                         <form action = "CreateJobApp" class="form-control" method="post">
                             <input type="hidden" name="job-id" value="<%=job.getString("JOB_ID")%>"/>

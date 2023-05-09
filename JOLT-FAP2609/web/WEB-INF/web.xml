@@ -52,6 +52,10 @@
         <servlet-name>DeleteJobListing</servlet-name>
         <servlet-class>controller.DeleteJobListing</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ViewJobListingTest</servlet-name>
+        <servlet-class>controller.ViewJobListingTest</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>CreateJobServlet</servlet-name>
         <url-pattern>/CreateJobServlet</url-pattern>
@@ -103,6 +107,10 @@
     <servlet-mapping>
         <servlet-name>DeleteJobListing</servlet-name>
         <url-pattern>/DeleteJobListing</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewJobListingTest</servlet-name>
+        <url-pattern>/ViewJobListingTest</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
