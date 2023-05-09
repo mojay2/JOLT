@@ -44,20 +44,58 @@ Connection conn;
                 if (conn != null) {
                     HttpSession session = request.getSession();
                     Integer userID = (Integer)session.getAttribute("logged-id");
+                    String query;
+                    PreparedStatement ps;
 
-                    //get all jobs
-                    String query = "SELECT * FROM JOBS "
+                    if(request.getParameter("query") == null && request.getParameter("industry") == null){
+                        query = "SELECT * FROM JOBS "
+                                   + "INNER JOIN EMPLOYERS ON JOBS.EMP_ID = EMPLOYERS.EMP_ID "
+                                   + "INNER JOIN INDUSTRIES ON INDUSTRY_ID = IND_ID "
+                                   + "INNER JOIN TYPES ON JOB_TYPE = TYPE_ID "
+                                   + "INNER JOIN LEVELS ON JOB_LEVEL = LEVEL_ID "
+                                   + "ORDER BY JOB_ID DESC"
+                        ;
+                        ps = conn.prepareStatement(query);
+                    }else{
+                        int industryID = Integer.parseInt(request.getParameter("industry"));
+                            String extraParam ="AND IND_ID = ? ";                        
+                            if(industryID == -1){
+                                extraParam = "";
+                            }
+                        query = "SELECT * FROM JOBS "
                                 + "INNER JOIN EMPLOYERS ON JOBS.EMP_ID = EMPLOYERS.EMP_ID "
                                 + "INNER JOIN INDUSTRIES ON INDUSTRY_ID = IND_ID "
                                 + "INNER JOIN TYPES ON JOB_TYPE = TYPE_ID "
                                 + "INNER JOIN LEVELS ON JOB_LEVEL = LEVEL_ID "
+                                + "WHERE LOWER(JOB_TITLE) LIKE LOWER(?) "
+                                + "OR LOWER(JOB_DESC) LIKE LOWER(?) "
+                                + "OR LOWER(JOB_REQS) LIKE LOWER(?) "
+                                + "OR LOWER(JOB_BENEFIT) LIKE LOWER(?) "
+                                + "OR LOWER(JOB_RESP) LIKE LOWER(?) "
+                                + "OR LOWER(EMP_OVERVIEW) LIKE LOWER(?) "
+                                + "OR LOWER(EMP_NAME) LIKE LOWER(?) "
+                                + "OR LOWER(JOB_LOCATION) LIKE LOWER(?) "
+                                + extraParam
                                 + "ORDER BY JOB_ID DESC"
-                    ;
+                        ;
+                        ps = conn.prepareStatement(query); 
+                        ps.setString(1, "%"+request.getParameter("query")+"%");
+                        ps.setString(2, "%"+request.getParameter("query")+"%");
+                        ps.setString(3, "%"+request.getParameter("query")+"%");
+                        ps.setString(4, "%"+request.getParameter("query")+"%");
+                        ps.setString(5, "%"+request.getParameter("query")+"%");
+                        ps.setString(6, "%"+request.getParameter("query")+"%");
+                        ps.setString(7, "%"+request.getParameter("query")+"%");
+                        ps.setString(8, "%"+request.getParameter("query")+"%");
+                        if(industryID != -1){
+                            ps.setInt(9, Integer.parseInt(request.getParameter("industry")));
+                        }
+                    }
 
-                    PreparedStatement ps = conn.prepareStatement(query);
                     ResultSet jobs = ps.executeQuery();
 
                     request.setAttribute("jobs", jobs);
+                    request.setAttribute("query", request.getParameter("query")); 
                     request.getRequestDispatcher("job-feed.jsp").forward(request,response);
                 } else {
                     request.setAttribute("error-message", "Connection Error");

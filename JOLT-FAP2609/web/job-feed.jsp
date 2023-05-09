@@ -9,11 +9,9 @@
     </head>
     <body>
         <%
-            session = request.getSession();
             Integer id = (Integer)session.getAttribute("logged-id");
-            String viewURL;
-            String user;
-            String applyURL;
+            String query = "";
+            if(request.getAttribute("query") != null) query = request.getAttribute("query").toString();
         %>
         
         <div class="container">
@@ -23,6 +21,27 @@
             <%}%>
             <div class="active-jobs content p-1 mt-1 d-block rounded text-center">
             </div>
+            <form method="get" action="LoadJobFeed" id="searchbar">
+                <div class="input-group mb-3 w-50 mx-auto">
+                <input type="text" class="form-control" placeholder="Search" name="query" value="<%=query%>">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary">Search</button>
+                    </div>
+                    <div class="input-group-append">
+                        <select class="form-select" id="industry" name="industry" onchange="document.getElementById('searchbar').submit()">
+                            <option value="-1">Select One</option>
+                            <option value="1">Information Technology</option>
+                            <option value="2">Healthcare</option>
+                            <option value="3">Sales</option>
+                            <option value="4">Education</option>
+                            <option value="5">Finance</option>
+                            <option value="6">Marketing</option>
+                            <option value="7">Engineering</option>
+                            <option value="8">Hospitality</option>
+                        </select>
+                    </div>
+                </div>
+            </form>
             <div class="content p-1 mt-2 d-block rounded text-center">
                 <div class="row">
                     <div class="col">
@@ -46,20 +65,11 @@
                                         <tbody>
                                         <%ResultSet jobs = (ResultSet)request.getAttribute("jobs");      
                                             int counter = 0;
-                                            int firstJobID = 1;
+                                            int firstJobID = 0;
                                             while (jobs.next()) {
                                                 counter++;
                                                 if(counter == 1){
                                                     firstJobID = jobs.getInt("JOB_ID");
-                                                }
-                                                if(id == null){
-                                                    user = "guest";
-                                                    viewURL = "LoadProfileModalTest?id="+jobs.getInt("JOB_ID");
-                                                    applyURL = "login.jsp";
-                                                }else{
-                                                    user = "jobseeker";
-                                                    viewURL = "LoadProfileModalTest?id="+jobs.getInt("JOB_ID");
-                                                    applyURL = "LoadJobFeed";
                                                 }%>
                                                 <tr>
                                                     <td><%=jobs.getString("JOB_TITLE")%></td>
