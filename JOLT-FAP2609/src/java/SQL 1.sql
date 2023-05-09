@@ -151,7 +151,7 @@ INSERT INTO JOBS (EMP_ID, JOB_TITLE, JOB_LOCATION, JOB_LEVEL,
         'Collaborate with the Senior Engineers to create more efficient methods and maintain profitability*Develop the specifications for all equipment that is required for each project*Create the framework used to develop and monitor project metrics and manage the collection of project data',
         'Licensed Civil Engineer*At least 3 Years experience',
         'Opportunities for promotion*Pay Raise*Promotion to Permanent Employee',
-        5, '21000', '24000', 4
+        7, '21000', '24000', 4
 );
 
 INSERT INTO JOBS (EMP_ID, JOB_TITLE, JOB_LOCATION, JOB_LEVEL,
@@ -162,7 +162,7 @@ INSERT INTO JOBS (EMP_ID, JOB_TITLE, JOB_LOCATION, JOB_LEVEL,
         'Actively involved with consolidating, analyzing, and synthesizing large amount of financial and non-financial information from various stakeholders*Initiates improvements by exploring, identifying, and implementing reporting, analysis, and process solutions',
         'Degree in BS Accountancy, preferably with Professional CPA license but not required*Knowledge of General Accounting principles*With 2-3 years of experience in the same field',
         'Opportunities for promotion*Pay Raise*Promotion to Permanent Employee',
-        2, '20000', '23000', 3
+        5, '20000', '23000', 3
 );
 
 INSERT INTO JOBSEEKERS(
