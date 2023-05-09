@@ -25,6 +25,7 @@
                     
                     <label class="form-label" for="job-industry">Industry</label>
                     <select class="form-select" id="job-industry" name="job-industry">
+                        <option value="-1">Select One</option>
                         <option value="1">Information Technology</option>
                         <option value="2">Healthcare</option>
                         <option value="3">Sales</option>
@@ -37,6 +38,7 @@
                     
                     <label class="form-label" for="job-type">Job Type</label>
                     <select class="form-select" id="job-type" name="job-type">
+                        <option value="-1">Select One</option>
                         <option value="0">Fresh Grad</option>
                         <option value="1">Contractual</option>
                         <option value="2">Internship</option>
@@ -46,6 +48,7 @@
 
                     <label class="form-label" for="job-level">Employment Level</label>
                     <select class="form-select" id="job-level" name="job-level">
+                        <option value="-1">Select One</option>
                         <option value="0">Entry Level</option>
                         <option value="1">Intermediate</option>
                         <option value="2">Mid Level</option>

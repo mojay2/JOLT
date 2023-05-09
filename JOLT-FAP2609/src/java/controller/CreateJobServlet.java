@@ -56,6 +56,16 @@ public class CreateJobServlet extends HttpServlet {
                         empID = employee.getInt("EMP_ID");
                     }
 
+                    //Check for null select values
+                    int jobLevel = Integer.parseInt(request.getParameter("job-level"));
+                    int jobIndustry = Integer.parseInt(request.getParameter("job-industry"));
+                    int jobType = Integer.parseInt(request.getParameter("job-type"));
+                    if(jobLevel == -1 || jobIndustry == -1 || jobType == -1 ){
+                        session.setAttribute("error-message", "Invalid User Input");
+                        response.sendRedirect("create-job-listing.jsp");
+                        return;
+                    }
+
                     //empid, title, location, level, desc, resp, reqs, benefit, industry, salarymin, salarymax, jobtype
                     String query2 = "INSERT INTO JOBS (EMP_ID, JOB_TITLE, "
                     + "JOB_LOCATION, JOB_LEVEL, JOB_DESC, JOB_RESP, JOB_REQS, "
