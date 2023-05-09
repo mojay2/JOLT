@@ -3,7 +3,7 @@
 <html>
     <head>
         <%@include file="./components/header.jsp"%>
-        <title>Login Page</title>
+        <title>JOLT</title>
     </head>
     
     <body>

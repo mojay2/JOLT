@@ -11,7 +11,7 @@
             String errMessage = (String)session.getAttribute("error-message");
         %>
         <%@include file="./components/header.jsp"%>
-        <title>Home Page</title>
+        <title>User Profile</title>
     </head>
     <body>
         <div class="container">
