@@ -51,7 +51,9 @@ Connection conn;
                                 + "INNER JOIN INDUSTRIES ON INDUSTRY_ID = IND_ID "
                                 + "INNER JOIN TYPES ON JOB_TYPE = TYPE_ID "
                                 + "INNER JOIN LEVELS ON JOB_LEVEL = LEVEL_ID "
+                                + "ORDER BY JOB_ID DESC"
                     ;
+
                     PreparedStatement ps = conn.prepareStatement(query);
                     ResultSet jobs = ps.executeQuery();
 

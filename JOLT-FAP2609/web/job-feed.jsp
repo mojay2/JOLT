@@ -13,15 +13,6 @@
             String user;
             String viewURL;
             String applyURL;
-            if(id == null){
-                user = "guest";
-                viewURL = "login.jsp";
-                applyURL = "login.jsp";
-            }else{
-                user = "jobseeker";
-                viewURL = "LoadJobFeed";
-                applyURL = "LoadJobFeed";
-            }
         %>
         
         <div class="container">
@@ -50,7 +41,16 @@
                                         </thead>
                                         <tbody>
                                         <%ResultSet jobs = (ResultSet)request.getAttribute("jobs");
-                                            while (jobs.next()) {%>
+                                            while (jobs.next()) {
+                                                if(id == null){
+                                                    user = "guest";
+                                                    viewURL = "ViewJobListing?id="+jobs.getInt("JOB_ID");
+                                                    applyURL = "login.jsp";
+                                                }else{
+                                                    user = "jobseeker";
+                                                    viewURL = "ViewJobListing?id="+jobs.getInt("JOB_ID");
+                                                    applyURL = "LoadJobFeed";
+                                                }%>
                                                 <tr>
                                                     <td><%=jobs.getString("JOB_TITLE")%></td>
                                                     <td><%=jobs.getString("EMP_NAME")%></td>
@@ -60,9 +60,7 @@
                                                     <td><%=jobs.getString("TYPE_NAME")%></td>
                                                     <td><%=jobs.getString("LEVEL_NAME")%></td>            
                                                     <td>
-                                                        <a href="<%=viewURL%>"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
-                                                        <a href="<%=applyURL%>"><button class="btn btn-warning btn-sm"><i class="fa fa-eye" aria-hidden="true"></i>Apply</button></a>
-                                                    </td>
+                                                        <a href="<%=viewURL%>"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>                                                    </td>
                                                 </tr>
                                                 <%}%>
                                         </tbody>
