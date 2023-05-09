@@ -83,13 +83,15 @@
         </div>
         <script>
           const textareas = document.querySelectorAll('textarea');
-
-          textareas.forEach((textarea) => {
-            textarea.addEventListener('keydown', (e) => {
+          
+          textareas.forEach((textarea, index) => {
+            if(index !== 0 ){
+                textarea.addEventListener('keydown', (e) => {
               if (e.key === 'Enter') {
                 textarea.value += "*";
               }
             });
+            }
           });
         </script>
     </body>
