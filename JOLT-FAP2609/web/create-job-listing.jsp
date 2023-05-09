@@ -53,26 +53,41 @@
                     </select>
                     
                     <label class="form-label" for="job-desc">Job Description</label>
-                    <input type="text" id="job-desc" name = "job-desc" class="form-control" required/>
+                    <!--<input type="text" id="job-desc" name = "job-desc" class="form-control" required/>-->
+                    <textarea class="form-control" id="text-area" name="job-desc" rows="3"></textarea>
                     
                     <label class="form-label" for="job-resp">Job Responsibilities</label>
-                    <input type="text" id="job-resp" name = "job-resp" class="form-control" required/>
+                    <!--<input type="text" id="job-resp" name = "job-resp" class="form-control" required/>-->
+                    <textarea class="form-control" id="text-area" name="job-resp" rows="3"></textarea>
+                    
                     
                     <label class="form-label" for="job-reqs">Job Requirements</label>
-                    <input type="text" id="job-reqs" name = "job-reqs" class="form-control" required/>
+                    <!--<input type="text" id="job-reqs" name = "job-reqs" class="form-control" required/>-->
+                    <textarea class="form-control" id="text-area" name="job-reqs" rows="3"></textarea>
                     
                     <label class="form-label" for="job-benefit">Job Benefits</label>
-                    <input type="text" id="job-benefit" name = "job-benefit" class="form-control" required/>
+                    <!--<input type="text" id="job-benefit" name = "job-benefit" class="form-control" required/>-->
+                    <textarea class="form-control" id="text-area" name="job-benefit" rows="3"></textarea>
                     
                     <label class="form-label" for="salary-min">Salary Range</label>
                     <input type="number" id="salary-min" name = "salary-min" class="form-control" required/>
                     <label class="form-label" for="salary-max">To (PHP PER YEAR)</label>
                     <input type="number" id="salary-max" name = "salary-max" class="form-control" required/>
-                    
-                    
+                            
                     <button type="submit" class="btn btn-info btn-block my-4">Create</button>
                 </form> 
             </div>
-        </div>	
+        </div>
+        <script>
+          const textareas = document.querySelectorAll('textarea');
+
+          textareas.forEach((textarea) => {
+            textarea.addEventListener('keydown', (e) => {
+              if (e.key === 'Enter') {
+                textarea.value += "*";
+              }
+            });
+          });
+        </script>
     </body>
 </html>
