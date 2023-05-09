@@ -1,3 +1,5 @@
+<%@page import="java.util.HashMap"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -32,28 +34,31 @@
                                             <tr>
                                                 <th>#</th>
                                                 <th>Job Title</th>
-                                                <th>Job Type</th>
-                                                <th>Job Level</th>
+                                                <th>Pending</th>
+                                                <th>Accepted</th>
+                                                <th>Rejected</th>
                                                 <th>Actions</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                        <%ResultSet jobs = (ResultSet)request.getAttribute("jobs");
-                                            while (jobs.next()) { %>
-                                                <tr>
-                                                    <td><%=jobs.getString("JOB_ID")%></td>
-                                                    <td><%=jobs.getString("JOB_TITLE")%></td>
-                                                    <td><%=jobs.getString("TYPE_NAME")%></td>
-                                                    <td><%=jobs.getString("LEVEL_NAME")%></td>            
-                                                    <td>
-                                                        <form id="delete<%=jobs.getString("JOB_ID")%>" method = "post" action="DeleteJobListing">
-                                                            <input type="hidden" name="job-id" value ="<%=jobs.getString("JOB_ID")%>"/>
-                                                            <a class="btn btn-info" href="LoadJobCandidates?job-id=<%=jobs.getString("JOB_ID")%>">View</a>
-                                                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-                                                        </form>
-                                                    </td>
-                                                </tr>
-                                                <%}%>
+                                        <%ArrayList<HashMap> jobs = (ArrayList)request.getAttribute("jobs");%>
+                                        <%for(int i = 0; i < jobs.size(); i++){
+                                            HashMap<String,String> job = jobs.get(i);%>
+                                            <tr>
+                                                <td><%=job.get("job-id")%></td>
+                                                <td><%=job.get("job-title")%></td>
+                                                <td><%=job.get("pending-count")%></td>
+                                                <td><%=job.get("accepted-count")%></td>
+                                                <td><%=job.get("rejected-count")%></td>
+                                                <td>
+                                                    <form id="delete<%=job.get("job-id")%>" method = "post" action="DeleteJobListing">
+                                                        <input type="hidden" name="job-id" value ="<%=job.get("job-id")%>"/>
+                                                        <a class="btn btn-info" href="LoadJobCandidates?job-id=<%=job.get("job-id")%>">View</a>
+                                                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                        <%}%>
                                         </tbody>
                                     </table>
                                 </div>

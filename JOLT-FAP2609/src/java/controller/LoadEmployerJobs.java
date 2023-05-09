@@ -6,7 +6,12 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -45,7 +50,7 @@ Connection conn;
                     HttpSession session = request.getSession();
                     Integer userID = (Integer)session.getAttribute("logged-id");
                     
-                    //get emp id
+                    //get emp id;
                     String query = "SELECT * FROM EMPLOYERS WHERE USER_ID = ?";
                     PreparedStatement ps = conn.prepareStatement(query);
                     ps.setInt(1, userID);
@@ -59,17 +64,26 @@ Connection conn;
 
                     //get all jobs with the emp id
                     query = "SELECT * FROM JOBS "
-                                + "INNER JOIN EMPLOYERS ON JOBS.EMP_ID = EMPLOYERS.EMP_ID "
-                                + "INNER JOIN INDUSTRIES ON INDUSTRY_ID = IND_ID "
-                                + "INNER JOIN TYPES ON JOB_TYPE = TYPE_ID "
-                                + "INNER JOIN LEVELS ON JOB_LEVEL = LEVEL_ID "
-                                + "WHERE JOBS.EMP_ID = ? AND JOB_ISACTIVE = 0"
+                            + "WHERE JOBS.EMP_ID = ? AND JOB_ISACTIVE = 0"
                     ;
 
                     ps = conn.prepareStatement(query);
                     ps.setInt(1, empID);
                     ResultSet jobs = ps.executeQuery();
-                    request.setAttribute("jobs", jobs);
+
+                    List<HashMap> jobList = new ArrayList<>();
+
+                    while(jobs.next()){     
+                        HashMap<String, String> map = new HashMap<>();
+                        map.put("job-id", ""+jobs.getInt("JOB_ID"));
+                        map.put("job-title", jobs.getString("JOB_TITLE"));
+                        map.put("pending-count", ""+getCount(empID, 0, jobs.getInt("JOB_ID")));
+                        map.put("accepted-count", ""+getCount(empID, 1, jobs.getInt("JOB_ID")));
+                        map.put("rejected-count", ""+getCount(empID, 2, jobs.getInt("JOB_ID")));
+                        jobList.add(map);
+                    }
+
+                    request.setAttribute("jobs", jobList);
                     request.getRequestDispatcher("employer-home.jsp").forward(request,response);
                 } else {
                     request.setAttribute("error-message", "Connection Error");
@@ -82,7 +96,27 @@ Connection conn;
 
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    int getCount (int empID, int status, int jobID) throws SQLException{
+        int count = 0;
+        String query = "SELECT * FROM JOBS "
+        + "INNER JOIN EMPLOYERS ON JOBS.EMP_ID = EMPLOYERS.EMP_ID "
+        + "INNER JOIN APPLICATIONS ON JOBS.JOB_ID = APPLICATIONS.JOB_ID "
+        + "WHERE JOBS.EMP_ID = ? AND JOB_ISACTIVE = 0 AND APP_STATUS = ? "
+        + "AND APPLICATIONS.JOB_ID = ?";
+
+        PreparedStatement ps = conn.prepareStatement(query);
+        ps.setInt(1, empID);
+        ps.setInt(2, status);
+        ps.setInt(3, jobID);
+
+        ResultSet rs = ps.executeQuery();
+        while(rs.next()){
+            count++;
+        }
+        return count;
+    }
+
+   // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *
@@ -120,5 +154,4 @@ Connection conn;
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
 }

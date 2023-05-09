@@ -60,6 +60,14 @@
         <servlet-name>ViewProfile</servlet-name>
         <servlet-class>controller.ViewProfile</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>LoadProfileModalTest</servlet-name>
+        <servlet-class>controller.LoadProfileModalTest</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LoadJobFeedTesting</servlet-name>
+        <servlet-class>controller.LoadJobFeedTesting</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>CreateJobServlet</servlet-name>
         <url-pattern>/CreateJobServlet</url-pattern>
@@ -119,6 +127,14 @@
     <servlet-mapping>
         <servlet-name>ViewProfile</servlet-name>
         <url-pattern>/ViewProfile</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoadProfileModalTest</servlet-name>
+        <url-pattern>/LoadProfileModalTest</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoadJobFeedTesting</servlet-name>
+        <url-pattern>/LoadJobFeedTesting</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

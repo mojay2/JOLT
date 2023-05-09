@@ -13,7 +13,7 @@
     </head>
     <body>
         <div class="container">
-            
+    
             <%@include file="./components/nav-employer.jsp"%>
             
             <div class="content p-1 mt-2 d-block rounded text-center">

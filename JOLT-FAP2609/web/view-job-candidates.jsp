@@ -44,7 +44,7 @@
                                                     <td><%=applications.getString("SEEKER_FNAME")+" "+applications.getString("SEEKER_LNAME")%></td>
                                                     <td><%=applications.getString("STATUS_NAME")%></td>
                                                     <td><%=applications.getString("JOB_TITLE")%></td>
-                                                    <td>will add later</td>
+                                                    <td><%=applications.getString("SEEKER_EXP_TITLE")%></td>
                                                     <td>
                                                         <form id="changeStatus<%=appID%>" method="post" action="UpdateAppStatus">
                                                             <input type="hidden" name="app-id" value="<%=appID%>">
