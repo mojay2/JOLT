@@ -1,4 +1,6 @@
 <%@page import="java.sql.ResultSet"%>
+<%@page import="java.util.*"%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -36,6 +38,9 @@
                         <%String[] jobResp = job.getString("JOB_RESP").split("\\*");%>
                         <ul>
                             <% for (String bullet: jobResp){%>
+                            <%if(bullet.trim().isEmpty()){
+                                continue;
+                            }%>
                             <li><%=bullet%></li>
                             <%}%>
                         </ul>
@@ -46,6 +51,9 @@
                         <%String[] jobReqs = job.getString("JOB_REQS").split("\\*");%>
                         <ul>
                             <% for (String bullet: jobReqs){%>
+                            <%if(bullet.trim().isEmpty()){
+                                continue;
+                            }%>
                             <li><%=bullet%></li>
                             <%}%>
                         </ul>
@@ -55,6 +63,9 @@
                         <%String[] jobBnfts = job.getString("JOB_BENEFIT").split("\\*");%>
                         <ul>
                             <% for (String bullet: jobBnfts){%>
+                            <%if(bullet.trim().isEmpty()){
+                                continue;
+                            }%>
                             <li><%=bullet%></li>
                             <%}%>
                         </ul>
