@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit this template
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.css"
+      rel="stylesheet"
+    />
+    <title>Create Job Ad</title>
+  </head>
+
+  <body class="bg-slate-200">
+    <!-- Nav -->
+    <nav class="border-soid border-b border-black">
+      <div class="flex items-center justify-between mx-auto p-4">
+        <!-- Logo -->
+        <a href="#" class="flex flex-col px-12">
+          <img src="./public/assets/logo/JoltLogo.png" class="h-8 mr-3" alt="Jolt Logo" />
+          <span
+            class="self-center text-black text-1sm font-semibold whitespace-nowrap dark:text-black"
+            >for employers</span
+          >
+        </a>
+
+        <!-- Dashboard -->
+        <div class="hidden w-full md:block pl-12" id="navbar-default">
+          <ul
+            class="font-medium flex flex-col p-4 md:p-0 mt-4 md:flex-row md:space-x-8 md:mt-0 md:border-0"
+          >
+            <li>
+              <a
+                href="#"
+                class="border-b-2 border-sky-700 hover:border-sky-700 block hover:text-sky-700 py-2 pl-3 pr-4 font-bold text-black bg-blue-700 md:bg-transparent md:text-black md:p-2 dark:text-black md:dark:black"
+                aria-current="page"
+                >Dashboard</a
+              >
+            </li>
+          </ul>
+        </div>
+
+        <!-- Login button -->
+        <div class="px-12">
+          <a
+            href="#"
+            class="focus:outline-none text-black bg-yellow-400 hover:bg-yellow-400 font-bold rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:focus:ring-yellow-900"
+            >Login</a
+          >
+        </div>
+      </div>
+    </nav>
+
+    <!-- job/candidates section -->
+    <section
+      class="bg-slate-300 border-solid border-b border-black flex flex-wrap items-center justify-between mx-auto"
+    >
+      <div class="flex flex-row items-center md:pl-12 md:p-3">
+        <ul
+          class="relative font-bold pl-12 flex flex-row p-4 md:p-0 md:flex-row md:space-x-8 md:mt-0 md:border-0"
+        >
+          <li>
+            <a
+              href="JobAds.html"
+              class="border-b-2 border-sky-700 block hover:text-sky-700 py-1 pr-4 text-black md:bg-transparent md:text-black -md:pl-3 md:p-2 dark:text-black md:dark:black"
+              aria-current="page"
+              >Job</a
+            >
+          </li>
+          <li>
+            <a
+              href="Candidates.html"
+              class="hover:border-sky-700 block hover:text-sky-700 py-1 pr-4 text-black md:bg-transparent md:text-black md:p-2 dark:text-black md:dark:black"
+              aria-current="page"
+              >Candidates</a
+            >
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- heading -->
+    <section class="py-3 sm:py-5">
+      <div class="px-4 my-5 mx-auto max-w-screen-max lg:px-12">
+        <div
+          class="relative overflow-hidden bg-white shadow-md dark:bg-slate-300 sm:rounded-lg"
+        >
+          <div
+            class="flex flex-col px-4 py-3 space-y-3 lg:flex-row lg:items-center lg:justify-between lg:space-y-0 lg:space-x-4"
+          >
+            <div class="flex items-center flex-1 space-x-4">
+              <h5>
+                <span class="text-black font-bold">Job Ads</span>
+              </h5>
+            </div>
+            <div
+              class="flex flex-col flex-shrink-0 space-y-3 md:flex-row md:items-center lg:justify-end md:space-y-0 md:space-x-3"
+            >
+              <a
+                href="CreateJobAd.html"
+                class="flex items-center justify-center px-4 py-2 text-sm font-medium text-black rounded-lg bg-yellow-400 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800"
+              >
+                <svg
+                  class="h-3.5 w-3.5 mr-2"
+                  fill="currentColor"
+                  viewbox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                >
+                  <path
+                    clip-rule="evenodd"
+                    fill-rule="evenodd"
+                    d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
+                  />
+                </svg>
+                Create Job Ad
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Form -->
+    <form action="#" method="#">
+      <section
+        class="flex flex-row space-x-4 px-4 mx-auto max-w-screen-max lg:px-12"
+      >
+        <div
+          class="font-semibold p-3 w-1/2 relative overflow-hidden bg-white shadow-md dark:bg-slate-300 sm:rounded-lg"
+        >
+          What type of job is it?
+          <!-- Radio btns -->
+          <ul class="font-normal p-1 flex flex-col w-full gap-1">
+            <!-- Full-time -->
+            <li>
+              <input
+                type="radio"
+                id="Full-time"
+                name="jobType"
+                value="Full-time"
+                class="hidden peer"
+                required
+              />
+              <label
+                for="Full-time"
+                class="inline-flex items-center justify-between w-full p-2 text-black bg-white border border-gray-200 rounded-lg cursor-pointer dark:peer-checked:text-slate-200 peer-checked:text-slate-200 dark:hover:text-gray-300 dark:peer-checked:bg-gray-700 peer-checked:bg-gray-700 dark:text-black dark:bg-slate-200 dark:hover:bg-gray-700"
+              >
+                <div class="block">
+                  <div class="w-full">Full-time</div>
+                </div>
+              </label>
+            </li>
+            <!-- Part-time -->
+            <li>
+              <input
+                type="radio"
+                id="Part-time"
+                name="jobType"
+                value="Part-time"
+                class="hidden peer"
+                required
+              />
+              <label
+                for="Part-time"
+                class="inline-flex items-center justify-between w-full p-2 text-black bg-white border border-gray-200 rounded-lg cursor-pointer dark:peer-checked:text-slate-200 peer-checked:text-slate-200 dark:hover:text-gray-300 dark:peer-checked:bg-gray-700 peer-checked:bg-gray-700 dark:text-black dark:bg-slate-200 dark:hover:bg-gray-700"
+              >
+                <div class="block">
+                  <div class="w-full">Part-time</div>
+                </div>
+              </label>
+            </li>
+            <!-- Temporary -->
+            <li>
+              <input
+                type="radio"
+                id="Temporary"
+                name="jobType"
+                value="Temporary"
+                class="hidden peer"
+                required
+              />
+              <label
+                for="Temporary"
+                class="inline-flex items-center justify-between w-full p-2 text-black bg-white border border-gray-200 rounded-lg cursor-pointer dark:peer-checked:text-slate-200 peer-checked:text-slate-200 dark:hover:text-gray-300 dark:peer-checked:bg-gray-700 peer-checked:bg-gray-700 dark:text-black dark:bg-slate-200 dark:hover:bg-gray-700"
+              >
+                <div class="block">
+                  <div class="w-full">Temporary</div>
+                </div>
+              </label>
+            </li>
+            <!-- Contract -->
+            <li>
+              <input
+                type="radio"
+                id="Contract"
+                name="jobType"
+                value="Contract"
+                class="hidden peer"
+                required
+              />
+              <label
+                for="Contract"
+                class="inline-flex items-center justify-between w-full p-2 text-black bg-white border border-gray-200 rounded-lg cursor-pointer dark:peer-checked:text-slate-200 peer-checked:text-slate-200 dark:hover:text-gray-300 dark:peer-checked:bg-gray-700 peer-checked:bg-gray-700 dark:text-black dark:bg-slate-200 dark:hover:bg-gray-700"
+              >
+                <div class="block">
+                  <div class="w-full">Contract</div>
+                </div>
+              </label>
+            </li>
+            <!-- Internship -->
+            <li>
+              <input
+                type="radio"
+                id="Internship"
+                name="jobType"
+                value="Internship"
+                class="hidden peer"
+                required
+              />
+              <label
+                for="Internship"
+                class="inline-flex items-center justify-between w-full p-2 text-black bg-white border border-gray-200 rounded-lg cursor-pointer dark:peer-checked:text-slate-200 peer-checked:text-slate-200 dark:hover:text-gray-300 dark:peer-checked:bg-gray-700 peer-checked:bg-gray-700 dark:text-black dark:bg-slate-200 dark:hover:bg-gray-700"
+              >
+                <div class="block">
+                  <div class="w-full">Internship</div>
+                </div>
+              </label>
+            </li>
+            <!-- Commission Only -->
+            <li>
+              <input
+                type="radio"
+                id="Commission"
+                name="jobType"
+                value="Commission"
+                class="hidden peer"
+                required
+              />
+              <label
+                for="Commission"
+                class="inline-flex items-center justify-between w-full p-2 text-black bg-white border border-gray-200 rounded-lg cursor-pointer dark:peer-checked:text-slate-200 peer-checked:text-slate-200 dark:hover:text-gray-300 dark:peer-checked:bg-gray-700 peer-checked:bg-gray-700 dark:text-black dark:bg-slate-200 dark:hover:bg-gray-700"
+              >
+                <div class="block">
+                  <div class="w-full">Commission Only</div>
+                </div>
+              </label>
+            </li>
+          </ul>
+
+          What is the salary for this job?
+          <div class="space-x-4 flex flex-row">
+            <label
+              for="sal1"
+              class="block mb-2 text-2xl font-medium text-black dark:text-black"
+              >₱</label
+            >
+            <input
+              type="number"
+              id="sal1"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-slate-200 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black"
+              placeholder="0"
+              required
+            />
+            <div class="font-normal text-2xl">to</div>
+
+            <label
+              for="sal1"
+              class="block mb-2 text-2xl font-medium text-black dark:text-black"
+              >₱</label
+            >
+            <input
+              type="number"
+              id="sal1"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-slate-200 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black"
+              placeholder="0"
+              required
+            />
+            <select
+              id="rate"
+              class="bg-white text-black text-sm rounded-lg block w-full p-2.5 dark:bg-slate-300 dark:border-slate-200 dark:placeholder-slate-200 dark:text-black"
+            >
+              <option selected>per year</option>
+              <option value="accept">per month</option>
+              <option value="reject">per week</option>
+            </select>
+          </div>
+
+          <!--  -->
+          Level of Employment?
+          <!-- Radio btns -->
+          <ul class="font-normal p-1 flex flex-col w-full gap-1">
+            <!-- Entry-level -->
+            <li>
+              <input
+                type="radio"
+                id="Entry-level"
+                name="level"
+                value="Entry-level"
+                class="hidden peer"
+                required
+              />
+              <label
+                for="Entry-level"
+                class="inline-flex items-center justify-between w-full p-2 text-black bg-white border border-gray-200 rounded-lg cursor-pointer dark:peer-checked:text-slate-200 peer-checked:text-slate-200 dark:hover:text-gray-300 dark:peer-checked:bg-gray-700 peer-checked:bg-gray-700 dark:text-black dark:bg-slate-200 dark:hover:bg-gray-700"
+              >
+                <div class="block">
+                  <div class="w-full">Entry-level</div>
+                </div>
+              </label>
+            </li>
+            <!-- Intermediate -->
+            <li>
+              <input
+                type="radio"
+                id="Intermediate"
+                name="level"
+                value="Intermediate"
+                class="hidden peer"
+                required
+              />
+              <label
+                for="Intermediate"
+                class="inline-flex items-center justify-between w-full p-2 text-black bg-white border border-gray-200 rounded-lg cursor-pointer dark:peer-checked:text-slate-200 peer-checked:text-slate-200 dark:hover:text-gray-300 dark:peer-checked:bg-gray-700 peer-checked:bg-gray-700 dark:text-black dark:bg-slate-200 dark:hover:bg-gray-700"
+              >
+                <div class="block">
+                  <div class="w-full">Intermediate</div>
+                </div>
+              </label>
+            </li>
+            <!-- Mid-level -->
+            <li>
+              <input
+                type="radio"
+                id="Mid-level"
+                name="level"
+                value="Mid-level"
+                class="hidden peer"
+                required
+              />
+              <label
+                for="Mid-level"
+                class="inline-flex items-center justify-between w-full p-2 text-black bg-white border border-gray-200 rounded-lg cursor-pointer dark:peer-checked:text-slate-200 peer-checked:text-slate-200 dark:hover:text-gray-300 dark:peer-checked:bg-gray-700 peer-checked:bg-gray-700 dark:text-black dark:bg-slate-200 dark:hover:bg-gray-700"
+              >
+                <div class="block">
+                  <div class="w-full">Mid-level</div>
+                </div>
+              </label>
+            </li>
+            <!-- Senior -->
+            <li>
+              <input
+                type="radio"
+                id="Senior"
+                name="level"
+                value="Senior"
+                class="hidden peer"
+                required
+              />
+              <label
+                for="Senior"
+                class="block items-center justify-between w-full p-2 text-black bg-white border border-gray-200 rounded-lg cursor-pointer dark:peer-checked:text-slate-200 peer-checked:text-slate-200 dark:hover:text-gray-300 dark:peer-checked:bg-gray-700 peer-checked:bg-gray-700 dark:text-black dark:bg-slate-200 dark:hover:bg-gray-700"
+              >
+                <div class="block">
+                  <div class="w-full">Senior</div>
+                </div>
+              </label>
+            </li>
+          </ul>
+          <div>
+            <!-- submit -->
+            <input
+              type="submit"
+              value="Create Job Add"
+              class="flex items-center justify-center w-full py-2 mt-5 text-sm font-medium text-black rounded-lg bg-yellow-400 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800"
+            />
+          </div>
+        </div>
+
+        <div
+          class="font-semibold p-3 w-1/2 relative overflow-hidden bg-white shadow-md dark:bg-slate-300 sm:rounded-lg"
+        >
+          What best describes this role location?
+          <textarea
+            id="roleLocation"
+            name="roleLocation"
+            rows="4"
+            required
+            class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 dark:bg-slate-200 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black"
+            placeholder="Write here..."
+          ></textarea>
+          Job Description
+          <textarea
+            id="JobDesc"
+            name="JobDesc"
+            rows="4"
+            required
+            class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 dark:bg-slate-200 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black"
+            placeholder="Write here..."
+          ></textarea>
+          Responsibilities
+          <textarea
+            id="Responsibilities"
+            name="Responsibilities"
+            rows="4"
+            required
+            class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 dark:bg-slate-200 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black"
+            placeholder="Write here..."
+          ></textarea>
+          Requirements
+          <textarea
+            id="Requirements"
+            name="Requirements"
+            rows="4"
+            required
+            class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 dark:bg-slate-200 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black"
+            placeholder="Write here..."
+          ></textarea>
+          Benefits
+          <textarea
+            id="Benefits"
+            name="Benefits"
+            rows="4"
+            required
+            class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 dark:bg-slate-200 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black"
+            placeholder="Write here..."
+          ></textarea>
+        </div>
+      </section>
+    </form>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
+  </body>
+</html>
+
