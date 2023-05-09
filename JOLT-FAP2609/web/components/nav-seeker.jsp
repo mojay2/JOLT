@@ -13,7 +13,7 @@
             <%}else{%>    
                 <a class="nav-item nav-link" href="LoadJobFeed">Job Feed</a>
                 <a class="nav-item nav-link" href="LoadAppliedJobs">Applied Jobs</a>
-                <a class="nav-item nav-link" href="#">User Profile</a>
+                <a class="nav-item nav-link" href="ViewProfile">User Profile</a>
                 <a class="btn btn-danger" href="LogoutServlet">Logout</a>
             <%}%>           
         </div>
