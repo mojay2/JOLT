@@ -24,12 +24,16 @@
   <body class="bg-slate-200 font-display">
     <!-- Navbar -->
     <nav class="border-b-2 border-zinc-800 bg-slate-200">
-      <div class="max-w-screen flex flex-wrap items-center justify-between p-3">
-        <a href="/jobfeed.html" class="ml-16 flex flex-col items-center">
+      <div class="flex max-w-full flex-wrap items-center justify-between p-3">
+        <a href="/jobfeed.html" class="ml-3 flex flex-col items-center sm:ml-10 lg:ml-16">
           <img src="./public/assets/logo/JoltLogo.png" class="mb-1 h-14" alt="JOLT Logo" />
           <span class="text-sm text-neutral-600">(Job Opportunities Listing Tool)</span>
         </a>
-        <div class="">
+        <button type="button" class="ml-3 mr-3 inline-flex items-center rounded-lg p-2 text-sm text-zinc-800 hover:text-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-400 sm:mr-6 lg:hidden" data-drawer-target="drawer-navbar" data-drawer-show="drawer-navbar" data-drawer-placement="right" aria-controls="drawer-navbar">
+          <span class="sr-only">Open main menu</span>
+          <svg class="h-10 w-10" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path></svg>
+        </button>
+        <div class="mx-auto hidden w-full lg:block lg:w-auto">
           <ul class="flex justify-between gap-16 text-xl text-zinc-800">
             <li>
               <a href="/jobfeed.html" id="navbar1" class="border-blue-600 pb-1 hover:border-b-4">Job Feed</a>
@@ -42,54 +46,98 @@
             </li>
           </ul>
         </div>
-        <a href="/login.html" class="mr-16 inline-block h-10 rounded-xl bg-yellow-400 px-6 py-1 text-2xl font-bold hover:bg-yellow-500 focus:ring-4 focus:ring-blue-400">Login</a>
+        <a href="/login.html" class="mr-16 hidden h-10 rounded-xl bg-yellow-400 px-6 py-1 text-2xl font-bold hover:bg-yellow-500 focus:ring-4 focus:ring-blue-400 lg:inline-block">Login</a>
       </div>
     </nav>
 
+    <!-- Navbar Drawer -->
+    <div id="drawer-navbar" class="fixed right-0 top-0 z-40 h-screen w-80 translate-x-full divide-y-2 divide-zinc-800 overflow-y-auto bg-slate-200 text-zinc-800 transition-transform" tabindex="-1" aria-labelledby="drawer-navbar">
+      <button type="button" class="h-[104px] w-full" data-drawer-hide="drawer-navbar" aria-controls="drawer-navbar">
+        <div class="flex h-full cursor-pointer items-center justify-end pr-10 hover:bg-blue-400">
+          <svg class="feather feather-x h-12 w-12" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </div>
+      </button>
+      <div class="h-[60px]">
+        <a href="/jobfeed.html" class="text-lg">
+          <div id="navbarMobile1" class="flex h-full cursor-pointer items-center justify-between pl-10 pr-10 font-semibold hover:bg-blue-400">
+            <div class="">Job Feed</div>
+            <svg class="feather feather-chevron-right h-12 w-12" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+          </div>
+        </a>
+      </div>
+      <div class="h-[60px]">
+        <a href="/applied.html" class="text-lg">
+          <div id="navbarMobile2" class="flex h-full cursor-pointer items-center justify-between pl-10 pr-10 font-semibold hover:bg-blue-400">
+            <div class="">Applied Jobs</div>
+            <svg class="feather feather-chevron-right h-12 w-12" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+          </div>
+        </a>
+      </div>
+      <div class="h-[60px]">
+        <a href="/profile.html" class="text-lg">
+          <div id="navbarMobile3" class="flex h-full cursor-pointer items-center justify-between pl-10 pr-10 font-semibold hover:bg-blue-400">
+            <div class="">User Profile</div>
+            <svg class="feather feather-chevron-right h-12 w-12" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+          </div>
+        </a>
+      </div>
+      <div class="h-[60px]">
+        <a href="/login.html" class="text-lg">
+          <div class="flex h-full cursor-pointer items-center justify-between border-b-2 border-zinc-800 pl-10 pr-10 font-semibold hover:bg-yellow-400">
+            <div class="">Login</div>
+            <svg class="feather feather-chevron-right h-12 w-12" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+          </div>
+        </a>
+      </div>
+    </div>
+
     <!-- Content -->
     <div class="container mx-auto">
-      <div class="mt-6 flex max-h-[83vh] justify-evenly gap-16">
-        <div class="mt-4">
+      <div class="mt-6 justify-evenly gap-16 lg:flex">
+        <div class="ml-6 mr-6 mt-2">
           <form action="" name="login">
             <!-- Header -->
-            <div class="w-5/6">
-              <div class="text-5xl font-bold">Login to your account</div>
-              <div class="my-5 text-xl font-light">Welcome back! Please enter your login details to access your account and all of its features.</div>
+            <div class="w-full">
+              <div class="text-center text-3xl font-bold sm:text-left md:text-5xl">Login to your account</div>
+              <div class="my-5 text-center text-lg font-light sm:text-left lg:text-xl">Welcome back! Please enter your login details to access your account and all of its features.</div>
             </div>
 
             <!-- Role -->
-            <div class="mb-8 text-3xl font-bold">Your Role</div>
+            <div class="mb-5 text-center text-2xl font-bold sm:text-left sm:text-3xl">Your Role</div>
             <div class="flex justify-evenly">
-              <label class="flex w-2/5 cursor-pointer rounded-2xl border-2 border-zinc-800 p-4">
+              <label class="flex w-2/5 cursor-pointer items-center rounded-2xl border-2 border-zinc-800 p-4 text-center sm:items-start sm:text-left">
                 <input class="peer invisible absolute" type="radio" name="role" value="careers" />
-                <div class="flex-1">
-                  <svg class="feather feather-user h-11 w-11 text-blue-600" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <div class="flex-1 peer-checked:text-blue-600">
+                  <svg class="feather feather-user mx-auto h-11 w-11 text-blue-600 sm:mx-0" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
                     <circle cx="12" cy="7" r="4"></circle>
                   </svg>
-                  <div class="mt-3 text-2xl font-bold">Careers</div>
-                  <div class="text-sm">Looking for employment</div>
+                  <div class="mt-3 font-bold sm:text-2xl">Careers</div>
+                  <div class="text-xs sm:text-sm">Looking for employment</div>
                 </div>
-                <div class="h-6 w-6 flex-initial rounded-full border-2 border-zinc-800 peer-checked:border-4 peer-checked:border-blue-600"></div>
+                <div class="hidden h-4 w-4 flex-initial rounded-full border-2 border-zinc-800 peer-checked:border-4 peer-checked:border-blue-600 sm:block sm:h-6 sm:w-6"></div>
               </label>
-              <label class="flex w-2/5 cursor-pointer rounded-2xl border-2 border-zinc-800 p-4">
+              <label class="flex w-2/5 cursor-pointer items-center rounded-2xl border-2 border-zinc-800 p-4 text-center sm:items-start sm:text-left">
                 <input class="peer invisible absolute" type="radio" name="role" value="employer" />
-                <div class="flex-1">
-                  <svg class="feather feather-phone-call h-9 w-9 text-blue-600" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <div class="flex-1 peer-checked:text-blue-600">
+                  <svg class="feather feather-phone-call mx-auto h-9 w-9 text-blue-600 sm:mx-0" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M15.05 5A5 5 0 0 1 19 8.95M15.05 1A9 9 0 0 1 23 8.94m-1 7.98v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
                   </svg>
-                  <div class="mt-5 text-2xl font-bold">Employer</div>
-                  <div class="text-sm">Looking for job applicants</div>
+                  <div class="mt-5 font-bold sm:text-2xl">Employer</div>
+                  <div class="text-[10px] sm:text-sm">Looking for job applicants</div>
                 </div>
-                <div class="h-6 w-6 flex-initial rounded-full border-2 border-zinc-800 peer-checked:border-4 peer-checked:border-blue-600"></div>
+                <div class="hidden h-6 w-6 flex-initial rounded-full border-2 border-zinc-800 peer-checked:border-4 peer-checked:border-blue-600 sm:block"></div>
               </label>
             </div>
 
             <!-- Line -->
-            <div class="my-8 border-2 border-dashed border-zinc-800"></div>
+            <div class="my-5 w-full border-2 border-dashed border-zinc-800"></div>
 
             <!-- Credentials -->
-            <div class="mb-8 text-3xl font-bold">Your Credentials</div>
+            <div class="mb-5 text-center text-2xl font-bold sm:text-left sm:text-3xl">Your Credentials</div>
             <div class="mb-4 flex w-full items-center rounded-3xl border-2 border-zinc-800 p-2">
               <label class="w-32 text-center" for="email">Email</label>
               <input class="w-full appearance-none border-0 border-transparent bg-slate-200 font-semibold text-zinc-800 placeholder:font-light focus:border-transparent focus:ring-0" id="email" name="email" type="text" placeholder="Enter your email" />
@@ -100,44 +148,14 @@
             </div>
 
             <!-- Submit -->
-            <button class="mt-10 h-12 w-full rounded-3xl bg-yellow-400 text-xl font-bold hover:bg-yellow-500 focus:ring-4 focus:ring-blue-400" type="button" data-modal-target="captchaModal" data-modal-toggle="captchaModal">Submit Credentials</button>
+            <button class="mb-5 mt-5 h-12 w-full rounded-3xl bg-yellow-400 text-lg font-bold hover:bg-yellow-500 focus:ring-4 focus:ring-blue-400 sm:text-xl" type="button" data-modal-target="captchaModal" data-modal-toggle="captchaModal">Submit Credentials</button>
           </form>
         </div>
 
-        <!-- Captcha Modal -->
-        <div id="captchaModal" tabindex="-1" aria-hidden="true" class="fixed left-0 right-0 top-0 z-50 hidden h-[calc(100%-1rem)] max-h-full w-full overflow-y-auto overflow-x-hidden p-4 md:inset-0">
-          <div class="relative max-h-full w-full max-w-md">
-            <!-- Modal content -->
-            <div class="relative rounded-lg bg-slate-300 shadow">
-              <!-- Modal header -->
-              <div class="flex items-start justify-between rounded-t border-b border-neutral-600 p-4">
-                <h3 class="text-3xl font-semibold text-zinc-800">Captcha Verification</h3>
-                <button type="button" class="ml-auto inline-flex items-center rounded-lg bg-transparent p-1.5 text-sm text-zinc-800 hover:bg-slate-600 hover:text-stone-100" data-modal-hide="captchaModal">
-                  <svg aria-hidden="true" class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-                  <span class="sr-only">Close modal</span>
-                </button>
-              </div>
-              <!-- Modal body -->
-              <div class="space-y-6 p-6">
-                <img class="mx-auto w-full" src="/public/assets/images/stickyImg.png" />
-                <div class="mb-4 flex w-full items-center rounded-3xl border-2 border-zinc-800 p-2">
-                  <label class="w-32 text-center" for="captcha">Captcha</label>
-                  <input class="w-full appearance-none border-0 border-transparent bg-slate-300 font-semibold text-zinc-800 placeholder:font-light focus:border-transparent focus:ring-0" id="captcha" form="login" name="captcha" type="text" placeholder="Enter the captcha" />
-                </div>
-              </div>
-              <!-- Modal footer -->
-              <div class="flex items-center space-x-2 rounded-b border-t border-gray-200 p-6 dark:border-gray-600">
-                <button data-modal-hide="captchaModal" type="submit" form="login" class="rounded-2xl bg-yellow-400 px-5 py-2.5 text-center text-base font-semibold text-zinc-800 hover:bg-yellow-500 focus:outline-none focus:ring-4 focus:ring-blue-400">Confirm Submit</button>
-                <button data-modal-hide="captchaModal" type="button" class="rounded-2xl border border-neutral-600 bg-neutral-600 px-5 py-2.5 text-base text-stone-100 hover:bg-neutral-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-blue-400">Back</button>
-              </div>
-            </div>
-          </div>
-        </div>
-
         <!-- Carousel -->
-        <div id="default-carousel" class="relative w-3/6" data-carousel="slide">
+        <div id="default-carousel" class="relative hidden w-3/6 xl:block" data-carousel="slide">
           <!-- Carousel wrapper -->
-          <div class="relative h-[83vh] overflow-hidden rounded-2xl drop-shadow-2xl md:h-[83vh]">
+          <div class="relative h-full overflow-hidden rounded-2xl drop-shadow-2xl">
             <!-- Item 1 -->
             <div class="hidden duration-700 ease-in-out" data-carousel-item>
               <img src="/public/assets/images/Carousel1.jpg" class="absolute h-full w-full rounded-2xl object-cover" alt="..." />
@@ -174,6 +192,36 @@
         <!-- <div class="w-3/6">
           <img src="/public/assets/images/Carousel1.jpg" class="max-h-[83vh] w-full rounded-2xl object-cover drop-shadow-2xl" />
         </div> -->
+      </div>
+    </div>
+
+    <!-- Captcha Modal -->
+    <div id="captchaModal" tabindex="-1" aria-hidden="true" class="fixed left-0 right-0 top-0 z-50 hidden h-[calc(100%-1rem)] max-h-full w-full overflow-y-auto overflow-x-hidden p-4 md:inset-0">
+      <div class="relative max-h-full w-full max-w-md">
+        <!-- Modal content -->
+        <div class="relative rounded-lg bg-slate-300 shadow">
+          <!-- Modal header -->
+          <div class="flex items-start justify-between rounded-t border-b border-neutral-600 p-4">
+            <h3 class="text-xl font-semibold text-zinc-800 md:text-3xl">Captcha Verification</h3>
+            <button type="button" class="ml-auto inline-flex items-center rounded-lg bg-transparent p-1.5 text-sm text-zinc-800 hover:bg-slate-600 hover:text-stone-100" data-modal-hide="captchaModal">
+              <svg aria-hidden="true" class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+              <span class="sr-only">Close modal</span>
+            </button>
+          </div>
+          <!-- Modal body -->
+          <div class="space-y-5 p-4">
+            <img class="mx-auto w-full" src="/public/assets/images/stickyImg.png" />
+            <div class="mb-4 flex w-full items-center rounded-3xl border-2 border-zinc-800 p-2">
+              <label class="w-32 text-center" for="captcha">Captcha</label>
+              <input class="w-full appearance-none border-0 border-transparent bg-slate-300 font-semibold text-zinc-800 placeholder:font-light focus:border-transparent focus:ring-0" id="captcha" form="login" name="captcha" type="text" placeholder="Enter the captcha" />
+            </div>
+          </div>
+          <!-- Modal footer -->
+          <div class="flex items-center space-x-2 rounded-b border-t border-gray-200 p-4 dark:border-gray-600">
+            <button data-modal-hide="captchaModal" type="submit" form="login" class="rounded-2xl bg-yellow-400 px-5 py-2.5 text-center text-sm font-semibold text-zinc-800 hover:bg-yellow-500 focus:outline-none focus:ring-4 focus:ring-blue-400 md:text-base">Confirm Submit</button>
+            <button data-modal-hide="captchaModal" type="button" class="rounded-2xl border border-neutral-600 bg-neutral-600 px-5 py-2.5 text-sm text-stone-100 hover:bg-neutral-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-blue-400 md:text-base">Back</button>
+          </div>
+        </div>
       </div>
     </div>
 
