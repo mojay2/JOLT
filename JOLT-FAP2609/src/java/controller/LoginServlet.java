@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import nl.captcha.Captcha;
 
 
 public class LoginServlet extends HttpServlet {
@@ -41,7 +42,18 @@ Connection conn;
             throws ServletException, IOException {
         try {	
                 if (conn != null) {
-                    HttpSession session = request.getSession();
+                    HttpSession session = request.getSession(); 
+
+                    //Verify captcha
+                    Captcha captcha = (Captcha) session.getAttribute(Captcha.NAME);
+                    String answer = request.getParameter("answer");
+                    if (!captcha.isCorrect(answer)) {
+                        session.setAttribute("feedback-message", "Incorrect Captcha");
+                        response.sendRedirect("login.jsp");
+                        return;
+                    }
+                    
+                    //Verify login credentials
                     String query = "SELECT * FROM USERS WHERE USER_EMAIL = ? "
  + "                                AND USER_PASSWORD = ? "
  + "                                AND USER_TYPE = ?";
