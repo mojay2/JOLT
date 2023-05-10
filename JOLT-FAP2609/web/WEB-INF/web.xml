@@ -57,6 +57,15 @@
     <servlet>
         <servlet-name>LoginServlet</servlet-name>
         <servlet-class>controller.LoginServlet</servlet-class>
+        
+        <init-param>
+            <param-name>cipher</param-name>
+            <param-value>AES/ECB/PKCS5Padding</param-value>
+        </init-param>
+        <init-param>
+            <param-name>key</param-name>
+            <param-value>ics_2609ics_2609</param-value>
+        </init-param>
     </servlet>
     <servlet>
         <servlet-name>LogoutServlet</servlet-name>
