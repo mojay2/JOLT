@@ -6,7 +6,7 @@
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav text-center">
       <a class="nav-item nav-link" href="employer-home">Job Listings</a>
-      <a class="nav-item nav-link" href="#">Candidates</a>
+      <a class="nav-item nav-link" href="LoadJobCandidates">Candidates</a>
       <a class="btn btn-danger" href="LogoutServlet">Logout</a>
     </div>
   </div>

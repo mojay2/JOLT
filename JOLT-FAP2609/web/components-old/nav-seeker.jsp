@@ -5,15 +5,16 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav text-center">
-            <a class="nav-item nav-link" href="#">Job Feed</a>
-            <a class="nav-item nav-link" href="#">Applied Jobs</a>
-            <a class="nav-item nav-link" href="#">User Profile</a>
             <%if(session.getAttribute("logged-id") == null){%>
+                <a class="nav-item nav-link" href="LoadJobFeed">Job Feed</a>
+                <a class="nav-item nav-link" href="login.jsp">Applied Jobs</a>
+                <a class="nav-item nav-link" href="login.jsp">User Profile</a>
                 <a class="btn btn-primary" href="login.jsp">Login</a> 
-            <%}else{
-                Integer userId = (Integer)session.getAttribute("logged-id");
-            %>    
-                <a class="btn btn-danger" href="LogoutServlet">Logout</a> 
+            <%}else{%>    
+                <a class="nav-item nav-link" href="LoadJobFeed">Job Feed</a>
+                <a class="nav-item nav-link" href="LoadAppliedJobs">Applied Jobs</a>
+                <a class="nav-item nav-link" href="ViewProfile">User Profile</a>
+                <a class="btn btn-danger" href="LogoutServlet">Logout</a>
             <%}%>           
         </div>
     </div>

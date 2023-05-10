@@ -56,6 +56,16 @@ public class CreateJobServlet extends HttpServlet {
                         empID = employee.getInt("EMP_ID");
                     }
 
+                    //Check for null select values
+                    int jobLevel = Integer.parseInt(request.getParameter("job-level"));
+                    int jobIndustry = Integer.parseInt(request.getParameter("job-industry"));
+                    int jobType = Integer.parseInt(request.getParameter("job-type"));
+                    if(jobLevel == -1 || jobIndustry == -1 || jobType == -1 ){
+                        session.setAttribute("feedback-message", "Invalid User Input");
+                        response.sendRedirect("create-job-listing.jsp");
+                        return;
+                    }
+
                     //empid, title, location, level, desc, resp, reqs, benefit, industry, salarymin, salarymax, jobtype
                     String query2 = "INSERT INTO JOBS (EMP_ID, JOB_TITLE, "
                     + "JOB_LOCATION, JOB_LEVEL, JOB_DESC, JOB_RESP, JOB_REQS, "
@@ -78,7 +88,9 @@ public class CreateJobServlet extends HttpServlet {
                     ps2.setInt(12,   Integer.parseInt(request.getParameter("job-type")));
 
                     ps2.executeUpdate(); 
-                    response.sendRedirect("create-job-listing.jsp");
+
+                    session.setAttribute("feedback-message", "Successfully Created Job Listing");
+                    response.sendRedirect("employer-home");
                 } else {
                     request.setAttribute("error-message", "Connection Error");
                     request.getRequestDispatcher("error.jsp").forward(request,response);

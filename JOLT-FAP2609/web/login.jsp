@@ -10,6 +10,9 @@
     <body>
         <div class="container">
             <%@include file="./components/nav-seeker.jsp"%>
+            <%if(session.getAttribute("feedback-message") != null){%>
+            <%@include file="./components/feedback-message.jsp"%>
+            <%}%>
             <div>
                 <h1 class="title text-center">JABOOOOOOOOOOOOARD</h1>  
             </div>
@@ -36,7 +39,10 @@
                             <input type="radio" id="employer" name = "user-type" class="form-check-input" value="2" required/>  
                         </div>               
                     </div>
-                   
+                    <div class="form-check my-3">
+                        <img class="mb-4" src="./simpleImg" /> 
+                        <input name="answer" />
+                    </div>
                     <div class="for">
                         <button type="submit" class="btn btn-info btn-block mb-4">Sign in</button>
                     </div>
