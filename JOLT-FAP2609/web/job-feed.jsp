@@ -3,32 +3,31 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <%@include file="./components/header.jsp"%>
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <%@include file="./components-old/header.jsp"%>
         <title>Job Feed</title>
     </head>
     <body>
         <%
             Integer id = (Integer)session.getAttribute("logged-id");
-            String query = "";
-            if(request.getAttribute("query") != null) query = request.getAttribute("query").toString();
+            String search = "";
+            if(request.getAttribute("query") != null) search = request.getAttribute("search").toString();
         %>
         
         <div class="container">
-            <%@include file="./components/nav-seeker.jsp"%>
+            <%@include file="./components-old/nav-seeker.jsp"%>
             <%if(session.getAttribute("feedback-message") != null){%>
-            <%@include file="./components/feedback-message.jsp"%>
+            <%@include file="./components-old/feedback-message.jsp"%>
             <%}%>
             <div class="active-jobs content p-1 mt-1 d-block rounded text-center">
             </div>
-            <form method="get" action="LoadJobFeed" id="searchbar">
+            <form method="get" action="SearchJobFeed" id="searchbar">
                 <div class="input-group mb-3 w-50 mx-auto">
-                <input type="text" class="form-control" placeholder="Search" name="query" value="<%=query%>">
+                <input type="text" class="form-control" placeholder="Search" name="search" value="<%=search%>">
                     <div class="input-group-append">
                         <button class="btn btn-outline-secondary">Search</button>
                     </div>
                     <div class="input-group-append">
-                        <select class="form-select" id="industry" name="industry" onchange="document.getElementById('searchbar').submit()">
+                        <select class="form-select" id="industry" name="industry">
                             <option value="-1">Select One</option>
                             <option value="1">Information Technology</option>
                             <option value="2">Healthcare</option>
@@ -147,9 +146,10 @@
             </div>
                                         
         <script>
-          
-        const viewButtons = document.querySelectorAll('.view-job');
         
+        //Add listener to view buttons
+        const viewButtons = document.querySelectorAll('.view-job');
+
         document.addEventListener("DOMContentLoaded", loadFirstJob());
         function loadFirstJob(){
           const jobID = document.getElementById("job-loader").getAttribute("data-id");
@@ -159,13 +159,11 @@
         viewButtons.forEach(button => {
           button.addEventListener('click', () => {
             const jobID = button.getAttribute('data-id');
-            // retrieve job info from the server
+            // retrieve job info 
             loadJobInfo(jobID);
           });
         });
-          
-          
-          
+               
         function loadJobInfo(jobID){
             fetch('./ViewJobInfo?id='+jobID)
                 .then(response => response.json())
@@ -189,6 +187,18 @@
                     document.getElementById('hidden-emp-id').value = job.empid;
                 })
             .catch(error => console.log(error));
+        }
+        
+        const urlParams = new URLSearchParams(window.location.search);
+        const industry = urlParams.get('industry');
+        const select = document.querySelector('select[name="industry"]');
+        const searchParam = urlParams.get('search');
+        const searchBox = document.querySelector('input[name="search"]');
+        if (industry) {
+          select.value = industry;
+        }
+        if(searchParam){
+            searchBox.value = searchParam;
         }
         </script>
     </body>

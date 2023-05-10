@@ -8,14 +8,14 @@
             Integer id = (Integer)session.getAttribute("logged-id");
             String errMessage = (String)session.getAttribute("error-message");
         %>
-        <%@include file="./components/header.jsp"%>
+        <%@include file="./components-old/header.jsp"%>
         <title>Applied Jobs</title>
     </head>
     <body>
         <div class="container">
-            <%@include file="./components/nav-seeker.jsp"%>
+            <%@include file="./components-old/nav-seeker.jsp"%>
             <%if(session.getAttribute("feedback-message") != null){%>
-            <%@include file="./components/feedback-message.jsp"%>
+            <%@include file="./components-old/feedback-message.jsp"%>
             <%}%>
             <div class="content p-1 mt-2 d-block rounded text-center">
                 <nav class="navbar navbar-expand-lg navbar-light bg-light">

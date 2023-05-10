@@ -8,15 +8,15 @@
             Integer id = (Integer)session.getAttribute("logged-id");
             String errMessage = (String)session.getAttribute("error-message");
         %>
-        <%@include file="./components/header.jsp"%>
+        <%@include file="./components-old/header.jsp"%>
         <title>Employer Home</title>
     </head>
     <body>
         <div class="container">
             
-            <%@include file="./components/nav-employer.jsp"%>
+            <%@include file="./components-old/nav-employer.jsp"%>
             <%if(session.getAttribute("feedback-message") != null){%>
-            <%@include file="./components/feedback-message.jsp"%>
+            <%@include file="./components-old/feedback-message.jsp"%>
             <%}%>
             <div class="content p-1 mt-2 d-block rounded text-center">
                 <div class="row">

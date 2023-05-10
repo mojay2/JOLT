@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-public class LoadJobFeed extends HttpServlet {
+public class SearchJobFeed extends HttpServlet {
 
 Connection conn;
     int counter;
@@ -44,22 +44,49 @@ Connection conn;
                 if (conn != null) {
                     HttpSession session = request.getSession();
                     Integer userID = (Integer)session.getAttribute("logged-id");
-                    String query;
-                    PreparedStatement ps;
 
-                    query = "SELECT * FROM JOBS "
-                               + "INNER JOIN EMPLOYERS ON JOBS.EMP_ID = EMPLOYERS.EMP_ID "
-                               + "INNER JOIN INDUSTRIES ON INDUSTRY_ID = IND_ID "
-                               + "INNER JOIN TYPES ON JOB_TYPE = TYPE_ID "
-                               + "INNER JOIN LEVELS ON JOB_LEVEL = LEVEL_ID "
-                               + "ORDER BY JOB_ID DESC"
-                    ;
-                    ps = conn.prepareStatement(query);
+                    String searchParam = request.getParameter("search");
+                    int industry = Integer.parseInt(request.getParameter("industry"));
+                    String query = "SELECT * FROM JOBS "
+                        + "INNER JOIN EMPLOYERS ON JOBS.EMP_ID = EMPLOYERS.EMP_ID "
+                        + "INNER JOIN INDUSTRIES ON INDUSTRY_ID = IND_ID "
+                        + "INNER JOIN TYPES ON JOB_TYPE = TYPE_ID "
+                        + "INNER JOIN LEVELS ON JOB_LEVEL = LEVEL_ID "                    
+                    ;   
+                    if (!searchParam.isEmpty() || industry != -1) {
+                        query += " WHERE ";
+                        if (!searchParam.isEmpty()) {
+                                query += "(LOWER(JOB_TITLE) LIKE LOWER(?) OR LOWER(EMP_NAME) LIKE LOWER(?) "
+                                        + "OR LOWER(LEVEL_NAME) LIKE LOWER(?) OR LOWER(JOB_LOCATION) LIKE LOWER(?) "
+                                        + "OR LOWER(EMP_OVERVIEW) LIKE LOWER(?))";
+                        }
+                        if (!searchParam.isEmpty() && industry != -1) {
+                            query += " AND ";
+                        }
+                        if (industry != -1) {
+                            query += "IND_ID = ? ";
+                        }           
+                    }
+                    query += "ORDER BY JOB_ID DESC";
+
+                    PreparedStatement ps = conn.prepareStatement(query);
+                    int parameterIndex = 1;
+                    if (!searchParam.isEmpty()) {
+                        String searchBoxParam = "%" + searchParam + "%";
+                        ps.setString(parameterIndex++, searchBoxParam);
+                        ps.setString(parameterIndex++, searchBoxParam);
+                        ps.setString(parameterIndex++, searchBoxParam);
+                        ps.setString(parameterIndex++, searchBoxParam);
+                        ps.setString(parameterIndex++, searchBoxParam);                   
+                    }
+                    if (industry != -1) {
+                        ps.setInt(parameterIndex++, industry);
+                    }
 
                     ResultSet jobs = ps.executeQuery();
 
                     request.setAttribute("jobs", jobs);
-                    request.setAttribute("search", request.getParameter("search")); 
+                    request.setAttribute("query", request.getParameter("query")); 
                     request.getRequestDispatcher("job-feed.jsp").forward(request,response);
                 } else {
                     request.setAttribute("error-message", "Connection Error");

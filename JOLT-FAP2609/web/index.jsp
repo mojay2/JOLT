@@ -2,25 +2,25 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <%@include file="./components/header.jsp"%>
+        <%@include file="./components-old/header.jsp"%>
         <title>JOLT</title>
     </head>
     
     <body>
         <div class="container">
-            <%@include file="./components/nav-seeker.jsp"%>
+            <%@include file="./components-old/nav-seeker.jsp"%>
             <div>
                 <h1 class="title text-center">JABOOOOOOOOOOOOARD LANDING PAGE</h1>  
             </div>
             
-            <form id="searchbar" method="get" action="LoadJobFeed">
+            <form method="get" action="SearchJobFeed" id="searchbar">
                 <div class="input-group mb-3 w-50 mx-auto">
-                <input type="text" class="form-control" placeholder="Search" name="query">
+                <input type="text" class="form-control" placeholder="Search" name="search">
                     <div class="input-group-append">
                         <button class="btn btn-outline-secondary">Search</button>
                     </div>
                     <div class="input-group-append">
-                        <select class="form-select" id="industry" name="industry" onchange="document.getElementById('searchbar').submit()">
+                        <select class="form-select" id="industry" name="industry">
                             <option value="-1">Select One</option>
                             <option value="1">Information Technology</option>
                             <option value="2">Healthcare</option>
@@ -35,7 +35,7 @@
                 </div>
             </form>
         </div>
-        <%@include file="./components/footer.jsp"%>
+        <%@include file="./components-old/footer.jsp"%>
     </body>
 </html>
 
