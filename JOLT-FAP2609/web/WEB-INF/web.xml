@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"> 
+<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
     <!--captcha servlets-->
     <servlet>
         <servlet-name>StickyCaptcha</servlet-name>
@@ -29,6 +29,10 @@
         <servlet-name>AudioCaptcha</servlet-name>
         <servlet-class>nl.captcha.servlet.AudioCaptchaServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SearchJobFeed</servlet-name>
+        <servlet-class>controller.SearchJobFeed</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AudioCaptcha</servlet-name>
         <url-pattern>/audio.wav</url-pattern>
@@ -41,7 +45,6 @@
         <servlet-name>SimpleCaptcha</servlet-name>
         <url-pattern>/simpleImg</url-pattern>
     </servlet-mapping>
-    
     <!--other servlets-->
     <servlet>
         <servlet-name>CreateJobServlet</servlet-name>
@@ -186,6 +189,10 @@
     <servlet-mapping>
         <servlet-name>ViewJobInfo</servlet-name>
         <url-pattern>/ViewJobInfo</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchJobFeed</servlet-name>
+        <url-pattern>/SearchJobFeed</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
