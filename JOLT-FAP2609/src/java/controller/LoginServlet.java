@@ -52,15 +52,19 @@ Connection conn;
                         response.sendRedirect("login.jsp");
                         return;
                     }
-                    
+
                     //Verify login credentials
+                    String keyString = getServletConfig().getInitParameter("key");
+                    String cipherType = getServletConfig().getInitParameter("cipher");
+                    String ecryptedUserPass = model.Security.encrypt(request.getParameter("password"), cipherType, keyString);
+                    
                     String query = "SELECT * FROM USERS WHERE USER_EMAIL = ? "
  + "                                AND USER_PASSWORD = ? "
  + "                                AND USER_TYPE = ?";
                     PreparedStatement ps = conn.prepareStatement(query);            
                     
                     ps.setString(1, request.getParameter("email"));            
-                    ps.setString(2, request.getParameter("password"));
+                    ps.setString(2, ecryptedUserPass);
                     ps.setString(3, request.getParameter("user-type"));
                     
                     ResultSet loggedUser = ps.executeQuery();
