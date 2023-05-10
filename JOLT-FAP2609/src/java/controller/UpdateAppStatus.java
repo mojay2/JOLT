@@ -12,11 +12,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import nl.captcha.Captcha;
 
+public class UpdateAppStatus extends HttpServlet {
 
-public class LoginServlet extends HttpServlet {
-
-Connection conn;
+    Connection conn;
     int counter;
     public void init() throws ServletException
     {
@@ -35,6 +35,7 @@ Connection conn;
 			System.out.println("ClassNotFoundException error occured - " 
 		        + nfe.getMessage());
 		}
+
     }
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -42,46 +43,37 @@ Connection conn;
         try {	
                 if (conn != null) {
                     HttpSession session = request.getSession();
-                    String query = "SELECT * FROM USERS WHERE USER_EMAIL = ? "
- + "                                AND USER_PASSWORD = ? "
- + "                                AND USER_TYPE = ?";
+                    Integer loggedUser = (Integer)session.getAttribute("logged-id");
+
+                    int appID = Integer.parseInt(request.getParameter("app-id"));
+                    int newStatus = Integer.parseInt(request.getParameter("app-status"));
+
+                    String query = "UPDATE APPLICATIONS SET APP_STATUS = ? "
+                    + "WHERE APP_ID = ?";
+
                     PreparedStatement ps = conn.prepareStatement(query);            
-                    
-                    ps.setString(1, request.getParameter("email"));            
-                    ps.setString(2, request.getParameter("password"));
-                    ps.setString(3, request.getParameter("user-type"));
-                    
-                    ResultSet loggedUser = ps.executeQuery();
-                    
-                    if(loggedUser.next()){   
-                        //Successful login
-                        int userID = loggedUser.getInt("USER_ID"); 
-                        int userType = loggedUser.getInt("USER_TYPE");
 
-                        session.setAttribute("logged-id", userID);
+                    ps.setInt(1, newStatus);  
+                    ps.setInt(2, appID);                    
 
-                        if(userType == 1){
-                            session.setAttribute("logged-usertype", "jobseeker");
-                            request.getRequestDispatcher("/LoadJobFeed").forward(request,response);
-                        }
-                        else{
-                            session.setAttribute("logged-usertype", "employer");
-                            request.getRequestDispatcher("/employer-home").forward(request,response);
-                        }
+                    ps.executeUpdate(); 
+session.setAttribute("feedback-message", "Successfully Updated Application Status");
+                    if(request.getParameter("job-id") != null){
+                        request.setAttribute("job-id", request.getParameter("job-id"));
                     }
-                    else{
-                    //Failed login
-                        counter++;
-                        session.setAttribute("feedback-message", "Wrong Login Credentials");
-                        request.getRequestDispatcher("login.jsp").forward(request,response);
-                    }
+                    request.getRequestDispatcher("LoadJobCandidates").forward(request,response);
+                    response.sendRedirect("LoadJobCandidates"); 
                 } else {
-                    response.sendRedirect("error.jsp");
+                    request.setAttribute("error-message", "Connection Error");
+                    request.getRequestDispatcher("error.jsp").forward(request,response);
                 }
         } catch (SQLException sqle){
-                response.sendRedirect("error.jsp");
-        } 
-
+                request.setAttribute("error-message", sqle.getMessage());
+                request.getRequestDispatcher("error.jsp").forward(request,response);
+        } catch (Exception e){
+                request.setAttribute("error-message", e.toString());
+                request.getRequestDispatcher("error.jsp").forward(request,response);
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

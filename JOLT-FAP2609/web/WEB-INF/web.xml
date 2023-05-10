@@ -16,6 +16,62 @@
         <servlet-name>LogoutServlet</servlet-name>
         <servlet-class>controller.LogoutServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>LoadJobFeed</servlet-name>
+        <servlet-class>controller.LoadJobFeed</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewJobListing</servlet-name>
+        <servlet-class>controller.ViewJobListing</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CreateJobApp</servlet-name>
+        <servlet-class>controller.CreateJobApp</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LoadJobCandidates</servlet-name>
+        <servlet-class>controller.LoadJobCandidates</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateAppStatus</servlet-name>
+        <servlet-class>controller.UpdateAppStatus</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LoadAppliedJobs</servlet-name>
+        <servlet-class>controller.LoadAppliedJobs</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteJobApplication</servlet-name>
+        <servlet-class>controller.DeleteJobApplication</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateAppStatus2</servlet-name>
+        <servlet-class>controller.UpdateAppStatus2</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteJobListing</servlet-name>
+        <servlet-class>controller.DeleteJobListing</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewJobListingTest</servlet-name>
+        <servlet-class>controller.ViewJobListingTest</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewProfile</servlet-name>
+        <servlet-class>controller.ViewProfile</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LoadProfileModalTest</servlet-name>
+        <servlet-class>controller.LoadProfileModalTest</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LoadJobFeedTesting</servlet-name>
+        <servlet-class>controller.LoadJobFeedTesting</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewJobInfo</servlet-name>
+        <servlet-class>controller.ViewJobInfo</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>CreateJobServlet</servlet-name>
         <url-pattern>/CreateJobServlet</url-pattern>
@@ -31,6 +87,62 @@
     <servlet-mapping>
         <servlet-name>LogoutServlet</servlet-name>
         <url-pattern>/LogoutServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoadJobFeed</servlet-name>
+        <url-pattern>/LoadJobFeed</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewJobListing</servlet-name>
+        <url-pattern>/ViewJobListing</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CreateJobApp</servlet-name>
+        <url-pattern>/CreateJobApp</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoadJobCandidates</servlet-name>
+        <url-pattern>/LoadJobCandidates</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateAppStatus</servlet-name>
+        <url-pattern>/UpdateAppStatus</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoadAppliedJobs</servlet-name>
+        <url-pattern>/LoadAppliedJobs</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteJobApplication</servlet-name>
+        <url-pattern>/DeleteJobApplication</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateAppStatus2</servlet-name>
+        <url-pattern>/UpdateAppStatus2</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteJobListing</servlet-name>
+        <url-pattern>/DeleteJobListing</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewJobListingTest</servlet-name>
+        <url-pattern>/ViewJobListingTest</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewProfile</servlet-name>
+        <url-pattern>/ViewProfile</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoadProfileModalTest</servlet-name>
+        <url-pattern>/LoadProfileModalTest</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoadJobFeedTesting</servlet-name>
+        <url-pattern>/LoadJobFeedTesting</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewJobInfo</servlet-name>
+        <url-pattern>/ViewJobInfo</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

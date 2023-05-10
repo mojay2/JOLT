@@ -6,19 +6,14 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-public class LoadEmployerJobs extends HttpServlet {
+public class LoadAppliedJobs extends HttpServlet {
 
 Connection conn;
     int counter;
@@ -50,41 +45,50 @@ Connection conn;
                     HttpSession session = request.getSession();
                     Integer userID = (Integer)session.getAttribute("logged-id");
                     
-                    //get emp id;
-                    String query = "SELECT * FROM EMPLOYERS WHERE USER_ID = ?";
+                    //get jobseeker id
+                    String query = "SELECT * FROM JOBSEEKERS WHERE USER_ID = ?";
                     PreparedStatement ps = conn.prepareStatement(query);
                     ps.setInt(1, userID);
                     ps.executeQuery();
-                    ResultSet employee = ps.executeQuery();
-                    int empID = 0;
-                    if(employee.next()){
-                        session.setAttribute("logged-employer",employee.getString("EMP_NAME"));
-                        empID = employee.getInt("EMP_ID");
+                    ResultSet jobseeker = ps.executeQuery();
+                    int seekerID = 0;
+                    if(jobseeker.next()){
+                        seekerID = jobseeker.getInt("SEEKER_ID");
                     }
 
-                    //get all jobs with the emp id
-                    query = "SELECT * FROM JOBS "
-                            + "WHERE JOBS.EMP_ID = ? AND JOB_ISACTIVE = 0"
-                    ;
 
-                    ps = conn.prepareStatement(query);
-                    ps.setInt(1, empID);
-                    ResultSet jobs = ps.executeQuery();
-
-                    List<HashMap> jobList = new ArrayList<>();
-
-                    while(jobs.next()){     
-                        HashMap<String, String> map = new HashMap<>();
-                        map.put("job-id", ""+jobs.getInt("JOB_ID"));
-                        map.put("job-title", jobs.getString("JOB_TITLE"));
-                        map.put("pending-count", ""+getCount(empID, 0, jobs.getInt("JOB_ID")));
-                        map.put("accepted-count", ""+getCount(empID, 1, jobs.getInt("JOB_ID")));
-                        map.put("rejected-count", ""+getCount(empID, 2, jobs.getInt("JOB_ID")));
-                        jobList.add(map);
+                    if(request.getParameter("status")==null){
+                    //get all JOB APPLICATIONS with the JOBSEEKERID
+                        query = "SELECT * FROM APPLICATIONS "
+                                    + "INNER JOIN JOBSEEKERS ON JOBSEEKERS.SEEKER_ID = APPLICATIONS.SEEKER_ID "
+                                    + "INNER JOIN EMPLOYERS ON EMP_ID = EMPLOYER_ID "
+                                    + "INNER JOIN JOBS ON JOBS.JOB_ID = APPLICATIONS.JOB_ID "
+                                    + "INNER JOIN STATUSES ON APP_STATUS = STATUS_ID "
+                                    + "INNER JOIN TYPES ON JOB_TYPE = TYPE_ID "
+                                    + "INNER JOIN LEVELS ON JOB_LEVEL = LEVEL_ID "
+                                    + "WHERE APPLICATIONS.SEEKER_ID = ?"
+                        ;   
+                        ps = conn.prepareStatement(query);
+                        ps.setInt(1, seekerID);
+                    }else{
+                        query = "SELECT * FROM APPLICATIONS "
+                                    + "INNER JOIN JOBSEEKERS ON JOBSEEKERS.SEEKER_ID = APPLICATIONS.SEEKER_ID "
+                                    + "INNER JOIN EMPLOYERS ON EMP_ID = EMPLOYER_ID "
+                                    + "INNER JOIN JOBS ON JOBS.JOB_ID = APPLICATIONS.JOB_ID "
+                                    + "INNER JOIN STATUSES ON APP_STATUS = STATUS_ID "
+                                    + "INNER JOIN TYPES ON JOB_TYPE = TYPE_ID "
+                                    + "INNER JOIN LEVELS ON JOB_LEVEL = LEVEL_ID "
+                                    + "WHERE APPLICATIONS.SEEKER_ID = ? AND APP_STATUS = ?"
+                        ;   
+                        ps = conn.prepareStatement(query);
+                        ps.setInt(1, seekerID);
+                        ps.setInt(2, Integer.parseInt(request.getParameter("status")));
                     }
 
-                    request.setAttribute("jobs", jobList);
-                    request.getRequestDispatcher("employer-home.jsp").forward(request,response);
+                    ResultSet applications = ps.executeQuery();
+
+                    request.setAttribute("applications", applications);
+                    request.getRequestDispatcher("applied-jobs.jsp").forward(request,response);
                 } else {
                     request.setAttribute("error-message", "Connection Error");
                     request.getRequestDispatcher("error.jsp").forward(request,response);
@@ -96,27 +100,7 @@ Connection conn;
 
     }
 
-    int getCount (int empID, int status, int jobID) throws SQLException{
-        int count = 0;
-        String query = "SELECT * FROM JOBS "
-        + "INNER JOIN EMPLOYERS ON JOBS.EMP_ID = EMPLOYERS.EMP_ID "
-        + "INNER JOIN APPLICATIONS ON JOBS.JOB_ID = APPLICATIONS.JOB_ID "
-        + "WHERE JOBS.EMP_ID = ? AND JOB_ISACTIVE = 0 AND APP_STATUS = ? "
-        + "AND APPLICATIONS.JOB_ID = ?";
-
-        PreparedStatement ps = conn.prepareStatement(query);
-        ps.setInt(1, empID);
-        ps.setInt(2, status);
-        ps.setInt(3, jobID);
-
-        ResultSet rs = ps.executeQuery();
-        while(rs.next()){
-            count++;
-        }
-        return count;
-    }
-
-   // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *
@@ -154,4 +138,5 @@ Connection conn;
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
 }

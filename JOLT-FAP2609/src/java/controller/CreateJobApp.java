@@ -12,11 +12,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import nl.captcha.Captcha;
 
+public class CreateJobApp extends HttpServlet {
 
-public class LoginServlet extends HttpServlet {
-
-Connection conn;
+    Connection conn;
     int counter;
     public void init() throws ServletException
     {
@@ -35,6 +35,7 @@ Connection conn;
 			System.out.println("ClassNotFoundException error occured - " 
 		        + nfe.getMessage());
 		}
+
     }
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -42,46 +43,58 @@ Connection conn;
         try {	
                 if (conn != null) {
                     HttpSession session = request.getSession();
-                    String query = "SELECT * FROM USERS WHERE USER_EMAIL = ? "
- + "                                AND USER_PASSWORD = ? "
- + "                                AND USER_TYPE = ?";
-                    PreparedStatement ps = conn.prepareStatement(query);            
-                    
-                    ps.setString(1, request.getParameter("email"));            
-                    ps.setString(2, request.getParameter("password"));
-                    ps.setString(3, request.getParameter("user-type"));
-                    
-                    ResultSet loggedUser = ps.executeQuery();
-                    
-                    if(loggedUser.next()){   
-                        //Successful login
-                        int userID = loggedUser.getInt("USER_ID"); 
-                        int userType = loggedUser.getInt("USER_TYPE");
+                    Integer loggedUser = (Integer)session.getAttribute("logged-id");
 
-                        session.setAttribute("logged-id", userID);
-
-                        if(userType == 1){
-                            session.setAttribute("logged-usertype", "jobseeker");
-                            request.getRequestDispatcher("/LoadJobFeed").forward(request,response);
-                        }
-                        else{
-                            session.setAttribute("logged-usertype", "employer");
-                            request.getRequestDispatcher("/employer-home").forward(request,response);
-                        }
+                    //get jobseeker id from user id
+                    String query = "SELECT * FROM JOBSEEKERS WHERE USER_ID = ?";
+                    PreparedStatement ps = conn.prepareStatement(query);
+                    ps.setInt(1, loggedUser);
+                    ps.executeQuery();
+                    ResultSet jobSeeker = ps.executeQuery();
+                    int seekerID = 0;
+                    if(jobSeeker.next()){
+                        seekerID = jobSeeker.getInt("SEEKER_ID");
                     }
-                    else{
-                    //Failed login
-                        counter++;
-                        session.setAttribute("feedback-message", "Wrong Login Credentials");
-                        request.getRequestDispatcher("login.jsp").forward(request,response);
+
+                    int jobID = Integer.parseInt(request.getParameter("job-id"));
+                    int empID = Integer.parseInt(request.getParameter("emp-id"));
+
+                    //Check if an application already exists
+                    query = "SELECT * FROM APPLICATIONS WHERE JOB_ID = ? AND SEEKER_ID = ?";
+                    ps = conn.prepareStatement(query);
+                    ps.setInt(1, jobID);
+                    ps.setInt(2, seekerID);
+                    ps.executeQuery();
+                    ResultSet appCheck = ps.executeQuery();
+                    if(appCheck.next()){
+                        session.setAttribute("feedback-message", "You have already Applied for this job.");
+                        response.sendRedirect("LoadJobFeed"); 
+                    }else{
+                        //Create a new application 
+                        String query2 = "INSERT INTO APPLICATIONS (SEEKER_ID,"
+                                        + "EMPLOYER_ID, JOB_ID) VALUES (?,?,?)";
+
+                        PreparedStatement ps2 = conn.prepareStatement(query2);            
+
+                        ps2.setInt(1, seekerID);  
+                        ps2.setInt(2, empID);                    
+                        ps2.setInt(3, jobID);
+
+                        ps2.executeUpdate(); 
+                        session.setAttribute("feedback-message", "Successfully Applied");
+                        response.sendRedirect("LoadJobFeed"); 
                     }
                 } else {
-                    response.sendRedirect("error.jsp");
+                    request.setAttribute("error-message", "Connection Error");
+                    request.getRequestDispatcher("error.jsp").forward(request,response);
                 }
         } catch (SQLException sqle){
-                response.sendRedirect("error.jsp");
-        } 
-
+                request.setAttribute("error-message", sqle.getMessage());
+                request.getRequestDispatcher("error.jsp").forward(request,response);
+        } catch (Exception e){
+                request.setAttribute("error-message", e.toString());
+                request.getRequestDispatcher("error.jsp").forward(request,response);
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

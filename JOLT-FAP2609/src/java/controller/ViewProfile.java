@@ -13,8 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-
-public class LoginServlet extends HttpServlet {
+public class ViewProfile extends HttpServlet {
 
 Connection conn;
     int counter;
@@ -35,51 +34,35 @@ Connection conn;
 			System.out.println("ClassNotFoundException error occured - " 
 		        + nfe.getMessage());
 		}
+
     }
 
+    //This servlet returns an entry from the USER table corresponding to the logged in USERID
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {	
                 if (conn != null) {
                     HttpSession session = request.getSession();
-                    String query = "SELECT * FROM USERS WHERE USER_EMAIL = ? "
- + "                                AND USER_PASSWORD = ? "
- + "                                AND USER_TYPE = ?";
-                    PreparedStatement ps = conn.prepareStatement(query);            
-                    
-                    ps.setString(1, request.getParameter("email"));            
-                    ps.setString(2, request.getParameter("password"));
-                    ps.setString(3, request.getParameter("user-type"));
-                    
-                    ResultSet loggedUser = ps.executeQuery();
-                    
-                    if(loggedUser.next()){   
-                        //Successful login
-                        int userID = loggedUser.getInt("USER_ID"); 
-                        int userType = loggedUser.getInt("USER_TYPE");
+                    Integer userID = (Integer)session.getAttribute("logged-id");
 
-                        session.setAttribute("logged-id", userID);
+                    String query = "SELECT * FROM USERS "
+                                + "INNER JOIN JOBSEEKERS ON JOBSEEKERS.USER_ID = USERS.USER_ID "
+                                + "WHERE JOBSEEKERS.USER_ID = ?"
+                    ;
 
-                        if(userType == 1){
-                            session.setAttribute("logged-usertype", "jobseeker");
-                            request.getRequestDispatcher("/LoadJobFeed").forward(request,response);
-                        }
-                        else{
-                            session.setAttribute("logged-usertype", "employer");
-                            request.getRequestDispatcher("/employer-home").forward(request,response);
-                        }
-                    }
-                    else{
-                    //Failed login
-                        counter++;
-                        session.setAttribute("feedback-message", "Wrong Login Credentials");
-                        request.getRequestDispatcher("login.jsp").forward(request,response);
-                    }
+                    PreparedStatement ps = conn.prepareStatement(query);
+                    ps.setInt(1, userID);
+                    ResultSet user = ps.executeQuery();
+
+                    request.setAttribute("user", user);
+                    request.getRequestDispatcher("user-profile.jsp").forward(request,response);
                 } else {
-                    response.sendRedirect("error.jsp");
+                    request.setAttribute("error-message", "Connection Error");
+                    request.getRequestDispatcher("error.jsp").forward(request,response);
                 }
         } catch (SQLException sqle){
-                response.sendRedirect("error.jsp");
+                request.setAttribute("error-message", sqle.getMessage());
+                request.getRequestDispatcher("error.jsp").forward(request,response);
         } 
 
     }
