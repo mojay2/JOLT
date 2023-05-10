@@ -10,12 +10,12 @@
             Integer id = (Integer)session.getAttribute("logged-id");
             String errMessage = (String)session.getAttribute("error-message");
         %>
-        <%@include file="./components/header.jsp"%>
+        <%@include file="./components-old/header.jsp"%>
         <title>User Profile</title>
     </head>
     <body>
         <div class="container">
-            <%@include file="./components/nav-seeker.jsp"%>            
+            <%@include file="./components-old/nav-seeker.jsp"%>            
             <div class="card p-1 mt-1 rounded text-center">
                 <%ResultSet user = (ResultSet)request.getAttribute("user");
                 if(user.next()){%>

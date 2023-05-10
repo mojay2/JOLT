@@ -2,13 +2,13 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <%@include file="./components/header.jsp"%>
+        <%@include file="./components-old/header.jsp"%>
         <title>JOLT</title>
     </head>
     
     <body>
         <div class="container">
-            <%@include file="./components/nav-seeker.jsp"%>
+            <%@include file="./components-old/nav-seeker.jsp"%>
             <div>
                 <h1 class="title text-center">JABOOOOOOOOOOOOARD LANDING PAGE</h1>  
             </div>
@@ -35,7 +35,7 @@
                 </div>
             </form>
         </div>
-        <%@include file="./components/footer.jsp"%>
+        <%@include file="./components-old/footer.jsp"%>
     </body>
 </html>
 

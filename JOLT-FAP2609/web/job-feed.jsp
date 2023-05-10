@@ -3,8 +3,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <%@include file="./components/header.jsp"%>
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <%@include file="./components-old/header.jsp"%>
         <title>Job Feed</title>
     </head>
     <body>
@@ -15,9 +14,9 @@
         %>
         
         <div class="container">
-            <%@include file="./components/nav-seeker.jsp"%>
+            <%@include file="./components-old/nav-seeker.jsp"%>
             <%if(session.getAttribute("feedback-message") != null){%>
-            <%@include file="./components/feedback-message.jsp"%>
+            <%@include file="./components-old/feedback-message.jsp"%>
             <%}%>
             <div class="active-jobs content p-1 mt-1 d-block rounded text-center">
             </div>

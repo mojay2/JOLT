@@ -3,15 +3,15 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <%@include file="./components/header.jsp"%>
+        <%@include file="./components-old/header.jsp"%>
         <title>Login Page</title>
     </head>
     
     <body>
         <div class="container">
-            <%@include file="./components/nav-seeker.jsp"%>
+            <%@include file="./components-old/nav-seeker.jsp"%>
             <%if(session.getAttribute("feedback-message") != null){%>
-            <%@include file="./components/feedback-message.jsp"%>
+            <%@include file="./components-old/feedback-message.jsp"%>
             <%}%>
             <div>
                 <h1 class="title text-center">JABOOOOOOOOOOOOARD</h1>  
@@ -49,7 +49,7 @@
                 </form>      
             </div>
         </div>
-        <%@include file="./components/footer.jsp"%>
+        <%@include file="./components-old/footer.jsp"%>
     </body>
 </html>
 
