@@ -39,7 +39,10 @@
                             <input type="radio" id="employer" name = "user-type" class="form-check-input" value="2" required/>  
                         </div>               
                     </div>
-                   
+                    <div class="form-check my-3">
+                        <img class="mb-4" src="./simpleImg" /> 
+                        <input name="answer" />
+                    </div>
                     <div class="for">
                         <button type="submit" class="btn btn-info btn-block mb-4">Sign in</button>
                     </div>
