@@ -96,7 +96,7 @@
 
     <!-- Content -->
     <div class="container mx-auto">
-      <div class="mx-auto my-10 w-4/5 lg:w-3/5 bl" id="container">
+      <div class="bl mx-auto my-10 w-4/5 lg:w-3/5" id="container">
         <!-- Search -->
         <form>
           <div class="mx-auto flex w-full flex-col items-center justify-around gap-y-4 divide-y-2 divide-zinc-800 rounded-2xl border-[3px] border-zinc-800 p-3 text-zinc-800 md:flex-row md:divide-x-2 md:divide-y-0">
@@ -128,7 +128,7 @@
 
         <!-- Cards Container -->
         <div class="relative mt-8 flex flex-col gap-5 lg:flex-row">
-          <div>
+          <div class="">
             <!-- Job Cards -->
             <div class="flex flex-none basis-auto flex-col gap-3">
               <!-- Start Card Template -->
@@ -157,7 +157,7 @@
               </button>
             </div>
           </div>
-          <!-- Job Single Post Card -->
+          <!-- Job Single Post Card - Change "lg:inline" to "lg:hidden"  -->
           <div class="sticky top-0 hidden h-screen flex-1 basis-auto overflow-auto rounded-2xl border-[3px] border-zinc-800 p-4 text-zinc-800 lg:inline">
             <!-- Job Description -->
             <div class="flex items-center justify-between">
@@ -234,19 +234,77 @@
             </form>
           </div>
 
-          <!-- Invalid Search -->
-          <div class="hidden flex-col justify-center items-center h-full p-4  text-zinc-800">
-            <img src="./public/assets/images/error.png" alt="error image" class="h-auto w-[300px] border-b-4 border-zinc-800 px-4 pb-6 lg:w-[500px]" />
-            <h1 class="md: mt-6 text-xl font-bold lg:text-4xl">404 Not Found</h1>
-            <p class="mt-6 w-5/6 text-center text-base font-lg lg:w-full lg:text-2xl">Oops! We couldn't find what you're looking for. Maybe it's lost in cyberspace. Try again or explore some of our other pages!</p>
+          <!-- Job Single Post Card - Skeleton - Change "lg:hidden" to "lg:inline" -->
+          <div role="status" class="sticky top-0 hidden h-screen flex-1 basis-auto animate-pulse overflow-auto rounded-2xl border-[3px] border-zinc-800 p-4 text-zinc-800 lg:hidden">
+            <!-- Job Description -->
+            <div class="mb-3 h-8 w-48 rounded-full bg-slate-300"></div>
+            <div class="h-5 w-72 rounded-full bg-slate-300"></div>
+            <div class="mt-2 flex gap-1 border-b-2 border-neutral-600 pb-3 text-sm text-stone-100">
+              <div class="h-5 w-32 rounded-full bg-slate-300"></div>
+              <div class="h-5 w-32 rounded-full bg-slate-300"></div>
+              <div class="h-5 w-32 rounded-full bg-slate-300"></div>
+            </div>
+
+            <div class="mt-2 h-3 w-[calc(100%-10px)] rounded-full bg-slate-300"></div>
+            <div class="mt-2 h-3 w-[calc(100%-34px)] rounded-full bg-slate-300"></div>
+            <div class="mt-2 h-3 w-[calc(100%-13px)] rounded-full bg-slate-300"></div>
+            <div class="mt-2 h-3 w-[calc(100%-12px)] rounded-full bg-slate-300"></div>
+            <div class="mt-2 h-3 w-[calc(100%-20px)] rounded-full bg-slate-300"></div>
+            <div class="mt-2 h-3 w-[calc(100%-30px)] rounded-full bg-slate-300"></div>
+            <div class="mt-2 h-3 w-[calc(100%-12px)] rounded-full bg-slate-300"></div>
+            <div class="mt-2 h-3 w-[calc(100%-40px)] rounded-full bg-slate-300"></div>
+            <div class="invisible mt-2 text-base">We are seeking an experienced Marketing Manager to lead our marketing efforts and drive growth for our business. The ideal candidate will have a proven track record of developing and executing successful marketing campaigns, as well as the ability to analyze data and identify opportunities for optimization.</div>
+
+            <div class="-mt-44 -mt-52 border-b-2 border-neutral-600 pb-3 min-[1280px]:-mt-28">
+              <div class="h-8 w-72 rounded-full bg-slate-300"></div>
+            </div>
+            <div class="mt-2 h-3 w-[calc(100%-10px)] rounded-full bg-slate-300"></div>
+            <div class="mt-2 h-3 w-[calc(100%-34px)] rounded-full bg-slate-300"></div>
+            <div class="mt-2 h-3 w-[calc(100%-13px)] rounded-full bg-slate-300"></div>
+            <div class="mt-2 h-3 w-[calc(100%-12px)] rounded-full bg-slate-300"></div>
+            <div class="mt-2 h-3 w-[calc(100%-20px)] rounded-full bg-slate-300"></div>
+            <div class="mt-2 h-3 w-[calc(100%-30px)] rounded-full bg-slate-300"></div>
+            <div class="mt-2 h-3 w-[calc(100%-12px)] rounded-full bg-slate-300"></div>
+            <div class="mt-2 h-3 w-[calc(100%-40px)] rounded-full bg-slate-300"></div>
+            <div class="invisible mt-2 text-base">We are seeking an experienced Marketing Manager to lead our marketing efforts and drive growth for our business. The ideal candidate will have a proven track record of developing and executing successful marketing campaigns, as well as the ability to analyze data and identify opportunities for optimization.</div>
+
+            <div class="-mt-44 border-b-2 border-neutral-600 pb-3 min-[1280px]:-mt-28">
+              <div class="h-8 w-72 rounded-full bg-slate-300"></div>
+            </div>
+            <div class="mt-2 h-3 w-[calc(100%-10px)] rounded-full bg-slate-300"></div>
+            <div class="mt-2 h-3 w-[calc(100%-34px)] rounded-full bg-slate-300"></div>
+            <div class="mt-2 h-3 w-[calc(100%-13px)] rounded-full bg-slate-300"></div>
+            <div class="mt-2 h-3 w-[calc(100%-12px)] rounded-full bg-slate-300"></div>
+            <div class="mt-2 h-3 w-[calc(100%-20px)] rounded-full bg-slate-300"></div>
+            <div class="mt-2 h-3 w-[calc(100%-30px)] rounded-full bg-slate-300"></div>
+            <div class="mt-2 h-3 w-[calc(100%-12px)] rounded-full bg-slate-300"></div>
+            <div class="mt-2 h-3 w-[calc(100%-40px)] rounded-full bg-slate-300"></div>
+
+            <div class="mt-4 border-b-2 border-neutral-600 pb-3">
+              <div class="h-8 w-72 rounded-full bg-slate-300"></div>
+            </div>
+            <div class="mt-2 h-3 w-[calc(100%-10px)] rounded-full bg-slate-300"></div>
+            <div class="mt-2 h-3 w-[calc(100%-34px)] rounded-full bg-slate-300"></div>
+            <div class="mt-2 h-3 w-[calc(100%-13px)] rounded-full bg-slate-300"></div>
+            <div class="mt-2 h-3 w-[calc(100%-12px)] rounded-full bg-slate-300"></div>
+            <div class="mt-2 h-3 w-[calc(100%-20px)] rounded-full bg-slate-300"></div>
+            <div class="mt-2 h-3 w-[calc(100%-30px)] rounded-full bg-slate-300"></div>
+            <div class="mt-2 h-3 w-[calc(100%-12px)] rounded-full bg-slate-300"></div>
+            <div class="mt-2 h-3 w-[calc(100%-40px)] rounded-full bg-slate-300"></div>
           </div>
-    
+
+          <!-- Invalid Search - Change "hidden" to "flex" -->
+          <div class="hidden h-full flex-col items-center justify-center p-4 text-zinc-800">
+            <img src="./public/assets/images/error.png" alt="error image" class="h-auto w-[300px] border-b-4 border-zinc-800 px-4 pb-6 lg:w-[500px]" />
+            <h1 class="md: mt-6 text-xl font-bold lg:text-4xl">No Results Found</h1>
+            <p class="font-lg mt-6 w-5/6 text-center text-base lg:w-full lg:text-2xl">We're sorry, but we couldn't find any results for your search. Perhaps you could try using different keywords or filters to refine your search.</p>
+          </div>
         </div>
       </div>
     </div>
 
     <!-- Job Modal -->
-    <div id="jobFeedModal" tabindex="-1" aria-hidden="true" class="fixed top-0 justify-center z-50 hidden h-[calc(100%-1rem)] max-h-full w-full overflow-y-auto overflow-x-hidden p-4 md:inset-0">
+    <div id="jobFeedModal" tabindex="-1" aria-hidden="true" class="fixed top-0 z-50 hidden h-[calc(100%-1rem)] max-h-full w-full justify-center overflow-y-auto overflow-x-hidden p-4 md:inset-0">
       <div class="relative max-h-full w-full max-w-2xl">
         <!-- Modal content -->
         <div class="relative rounded-lg bg-slate-300 shadow">
@@ -325,12 +383,11 @@
 
             <form>
               <!-- Submit -->
-              <button class="mt-2 md:mt-5 inline-block h-9 w-full rounded-3xl bg-yellow-400 text-center text-base md:text-lg font-bold hover:bg-yellow-500 focus:ring-4 focus:ring-blue-400 disabled:bg-neutral-500 disabled:font-light disabled:text-slate-100 disabled:hover:bg-neutral-600" value="1" name="id" type="submit">Apply Now</button>
+              <button class="mt-2 inline-block h-9 w-full rounded-3xl bg-yellow-400 text-center text-base font-bold hover:bg-yellow-500 focus:ring-4 focus:ring-blue-400 disabled:bg-neutral-500 disabled:font-light disabled:text-slate-100 disabled:hover:bg-neutral-600 md:mt-5 md:text-lg" value="1" name="id" type="submit">Apply Now</button>
 
               <!-- Disabled (You have already applied) -->
               <!-- <button class="mt-5 inline-block h-9 w-full rounded-3xl bg-yellow-400 text-center text-lg font-bold hover:bg-yellow-500 focus:ring-4 focus:ring-blue-400 disabled:bg-neutral-500 disabled:text-slate-100 disabled:font-normal disabled:hover:bg-neutral-600" value="1" name="id" type="submit" disabled>You have already applied</button> -->
             </form>
-
           </div>
         </div>
       </div>
