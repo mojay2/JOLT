@@ -7,6 +7,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -45,6 +47,7 @@ Connection conn;
                 if (conn != null) {
                     HttpSession session = request.getSession();
                     Integer userID = (Integer)session.getAttribute("logged-id");
+                    String appliedJobsString = "[]";
 
                     int jobID = Integer.parseInt(request.getParameter("id"));
                     //get job info using job id
@@ -60,8 +63,27 @@ Connection conn;
                     ps.setInt(1, jobID);
                     ResultSet job = ps.executeQuery();
 
+                    //Get all applied jobs by user (if any)
+                    List<String> appliedJobs = new ArrayList<>();
+                    if(userID != null){
+                        query = "SELECT * FROM APPLICATIONS "
+                                + "INNER JOIN JOBSEEKERS ON JOBSEEKERS.SEEKER_ID = APPLICATIONS.SEEKER_ID "
+                                + "INNER JOIN JOBS ON JOBS.JOB_ID = APPLICATIONS.JOB_ID "
+                                + "WHERE APPLICATIONS.SEEKER_ID = ?"
+                        ;   
+                        ps = conn.prepareStatement(query);
+                        ps.setInt(1, userID);
+                        ResultSet applied = ps.executeQuery();
+                        while(applied.next()){
+                            appliedJobs.add("\""+applied.getInt("JOB_ID")+"\"");
+                        }
+                        appliedJobsString = appliedJobs.toString();
+                    }
+
+
+
                     //Convert resultset into JSON
-                    String json = "";
+                    String json = "{}";
                     if(job.next()){
                         json = "{\"jobtitle\":\"" + job.getString("JOB_TITLE")
                         + "\",\"empname\":\"" + job.getString("EMP_NAME")
@@ -77,7 +99,8 @@ Connection conn;
                         + "\",\"jobbenefits\":\"" + splitAndFormat(job.getString("JOB_BENEFIT"))
                         + "\",\"jobid\":\"" + job.getString("JOB_ID")
                         + "\",\"empid\":\"" + job.getString("EMP_ID")
-                        + "\"}";
+                        + "\",\"appliedjobs\":" + appliedJobsString
+                        + "}";
                     }
                     out.print(json);
                     out.flush();
