@@ -45,6 +45,11 @@ public class CreateJobApp extends HttpServlet {
                     HttpSession session = request.getSession();
                     Integer loggedUser = (Integer)session.getAttribute("logged-id");
 
+                    if(loggedUser == null){
+                        response.sendRedirect("login.jsp");
+                        return;
+                    }
+
                     //get jobseeker id from user id
                     String query = "SELECT * FROM JOBSEEKERS WHERE USER_ID = ?";
                     PreparedStatement ps = conn.prepareStatement(query);
@@ -82,7 +87,7 @@ public class CreateJobApp extends HttpServlet {
 
                         ps2.executeUpdate(); 
                         session.setAttribute("feedback-message", "Successfully Applied");
-                        response.sendRedirect("LoadJobFeed"); 
+                        response.sendRedirect("LoadAppliedJobs"); 
                     }
                 } else {
                     request.setAttribute("error-message", "Connection Error");
