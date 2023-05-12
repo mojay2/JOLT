@@ -246,7 +246,7 @@
           <!-- Modal body -->
           <div class="space-y-3 p-6">
             <div class="flex items-center justify-between">
-              <div class="text-2xl font-bold md:text-4xl">Marketing Manager</div>
+              <div id="job-title-modal" class="text-2xl font-bold md:text-4xl"></div>
               <div class="flex flex-row">
                 <button>
                   <svg class="feather feather-printer h-6 w-6 text-zinc-800 md:h-8 md:w-8" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -262,33 +262,29 @@
               </div>
             </div>
             <div class="mt-0 text-sm font-light text-neutral-600 md:mt-1">
-              <span class="font-semibold">24 Chicken</span>
+              <span id="emp-name-modal" class="font-semibold"></span>
               |
-              <span class="font-semibold">Manila, Philippines</span>
+              <span id="job-location-modal" class="font-semibold"></span>
               |
-              <span class="font-">Sales</span>
+              <span id="job-industry-modal" class="font-semibold">Sales</span>
               | Posted 2 days ago
             </div>
             <div class="mt-2 flex gap-1 border-b-2 border-neutral-600 pb-3 text-[10px] text-stone-100 md:text-sm">
-              <div class="rounded-full border-2 border-neutral-600 bg-blue-600 px-2 py-1">₱ 500,000 / month</div>
-              <div class="rounded-full border-2 border-neutral-600 bg-blue-600 px-2 py-1">Full Time</div>
-              <div class="rounded-full border-2 border-neutral-600 bg-blue-600 px-2 py-1">Senior</div>
+              <div id="job-salary-modal"  class="rounded-full border-2 border-neutral-600 bg-blue-600 px-2 py-1"></div>
+              <div id="job-type-modal" class="rounded-full border-2 border-neutral-600 bg-blue-600 px-2 py-1"></div>
+              <div id="job-level-modal" class="rounded-full border-2 border-neutral-600 bg-blue-600 px-2 py-1"></div>
             </div>
-            <div class="mt-2 text-sm md:text-base">We are seeking an experienced Marketing Manager to lead our marketing efforts and drive growth for our business. The ideal candidate will have a proven track record of developing and executing successful marketing campaigns, as well as the ability to analyze data and identify opportunities for optimization.</div>
+            <div id="job-desc-modal" class="mt-2 text-sm md:text-base"></div>
 
             <!-- Company Overview -->
             <div class="mt-4 border-b-2 border-neutral-600 pb-3 text-xl font-bold md:text-3xl">Company Overview</div>
-            <div class="mt-2 text-sm md:text-base">[Company Name] is a leading provider of [product/service] solutions for [target audience]. Our mission is to [company mission statement]. We pride ourselves on our commitment to innovation, excellence, and customer satisfaction.</div>
+            <div id="emp-overview-modal" class="mt-2 text-sm md:text-base"></div>
 
             <!-- Responsibilities -->
             <div class="mt-4 border-b-2 border-neutral-600 pb-3 text-xl font-bold md:text-3xl">Responsibilities</div>
             <div class="mt-2 text-sm md:text-base">
               <ul class="ml-4 list-outside list-disc">
-                <li>Develop and execute comprehensive marketing strategies to increase brand awareness and drive sales.</li>
-                <li>Collaborate with internal teams to create compelling content and collateral for various channels.</li>
-                <li>Manage and optimize digital marketing campaigns across multiple platforms, including social media, email, and search.</li>
-                <li>Analyze marketing data and provide regular reports on campaign performance and ROI.</li>
-                <li>Monitor industry trends and competitor activity to inform marketing strategy and identify new opportunities.</li>
+                  <p id="job-resp-modal"></p>
               </ul>
             </div>
 
@@ -296,11 +292,7 @@
             <div class="mt-4 border-b-2 border-neutral-600 pb-3 text-xl font-bold md:text-3xl">Requirements</div>
             <div class="mt-2 text-sm md:text-base">
               <ul class="ml-4 list-outside list-disc">
-                <li>Bachelor's degree in Marketing or related field.</li>
-                <li>5+ years of experience in marketing, with a focus on digital marketing.</li>
-                <li>Demonstrated success in developing and executing marketing campaigns.</li>
-                <li>Strong analytical skills and the ability to use data to inform decision-making.</li>
-                <li>Excellent communication and collaboration skills.</li>
+                <p id="job-reqs-modal"></p>
               </ul>
             </div>
 
@@ -308,20 +300,16 @@
             <div class="mt-4 border-b-2 border-neutral-600 pb-3 text-xl font-bold md:text-3xl">Requirements</div>
             <div class="mt-2 text-sm md:text-base">
               <ul class="ml-4 list-outside list-disc">
-                <li>Competitive salary and bonus opportunities.</li>
-                <li>Comprehensive health, dental, and vision insurance.</li>
-                <li>401(k) with employer match.</li>
-                <li>Generous paid time off policy.</li>
-                <li>Flexible work arrangements.</li>
+                <p id="job-benefits-modal"></p>
               </ul>
             </div>
 
-            <form>
-              <!-- Submit -->
-              <button class="mt-2 inline-block h-9 w-full rounded-3xl bg-yellow-400 text-center text-base font-bold hover:bg-yellow-500 focus:ring-4 focus:ring-blue-400 disabled:bg-neutral-500 disabled:font-light disabled:text-slate-100 disabled:hover:bg-neutral-600 md:mt-5 md:text-lg" value="1" name="id" type="submit">Apply Now</button>
-
-              <!-- Disabled (You have already applied) -->
-              <!-- <button class="mt-5 inline-block h-9 w-full rounded-3xl bg-yellow-400 text-center text-lg font-bold hover:bg-yellow-500 focus:ring-4 focus:ring-blue-400 disabled:bg-neutral-500 disabled:text-slate-100 disabled:font-normal disabled:hover:bg-neutral-600" value="1" name="id" type="submit" disabled>You have already applied</button> -->
+            <form action = "CreateJobApp" class="form-control" method="post">
+                <input id="hidden-job-id-modal" type="hidden" name="job-id" value=""/>
+                <input id="hidden-emp-id-modal" type="hidden" name="emp-id" value=""/>
+                <button id="apply-now-modal" class="hidden mt-5 inline-block h-9 w-full rounded-3xl bg-yellow-400 text-center text-lg font-bold hover:bg-yellow-500 focus:ring-4 focus:ring-blue-400 disabled:bg-neutral-500 disabled:font-light disabled:text-slate-100 disabled:hover:bg-neutral-600" type="submit">Apply Now</button>
+                <!-- Disabled (You have already applied) -->
+                <button id="already-applied-modal" class="hidden mt-5 inline-block h-9 w-full rounded-3xl bg-yellow-400 text-center text-lg font-bold hover:bg-yellow-500 focus:ring-4 focus:ring-blue-400 disabled:bg-neutral-500 disabled:text-slate-100 disabled:font-normal disabled:hover:bg-neutral-600" value="1" name="id" type="submit" disabled>You have already applied</button>    
             </form>
           </div>
         </div>
