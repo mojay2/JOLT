@@ -41,6 +41,10 @@
         <servlet-name>EditProfile</servlet-name>
         <servlet-class>controller.EditProfile</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ViewApplicant</servlet-name>
+        <servlet-class>controller.ViewApplicant</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AudioCaptcha</servlet-name>
         <url-pattern>/audio.wav</url-pattern>
@@ -217,6 +221,10 @@
     <servlet-mapping>
         <servlet-name>EditProfile</servlet-name>
         <url-pattern>/EditProfile</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewApplicant</servlet-name>
+        <url-pattern>/ViewApplicant</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
