@@ -39,7 +39,8 @@ function loadJobInfo(jobID){
                 if(!applyBtn.classList.contains('hidden')){
                     applyBtn.classList.add('hidden');
                 }
-
+                document.getElementById('print-link').href = "PrintJobInfo?job="+job.jobid;
+                
                 document.getElementById('job-title').innerHTML = job.jobtitle;
                 document.getElementById('emp-name').innerHTML = job.empname;
                 document.getElementById('job-location').innerHTML = job.joblocation;
@@ -57,6 +58,7 @@ function loadJobInfo(jobID){
 
                 document.getElementById('hidden-job-id').value = job.jobid;
                 document.getElementById('hidden-emp-id').value = job.empid;
+                
                 
                 if(job.appliedjobs.includes(jobID)){
                     applyBtnDisabled.classList.remove("hidden");
