@@ -59,10 +59,10 @@ Connection conn;
                         session.setAttribute("logged-employer",employee.getString("EMP_NAME"));
                         empID = employee.getInt("EMP_ID");
                     }
-
+                    //Check if request is from view job applicants button, or candidates page
                     if(request.getParameter("job-id") == null){
                         forwardURL = "job-candidates.jsp";
-                        //get all job applications with the corresponding employer id
+                        //Check if there is a request for specific app status
                         if(request.getParameter("status")==null){
                             query = "SELECT * FROM APPLICATIONS "
                                     + "INNER JOIN JOBSEEKERS ON JOBSEEKERS.SEEKER_ID = APPLICATIONS.SEEKER_ID "
@@ -71,6 +71,8 @@ Connection conn;
                                     + "INNER JOIN STATUSES ON APP_STATUS = STATUS_ID "
                                     + "WHERE EMPLOYER_ID = ?"
                             ;
+                            int applicantCount = getApplicantCount(empID);
+                            request.setAttribute("applicant-count", applicantCount);
                             ps = conn.prepareStatement(query);
                             ps.setInt(1, empID);
                         }else{
@@ -81,6 +83,8 @@ Connection conn;
                                     + "INNER JOIN STATUSES ON APP_STATUS = STATUS_ID "
                                     + "WHERE EMPLOYER_ID = ? AND APP_STATUS = ?"
                             ;   
+                            int applicantCount = getApplicantCount(empID);
+                            request.setAttribute("applicant-count", applicantCount);
                             ps = conn.prepareStatement(query);
                             ps.setInt(1, empID);
                             ps.setInt(2, Integer.parseInt(request.getParameter("status"))); 
@@ -113,6 +117,20 @@ Connection conn;
         } 
 
     }
+
+public int getApplicantCount(int empID) throws SQLException{
+    int appcount = 0;
+    String query = "SELECT * FROM APPLICATIONS "
+            + "WHERE EMPLOYER_ID = ?"
+    ;
+    PreparedStatement ps = conn.prepareStatement(query);
+    ps.setInt(1, empID);
+    ResultSet count = ps.executeQuery();
+    while (count.next()){
+        appcount++;
+    }
+    return appcount;
+}
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
