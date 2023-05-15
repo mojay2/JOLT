@@ -3,23 +3,27 @@
         String appliedJobsURL;
         String viewProfileURL;
         String loginLogoutURL;
+        String loginLogoutButton;
+
         if(session.getAttribute("logged-id") == null){
             jobFeedURL = "LoadJobFeed";
             appliedJobsURL = "login.jsp";
             viewProfileURL = "login.jsp";
             loginLogoutURL = "login.jsp";
+            loginLogoutButton = "Login";
         }else{
             jobFeedURL = "LoadJobFeed";
             appliedJobsURL = "LoadAppliedJobs";
             viewProfileURL = "ViewProfile";
             loginLogoutURL = "LogoutServlet";
+            loginLogoutButton = "Logout";
         }
     %>
 
     <!-- Navbar -->
     <nav class="border-b-2 border-zinc-800 bg-slate-200" id="navbar">
-      <div class="flex max-w-full flex-wrap items-center justify-between p-3">
-        <a href="/jobfeed.html" class="ml-3 flex flex-col items-center sm:ml-10 lg:ml-16">
+      <div class="flex max-w-full flex-wrap items-center justify-between p-3"> 
+       <a href="/jobfeed.html" class="ml-3 flex flex-col items-center sm:ml-10 lg:ml-16">
           <img src="./public/assets/logo/JoltLogo.png" class="mb-1 h-14" alt="JOLT Logo" />
           <span class="text-sm text-neutral-600">(Job Opportunities Listing Tool)</span>
         </a>
@@ -40,7 +44,7 @@
                     </li>
                 </ul>
         </div>
-        <a href="<%=loginLogoutURL%>" class="mr-16 hidden h-10 rounded-xl bg-yellow-400 px-6 py-1 text-2xl font-bold hover:bg-yellow-500 focus:ring-4 focus:ring-blue-400 lg:inline-block">Login</a>
+        <a href="<%=loginLogoutURL%>" class="mr-16 hidden h-10 rounded-xl bg-yellow-400 px-6 py-1 text-2xl font-bold hover:bg-yellow-500 focus:ring-4 focus:ring-blue-400 lg:inline-block"><%=loginLogoutButton%></a>
       </div>
     </nav>
     

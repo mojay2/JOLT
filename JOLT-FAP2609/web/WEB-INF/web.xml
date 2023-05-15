@@ -37,6 +37,10 @@
         <servlet-name>PrintJobInfo</servlet-name>
         <servlet-class>controller.PrintJobInfo</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>EditProfile</servlet-name>
+        <servlet-class>controller.EditProfile</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AudioCaptcha</servlet-name>
         <url-pattern>/audio.wav</url-pattern>
@@ -209,6 +213,10 @@
     <servlet-mapping>
         <servlet-name>PrintJobInfo</servlet-name>
         <url-pattern>/PrintJobInfo</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditProfile</servlet-name>
+        <url-pattern>/EditProfile</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
