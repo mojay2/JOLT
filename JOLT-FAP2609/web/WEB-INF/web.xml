@@ -33,6 +33,10 @@
         <servlet-name>SearchJobFeed</servlet-name>
         <servlet-class>controller.SearchJobFeed</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>PrintJobInfo</servlet-name>
+        <servlet-class>controller.PrintJobInfo</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AudioCaptcha</servlet-name>
         <url-pattern>/audio.wav</url-pattern>
@@ -57,7 +61,6 @@
     <servlet>
         <servlet-name>LoginServlet</servlet-name>
         <servlet-class>controller.LoginServlet</servlet-class>
-        
         <init-param>
             <param-name>cipher</param-name>
             <param-value>AES/ECB/PKCS5Padding</param-value>
@@ -202,6 +205,10 @@
     <servlet-mapping>
         <servlet-name>SearchJobFeed</servlet-name>
         <url-pattern>/SearchJobFeed</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PrintJobInfo</servlet-name>
+        <url-pattern>/PrintJobInfo</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
