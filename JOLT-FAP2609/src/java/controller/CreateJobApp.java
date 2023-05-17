@@ -1,41 +1,45 @@
 package controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import nl.captcha.Captcha;
 
 public class CreateJobApp extends HttpServlet {
 
     Connection conn;
-    int counter;
-    public void init() throws ServletException
-    {
-    	try {	
-			Class.forName("org.apache.derby.jdbc.ClientDriver");
-			String username = "app";
-			String password = "app";
-			String url = 
-			  "jdbc:derby://localhost:1527/JoltDB"; 
-			conn = 
-			  DriverManager.getConnection(url,username,password);
-		} catch (SQLException sqle){
-			System.out.println("SQLException error occured - " 
-				+ sqle.getMessage());
-		} catch (ClassNotFoundException nfe){
-			System.out.println("ClassNotFoundException error occured - " 
-		        + nfe.getMessage());
-		}
 
+    public void init() throws ServletException {
+            ServletContext context = getServletContext();
+            try {	
+                    Class.forName(context.getInitParameter("jdbcClassName"));
+                    //System.out.println("jdbcClassName: " + config.getInitParameter("jdbcClassName"));
+                    String username = context.getInitParameter("dbUserName");
+                    String password = context.getInitParameter("dbPassword");
+                    StringBuffer url = new StringBuffer(context.getInitParameter("jdbcDriverURL"))
+                            .append("://")
+                            .append(context.getInitParameter("dbHostName"))
+                            .append(":")
+                            .append(context.getInitParameter("dbPort"))
+                            .append("/")
+                            .append(context.getInitParameter("databaseName"));
+                    conn = 
+                      DriverManager.getConnection(url.toString(),username,password);
+            } catch (SQLException sqle){
+                    System.out.println("SQLException error occured - " 
+                            + sqle.getMessage());
+            } catch (ClassNotFoundException nfe){
+                    System.out.println("ClassNotFoundException error occured - " 
+                    + nfe.getMessage());
+            }
     }
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
