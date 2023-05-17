@@ -1,5 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+    <!--servlet context objects-->
+    <context-param>
+        <param-name>jdbcClassName</param-name>
+        <param-value>org.apache.derby.jdbc.ClientDriver</param-value>
+    </context-param>
+    <context-param>
+        <param-name>dbUserName</param-name>
+        <param-value>app</param-value>
+    </context-param>
+    <context-param>
+        <param-name>dbPassword</param-name>
+        <param-value>app</param-value>
+    </context-param>
+    <context-param>
+        <param-name>jdbcDriverURL</param-name>
+        <param-value>jdbc:derby</param-value>
+    </context-param>
+    <context-param>
+        <param-name>dbHostName</param-name>
+        <param-value>localhost</param-value>
+    </context-param>
+    <context-param>
+        <param-name>dbPort</param-name>
+        <param-value>1527</param-value>
+    </context-param>
+    <context-param>
+        <param-name>databaseName</param-name>
+        <param-value>JoltDB</param-value>
+    </context-param>
+    
     <!--captcha servlets-->
     <servlet>
         <servlet-name>StickyCaptcha</servlet-name>
