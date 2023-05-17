@@ -12,11 +12,11 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.css" rel="stylesheet" />
 
     <!-- Favicon -->
-    <link rel="apple-touch-icon" sizes="180x180" href="/public/assets/favicon/apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/public/assets/favicon/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/public/assets/favicon/favicon-16x16.png" />
-    <link rel="manifest" href="/public/assets/favicon/site.webmanifest" />
-    <link rel="mask-icon" href="/public/assets/favicon/safari-pinned-tab.svg" color="#facc15" />
+    <link rel="apple-touch-icon" sizes="180x180" href="./public/assets/favicon/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="./public/assets/favicon/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="./public/assets/favicon/favicon-16x16.png" />
+    <link rel="manifest" href="./public/assets/favicon/site.webmanifest" />
+    <link rel="mask-icon" href="./public/assets/favicon/safari-pinned-tab.svg" color="#facc15" />
     <meta name="msapplication-TileColor" content="#e2e8f0" />
     <meta name="theme-color" content="#ffffff" />
 
@@ -31,7 +31,7 @@
     <div class="container mx-auto">
       <div class="mt-6 justify-evenly gap-16 lg:flex">
         <div class="ml-6 mr-6 mt-2">
-          <form name="login" action="LoginServlet" method="post">
+          <form id="login" action="LoginServlet" method="post">
             <!-- Header -->
             <div class="w-full">
               <div class="text-center text-3xl font-bold sm:text-left md:text-5xl">Login to your account</div>
@@ -42,7 +42,7 @@
             <div class="mb-5 text-center text-2xl font-bold sm:text-left sm:text-3xl">Your Role</div>
             <div class="flex justify-evenly">
               <label class="flex w-2/5 cursor-pointer items-center rounded-2xl border-2 border-zinc-800 p-4 text-center sm:items-start sm:text-left">
-                <input class="peer invisible absolute" type="radio" name="user-type" value="jobseeker" />
+                <input class="peer invisible absolute" type="radio" name="user-type" value="1" required />
                 <div class="flex-1 peer-checked:text-blue-600">
                   <svg class="feather feather-user mx-auto h-11 w-11 text-blue-600 sm:mx-0" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
@@ -54,7 +54,7 @@
                 <div class="hidden h-4 w-4 flex-initial rounded-full border-2 border-zinc-800 peer-checked:border-4 peer-checked:border-blue-600 sm:block sm:h-6 sm:w-6"></div>
               </label>
               <label class="flex w-2/5 cursor-pointer items-center rounded-2xl border-2 border-zinc-800 p-4 text-center sm:items-start sm:text-left">
-                <input class="peer invisible absolute" type="radio" name="user-type" value="employer" />
+                <input class="peer invisible absolute" type="radio" name="user-type" value="2" required />
                 <div class="flex-1 peer-checked:text-blue-600">
                   <svg class="feather feather-phone-call mx-auto h-9 w-9 text-blue-600 sm:mx-0" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M15.05 5A5 5 0 0 1 19 8.95M15.05 1A9 9 0 0 1 23 8.94m-1 7.98v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
@@ -73,11 +73,11 @@
             <div class="mb-5 text-center text-2xl font-bold sm:text-left sm:text-3xl">Your Credentials</div>
             <div class="mb-4 flex w-full items-center rounded-3xl border-2 border-zinc-800 p-2">
               <label class="w-32 text-center" for="email">Email</label>
-              <input class="w-full appearance-none border-0 border-transparent bg-slate-200 font-semibold text-zinc-800 placeholder:font-light focus:border-transparent focus:ring-0" id="email" name="email" type="text" placeholder="Enter your email" />
+              <input class="w-full appearance-none border-0 border-transparent bg-slate-200 font-semibold text-zinc-800 placeholder:font-light focus:border-transparent focus:ring-0" id="email" name="email" type="text" placeholder="Enter your email" required />
             </div>
             <div class="mb-4 flex w-full items-center rounded-3xl border-2 border-zinc-800 p-2">
               <label class="w-32 text-center" for="password">Password</label>
-              <input class="w-full appearance-none border-0 border-transparent bg-slate-200 font-semibold text-zinc-800 placeholder:font-light focus:border-transparent focus:ring-0" id="password" name="password" type="password" placeholder="Enter your password" />
+              <input class="w-full appearance-none border-0 border-transparent bg-slate-200 font-semibold text-zinc-800 placeholder:font-light focus:border-transparent focus:ring-0" id="password" name="password" type="password" placeholder="Enter your password" required />
             </div>
 
             <!-- Submit -->
@@ -91,7 +91,7 @@
           <div class="relative h-full overflow-hidden rounded-2xl drop-shadow-2xl">
             <!-- Item 1 -->
             <div class="hidden duration-700 ease-in-out" data-carousel-item>
-              <img src="/public/assets/images/Carousel1.jpg" class="absolute h-full w-full rounded-2xl object-cover" alt="..." />
+              <img src="public/assets/images/Carousel1.jpg" class="absolute h-full w-full rounded-2xl object-cover" alt="..." />
             </div>
             <!-- Item 2 -->
             <div class="hidden duration-700 ease-in-out" data-carousel-item>
@@ -141,8 +141,8 @@
           <div class="space-y-5 p-4">
             <img class="mx-auto w-full" src="./simpleImg" /> 
             <div class="mb-4 flex w-full items-center rounded-3xl border-2 border-zinc-800 p-2">
-              <label class="w-32 text-center" for="captcha">Captcha</label>
-              <input class="w-full appearance-none border-0 border-transparent bg-slate-300 font-semibold text-zinc-800 placeholder:font-light focus:border-transparent focus:ring-0" id="captcha" form="login" name="answer" type="text" placeholder="Enter the captcha" />
+              <label class="w-32 text-center" for="answer">Captcha</label>
+              <input class="w-full appearance-none border-0 border-transparent bg-slate-300 font-semibold text-zinc-800 placeholder:font-light focus:border-transparent focus:ring-0" id="captcha" form="login" name="answer" type="text" placeholder="Enter the captcha" required />
             </div>
           </div>
           <!-- Modal footer -->
@@ -156,6 +156,6 @@
 
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
-    <script src="/public/js/navbar.js" defer></script>
+    <script src="./public/js/navbar.js" defer></script>
   </body>
 </html>

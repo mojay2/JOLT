@@ -52,6 +52,7 @@ Connection conn;
                         response.sendRedirect("login.jsp");
                         return;
                     }
+                    
 
                     //Verify login credentials
                     String keyString = getServletConfig().getInitParameter("key");
