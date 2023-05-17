@@ -6,7 +6,6 @@ var cont = document.getElementById("container");
 
 btns.forEach((btn) => {
   btn.onclick = function () {
-    console.log(window.screen.width);
     if (window.screen.width < 1024) {
         modal.style.display = "flex";
         nav.classList.add("blur-sm");
