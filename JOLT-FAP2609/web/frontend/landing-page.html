@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit this template
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.css"
+      rel="stylesheet"
+    />
+    <title>View</title>
+  </head>
+
+  <body class="bg-slate-200">
+    <!-- Navbar -->
+    <nav class="border-b-2 border-zinc-800 bg-slate-200">
+      <div class="max-w-screen flex flex-wrap items-center justify-between p-3">
+        <a href="/jobfeed.html" class="ml-16 flex flex-col items-center">
+          <img src="./public/assets/logo/JoltLogo.png" class="mb-1 h-14" alt="JOLT Logo" />
+          <span class="text-sm text-neutral-600"
+            >(Job Opportunities Listing Tool)</span
+          >
+        </a>
+        <div class="">
+          <ul class="flex justify-between gap-16 text-xl text-zinc-800">
+            <li>
+              <a
+                href="/jobfeed.html"
+                id="navbar1"
+                class="border-blue-600 pb-1 hover:border-b-4"
+                >Job Feed</a
+              >
+            </li>
+            <li>
+              <a
+                href="/applied.html"
+                id="navbar2"
+                class="border-blue-600 pb-1 hover:border-b-4"
+                >Applied Jobs</a
+              >
+            </li>
+            <li>
+              <a
+                href="/profile.html"
+                id="navbar3"
+                class="border-blue-600 pb-1 hover:border-b-4"
+                >User Profile</a
+              >
+            </li>
+          </ul>
+        </div>
+        <a
+          href="/login.html"
+          class="mr-16 inline-block h-10 rounded-xl bg-yellow-400 px-6 py-1 text-2xl font-bold hover:bg-yellow-500 focus:ring-4 focus:ring-blue-400"
+          >Login</a
+        >
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" clas>
+      <!-- Flex Container -->
+      <div
+        class="container flex flex-col-reverse items-center px-6 mx-auto mt-10 space-y-0 md:space-y-0 md:flex-row"
+      >
+        <!-- Left item -->
+        <div class="flex flex-col mb-32 space-y-8 md:w-1/2">
+          <h1 class="text-4xl font-bold text-center md:text-6xl md:text-left">
+            Your dream job is just right around the corner!
+          </h1>
+          <p
+            class="max-w-md text-center text-darkGrayishBlue md:text-left md:text-2xl"
+          >
+            Welcome to our job finder website! We connect job seekers with the
+            best employers, providing the perfect platform for you to find your
+            dream job.
+          </p>
+          <div class="p-12 bg-blue-600 rounded-full">
+            <form action="SearchJobFeed" method="get">
+              <div
+                class="mx-auto flex w-full flex-col bg-slate-200 items-center justify-around gap-y-4 divide-y-2 divide-zinc-800 rounded-2xl border-[3px] border-zinc-800 p-1 text-zinc-800 md:flex-row md:divide-x-2 md:divide-y-0"
+              >
+                <div class="mx-auto flex w-full flex-1 items-center gap-2">
+                  <svg
+                    class="feather feather-search h-5 w-5 md:h-6 md:w-6"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                  </svg>
+                  <label class="w-fit text-xs lg:text-base"
+                    >What are you looking for?</label
+                  >
+                  <input
+                    class="w-28 flex-1 appearance-none border-0 border-b-2 border-neutral-600 bg-slate-200 px-0 text-xs text-zinc-800 placeholder:text-center placeholder:font-light focus:border-neutral-600 focus:ring-0 md:px-2 md:text-base min-[1284px]:w-44"
+                    id="search"
+                    name="search"
+                    type="text"
+                    placeholder="job title, keywords, or company"
+                  />
+                </div>
+                <div
+                  class="flex w-fit items-center gap-2 pt-4 min-[340px]:w-full md:w-fit md:px-4 md:pt-0"
+                >
+                  <svg
+                    class="feather feather-users h-4 w-4 md:h-6 md:w-6"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="9" cy="7" r="4"></circle>
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                  </svg>
+                  <select
+                    class="w-full appearance-none border-0 bg-slate-200 text-center text-xs text-zinc-800 focus:outline-0 focus:ring-0 lg:text-base"
+                    id="specialization"
+                    name="industry"
+                  >
+                    <option value="-1" selected>
+                      Have a specialization in mind?
+                    </option>
+                    <option value="1">Information Technology</option>
+                    <option value="2">Healthcare</option>
+                    <option value="3">Sales</option>
+                    <option value="4">Education</option>
+                    <option value="5">Finance</option>
+                    <option value="6">Marketing</option>
+                    <option value="7">Engineering</option>
+                    <option value="8">Hospitality</option>
+                  </select>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <!-- Image -->
+        <div class="md:w-1/2">
+          <img src="./public/assets/images/pointing.png" alt="" />
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="mt-20">
+      <!-- Flex container -->
+      <div
+        class="container flex flex-col px-4 mx-auto mt-10 space-y-12 md:space-y-0 md:flex-row"
+      >
+        <!-- Image -->
+        <div class="md:w-1/2">
+          <img src="./public/assets/images/bolt.png" alt="" />
+        </div>
+
+        <!-- Numbered List -->
+        <div class="flex flex-col space-y-4 md:w-1/2">
+          <!-- Heading -->
+          <h1
+            class="max-w-md text-4xl font-bold text-center md:text-6xl md:text-left"
+          >
+            What is JOLT?
+          </h1>
+          <h2
+            class="border-b-4 border-black pb-4 text-4xl font-light text-center md:text-4xl md:text-left"
+          >
+            Job Opportunities Listing Tool
+          </h2>
+          <p class="text-center md:text-left md:text-2xl">
+            Our website is designed to make the job search process easy, fast,
+            and stress-free. With our comprehensive database of job listings,
+            you can find opportunities that match your skills, experience, and
+            career aspirations.
+          </p>
+          <p class="text-center md:text-left md:text-2xl">
+            Our website is designed to make the job search process easy, fast,
+            and stress-free. With our comprehensive database of job listings,
+            you can find opportunities that match your skills, experience, and
+            career aspirations.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="testimonials">
+      <!-- Container to heading and testm blocks -->
+      <div class="mb-24 max-w-6xl px-5 mx-auto mt-32 text-center">
+        <!-- Heading -->
+        <h2 class="mb-2 text-6xl font-bold text-center">
+          Hear the success stories
+        </h2>
+        <p class="text-2xl text-center">
+          <span class="font-bold">98%</span> of job seekers who use our website
+          find a job within <span class="font-bold">2 months.</span>
+        </p>
+        <!-- Testimonials Container -->
+        <div
+          class="flex flex-col drop-shadow-xl mt-24 md:flex-row md:space-x-6"
+        >
+          <!-- Testimonial 1 -->
+          <div
+            class="flex flex-col p-6 space-y-6 rounded-lg bg-slate-300 md:w-1/3"
+          >
+            <div class="flex items-center">
+              <svg
+                aria-hidden="true"
+                class="w-5 h-5 text-yellow-400"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <title>First star</title>
+                <path
+                  d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                ></path>
+              </svg>
+              <svg
+                aria-hidden="true"
+                class="w-5 h-5 text-yellow-400"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <title>Second star</title>
+                <path
+                  d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                ></path>
+              </svg>
+              <svg
+                aria-hidden="true"
+                class="w-5 h-5 text-yellow-400"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <title>Third star</title>
+                <path
+                  d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                ></path>
+              </svg>
+              <svg
+                aria-hidden="true"
+                class="w-5 h-5 text-yellow-400"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <title>Fourth star</title>
+                <path
+                  d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                ></path>
+              </svg>
+              <svg
+                aria-hidden="true"
+                class="w-5 h-5 text-yellow-400 dark:text-yellow-400"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <title>Fifth star</title>
+                <path
+                  d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                ></path>
+              </svg>
+            </div>
+            <p class="text-sm">
+              "I found my dream job through this website! The job search process
+              can be overwhelming, but this website made it easy to find
+              relevant job listings and apply for positions with just a few
+              clicks. I highly recommend this website to anyone looking for a
+              job."
+            </p>
+            <br /><br />
+            <div class="flex flex-row space-x-2">
+              <img src="./public/assets/images/dp.png" class="w-16 rounded-full" alt="" />
+              <div>
+                <h5 class="text-lg font-bold text-left">Jay Ambal</h5>
+                <h6>Chief Tech Officer</h6>
+              </div>
+            </div>
+          </div>
+
+          <!-- Testimonial 2 -->
+          <div
+            class="flex flex-col p-6 space-y-6 rounded-lg bg-slate-300 md:w-1/3"
+          >
+            <div class="flex items-center">
+              <svg
+                aria-hidden="true"
+                class="w-5 h-5 text-yellow-400"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <title>First star</title>
+                <path
+                  d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                ></path>
+              </svg>
+              <svg
+                aria-hidden="true"
+                class="w-5 h-5 text-yellow-400"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <title>Second star</title>
+                <path
+                  d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                ></path>
+              </svg>
+              <svg
+                aria-hidden="true"
+                class="w-5 h-5 text-yellow-400"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <title>Third star</title>
+                <path
+                  d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                ></path>
+              </svg>
+              <svg
+                aria-hidden="true"
+                class="w-5 h-5 text-yellow-400"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <title>Fourth star</title>
+                <path
+                  d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                ></path>
+              </svg>
+              <svg
+                aria-hidden="true"
+                class="w-5 h-5 text-yellow-400 dark:text-yellow-400"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <title>Fifth star</title>
+                <path
+                  d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                ></path>
+              </svg>
+            </div>
+            <p class="text-sm">
+              "I was looking for a job in a specific industry and found multiple
+              opportunities through this website. The advanced search tools and
+              filters made it easy to find relevant job listings, and I was able
+              to apply to multiple positions in just a few hours. Thanks to this
+              website, I was able to find my dream job!"
+            </p>
+            <br />
+            <div class="flex flex-row space-x-2">
+              <img src="./public/assets/images/dp.png" class="w-16 rounded-full" alt="" />
+              <div>
+                <h5 class="text-lg font-bold text-left">Lancelot Bulan</h5>
+                <h6>Software Architect</h6>
+              </div>
+            </div>
+          </div>
+
+          <!-- Testimonial 3 -->
+          <div
+            class="flex flex-col p-6 space-y-6 rounded-lg bg-slate-300 md:w-1/3"
+          >
+            <div class="flex items-center">
+              <svg
+                aria-hidden="true"
+                class="w-5 h-5 text-yellow-400"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <title>First star</title>
+                <path
+                  d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                ></path>
+              </svg>
+              <svg
+                aria-hidden="true"
+                class="w-5 h-5 text-yellow-400"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <title>Second star</title>
+                <path
+                  d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                ></path>
+              </svg>
+              <svg
+                aria-hidden="true"
+                class="w-5 h-5 text-yellow-400"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <title>Third star</title>
+                <path
+                  d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                ></path>
+              </svg>
+              <svg
+                aria-hidden="true"
+                class="w-5 h-5 text-yellow-400"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <title>Fourth star</title>
+                <path
+                  d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                ></path>
+              </svg>
+              <svg
+                aria-hidden="true"
+                class="w-5 h-5 text-yellow-400 dark:text-yellow-400"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <title>Fifth star</title>
+                <path
+                  d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                ></path>
+              </svg>
+            </div>
+            <p class="text-sm">
+              "I was struggling to find job openings in my field, but this
+              website had a comprehensive database of entry-level positions. The
+              job application process was simple and straightforward, and I
+              received multiple job offers within a few weeks of applying."
+            </p>
+            <br /><br />
+            <div class="flex flex-row space-x-2">
+              <img src="./public/assets/images/dp.png" class="w-16 rounded-full" alt="" />
+              <div>
+                <h5 class="text-lg font-bold text-left">Gregg Lagman</h5>
+                <h6>Project Manager</h6>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="cta" class="bg-yellow-400">
+      <!-- Flex Container -->
+      <div
+        class="container flex flex-col items-center justify-between px-6 py-24 mx-auto space-y-12 md:py-12 md:flex-row md:space-y-0"
+      >
+        <!-- Heading -->
+        <h2
+          class="text-5xl font-bold text-center text-white md:text-4xl md:max-w-xl md:text-left"
+        >
+          Find the jobs that matter to you
+        </h2>
+        <!-- Button -->
+        <div>
+          <a
+            href="#"
+            class="p-3 px-6 pt-2 text-brightRed bg-white rounded-full shadow-2xl baseline hover:bg-slate-200"
+            >Get Started</a
+          >
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-700">
+      <!-- Flex Container -->
+      <div
+        class="container flex flex-col-reverse justify-between px-6 py-10 mx-auto space-y-8 md:flex-row md:space-y-0"
+      >
+        <!-- Logo and social links container -->
+        <div
+          class="flex flex-col-reverse items-center justify-between space-y-12 md:flex-col md:space-y-0 md:items-start"
+        >
+          <div class="mx-auto my-6 text-center text-white md:hidden">
+            Copyright &copy; 2022, All Rights Reserved
+          </div>
+          <!-- Logo -->
+          <div>
+            <img src="./public/assets/logo/JoltLogo.png" class="h-28 mb-2" alt="" />
+          </div>
+          <!-- Social Links Container -->
+          <div class="flex justify-center space-x-4">
+            <!-- Link 1 -->
+            <a href="#">
+              <img src="./public/assets/images/linkedin.svg" alt="" class="h-8" />
+            </a>
+            <!-- Link 2 -->
+            <a href="#">
+              <img src="./public/assets/images/facebook.svg" alt="" class="h-8" />
+            </a>
+            <!-- Link 3 -->
+            <a href="#">
+              <img src="./public/assets/images/twitter.svg" alt="" class="h-8" />
+            </a>
+            <!-- Link 4 -->
+            <a href="#">
+              <img src="./public/assets/images/github.svg" alt="" class="h-8" />
+            </a>
+            <!-- Link 5 -->
+            <a href="#">
+              <img src="./public/assets/images/link.svg" alt="" class="h-8" />
+            </a>
+          </div>
+        </div>
+        <!-- List Container -->
+        <div class="flex justify-around space-x-32">
+          <div class="flex flex-col space-y-3 text-white">
+            <a href="#" class="hover:text-brightRed">Home</a>
+            <a href="#" class="hover:text-brightRed">Job Feed</a>
+            <a href="#" class="hover:text-brightRed">Applied Jobs</a>
+            <a href="#" class="hover:text-brightRed">User Profile</a>
+          </div>
+          <div class="flex flex-col space-y-3 text-white">
+            <a href="#" class="hover:text-brightRed">Contact</a>
+            <a href="#" class="hover:text-brightRed">Community</a>
+            <a href="#" class="hover:text-brightRed">Privacy Policy</a>
+          </div>
+        </div>
+
+        <!-- Input Container -->
+        <div class="flex flex-col justify-between">
+          <form>
+            <div class="flex space-x-3">
+              <input
+                type="text"
+                class="flex-1 px-4 rounded-full focus:outline-none"
+                placeholder="Search jobs..."
+              />
+              <button
+                class="px-6 py-2 text-white rounded-full bg-yellow-400 hover:bg-yellow-500 focus:outline-none"
+              >
+                Go
+              </button>
+            </div>
+          </form>
+          <div class="hidden text-white md:block">
+            JOLT-FAP &copy; 2023, Ambal | Bulan | Lagman
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
+  </body>
+</html>
+
