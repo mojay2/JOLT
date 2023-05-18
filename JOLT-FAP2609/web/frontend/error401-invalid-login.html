@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit this template
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.css"
+      rel="stylesheet"
+    />
+    <title>error</title>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="border-b-2 border-zinc-800 bg-slate-200">
+      <div class="max-w-screen flex flex-wrap items-center justify-between p-3">
+        <a href="/jobfeed.html" class="ml-16 flex flex-col items-center">
+          <img src="./public/assets/logo/JoltLogo.png" class="mb-1 h-14" alt="JOLT Logo" />
+          <span class="text-sm text-neutral-600"
+            >(Job Opportunities Listing Tool)</span
+          >
+        </a>
+        <div class="">
+          <ul class="flex justify-between gap-16 text-xl text-zinc-800">
+            <li>
+              <a
+                href="/jobfeed.html"
+                id="navbar1"
+                class="border-blue-600 pb-1 hover:border-b-4"
+                >Job Feed</a
+              >
+            </li>
+            <li>
+              <a
+                href="/applied.html"
+                id="navbar2"
+                class="border-blue-600 pb-1 hover:border-b-4"
+                >Applied Jobs</a
+              >
+            </li>
+            <li>
+              <a
+                href="/profile.html"
+                id="navbar3"
+                class="border-blue-600 pb-1 hover:border-b-4"
+                >User Profile</a
+              >
+            </li>
+          </ul>
+        </div>
+        <a
+          href="/login.html"
+          class="mr-16 inline-block h-10 rounded-xl bg-yellow-400 px-6 py-1 text-2xl font-bold hover:bg-yellow-500 focus:ring-4 focus:ring-blue-400"
+          >Login</a
+        >
+      </div>
+    </nav>
+
+    <!-- Error -->
+
+    <section class="flex flex-col items-center mx-auto my-auto p-6">
+      <img
+        src="./public/assets/images/error.png"
+        alt="error image"
+        class="border-black p-6 border-b-4 h-auto max-w-full"
+      />
+
+      <h1 class="text-6xl p-6 font-bold">401 Invalid Login</h1>
+      <p class="w-1/2 text-4xl font-normal text-center">
+        Uh oh, it looks like the credentials you entered are not valid. Please double-check your email and password and try again
+      </p>
+    </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
+  </body>
+</html>
+
