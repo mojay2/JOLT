@@ -6,7 +6,7 @@
 /JOLT-FAP2609/nbdist/
 /JOLT-FAP2609/nbactions.xml
 /JOLT-FAP2609/nb-configuration.xml
-/JOLT-FAP2609/nbproject/project.properties
+#/JOLT-FAP2609/nbproject/project.properties
 
 # Class Files #
 *.class
