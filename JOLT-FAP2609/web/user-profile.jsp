@@ -32,8 +32,6 @@
 
     <!-- Content -->
     <form id="edit-credentials" method="post" action="EditCredentials">
-      <input name="password" type="hidden" />
-      <input name="confirm" type="hidden" />
     </form>
     <form id="edit-profile" method="post" action="EditProfile">
       <div class="container mx-auto">
@@ -206,8 +204,12 @@
                 <!-- Details Column -->
                 <div class="mt-5 flex flex-col gap-5">
                   <div class="flex items-center justify-between">
+                    <div class="text-xs font-bold md:text-base">Current Password</div>
+                    <input class="w-28 appearance-none rounded-2xl border-2 border-zinc-800 bg-slate-200 text-right text-xs font-semibold text-zinc-800 placeholder:font-light focus:border-transparent focus:ring-0 md:w-40 md:text-base" form="edit-credentials" id="password" name="cur-password" type="password" value="" placeholder="*******" />
+                  </div>
+                  <div class="flex items-center justify-between">
                     <div class="text-xs font-bold md:text-base">Password</div>
-                    <input class="w-28 appearance-none rounded-2xl border-2 border-zinc-800 bg-slate-200 text-right text-xs font-semibold text-zinc-800 placeholder:font-light focus:border-transparent focus:ring-0 md:w-40 md:text-base" form="edit-credentials" id="password" name="password" type="password" value="" placeholder="*******" />
+                    <input class="w-28 appearance-none rounded-2xl border-2 border-zinc-800 bg-slate-200 text-right text-xs font-semibold text-zinc-800 placeholder:font-light focus:border-transparent focus:ring-0 md:w-40 md:text-base" form="edit-credentials" id="password" name="new-password" type="password" value="" placeholder="*******" />
                   </div>
                   <div class="flex items-center justify-between">
                     <div class="text-xs font-bold md:text-base">Confirm Password</div>
