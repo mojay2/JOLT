@@ -224,6 +224,7 @@
                 name ="job-industry"
               id="industry"
               class="bg-white text-black text-sm rounded-lg block w-full p-2.5 dark:bg-slate-200 dark:border-slate-200 dark:placeholder-slate-200 dark:text-black"
+              required
             >
                 <option value="-1">Select One</option>
                 <option value="1">Information Technology</option>
@@ -329,7 +330,7 @@
         <div
           class="font-semibold p-3 w-full md:w-1/2 relative overflow-hidden bg-white shadow-md dark:bg-slate-300 sm:rounded-lg"
         >
-          What best describes this job location?
+          What best describes this role location?
           <textarea
             id="roleLocation"
             name="job-location"
@@ -378,6 +379,7 @@
       </section>
     </form>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
+    <script src="./public/js/createjobpage.js"></script>
   </body>
 </html>
 
