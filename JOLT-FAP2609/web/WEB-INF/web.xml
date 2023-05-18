@@ -45,6 +45,10 @@
         <servlet-name>ViewApplicant</servlet-name>
         <servlet-class>controller.ViewApplicant</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>EditCredentials</servlet-name>
+        <servlet-class>controller.EditCredentials</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AudioCaptcha</servlet-name>
         <url-pattern>/audio.wav</url-pattern>
@@ -225,6 +229,10 @@
     <servlet-mapping>
         <servlet-name>ViewApplicant</servlet-name>
         <url-pattern>/ViewApplicant</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditCredentials</servlet-name>
+        <url-pattern>/EditCredentials</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
