@@ -67,13 +67,13 @@ Connection conn;
  + "                                AND USER_PASSWORD = ? "
  + "                                AND USER_TYPE = ?";
                     PreparedStatement ps = conn.prepareStatement(query);            
-                    
+
                     ps.setString(1, request.getParameter("email"));            
                     ps.setString(2, ecryptedUserPass);
                     ps.setString(3, request.getParameter("user-type"));
-                    
+
                     ResultSet loggedUser = ps.executeQuery();
-                    
+
                     if(loggedUser.next()){   
                         //Successful login
                         int userID = loggedUser.getInt("USER_ID"); 
