@@ -16,3 +16,16 @@ function showEditModal() {
     editDescription.classList.remove("hidden");
   }
 }
+
+function showCredentials() {
+  var credential = document.getElementById("change-credential");
+  var btn = document.getElementById("credential-btn");
+  if (credential.classList.contains("hidden")) {
+    credential.classList.remove("hidden");
+    btn.innerHTML = "Hide Credentials"
+  } else {
+    credential.classList.add("hidden");
+    btn.innerHTML = "Show Credentials"
+  }
+}
+
