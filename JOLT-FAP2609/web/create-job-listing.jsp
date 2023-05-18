@@ -68,7 +68,7 @@
           class="font-semibold p-3 w-full md:w-1/2 relative overflow-hidden bg-white shadow-md dark:bg-slate-300 sm:rounded-lg"
         >
             <!--job title-->
-          What job title best describes this ad?
+          What title best describes this job?
           <div class="space-x-4 flex flex-row">
             <input
                 type="text"
