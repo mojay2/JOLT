@@ -17,11 +17,11 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.css" rel="stylesheet" />
 
     <!-- Favicon -->
-    <link rel="apple-touch-icon" sizes="180x180" href="/public/assets/favicon/apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/public/assets/favicon/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/public/assets/favicon/favicon-16x16.png" />
-    <link rel="manifest" href="/public/assets/favicon/site.webmanifest" />
-    <link rel="mask-icon" href="/public/assets/favicon/safari-pinned-tab.svg" color="#facc15" />
+    <link rel="apple-touch-icon" sizes="180x180" href="./public/assets/favicon/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="./public/assets/favicon/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="./public/assets/favicon/favicon-16x16.png" />
+    <link rel="manifest" href="./public/assets/favicon/site.webmanifest" />
+    <link rel="mask-icon" href="./public/assets/favicon/safari-pinned-tab.svg" color="#facc15" />
     <meta name="msapplication-TileColor" content="#e2e8f0" />
     <meta name="theme-color" content="#ffffff" />
 
@@ -42,7 +42,7 @@
         <!-- Categories -->
         <form action="LoadAppliedJobs">
           <div class="mt-6 flex flex-wrap justify-around gap-x-5 gap-y-5 overscroll-x-auto text-xl md:mt-10 md:justify-around md:text-2xl">
-            <button id="applied" class="border-b-4 border-neutral-600 pb-1 hover:border-yellow-400" name="status" value="">Applied</button>
+            <a id="applied" class="border-b-4 border-neutral-600 pb-1 hover:border-yellow-400" href="LoadAppliedJobs">Applied</a>
             <button id="pending" class="border-b-4 border-neutral-600 pb-1 hover:border-yellow-400" name="status" value="0">Pending</button>
             <button id="accepted" class="border-b-4 border-neutral-600 pb-1 hover:border-yellow-400" name="status" value="1">Accepted</button>
             <button id="rejected" class="border-b-4 border-neutral-600 pb-1 hover:border-yellow-400" name="status" value="2">Rejected</button>
@@ -55,7 +55,8 @@
           <%ResultSet applications = (ResultSet)request.getAttribute("applications");
             while (applications.next()) {
             int appID = applications.getInt("APP_ID");%>
-          <form id="deleteForm<%=appID%>" method="post" action="DeleteJobApplication">
+            <form id="deleteForm<%=appID%>" method="get" action="DeleteJobApplication">
+            <input type="hidden" name="app-id" value="<%=appID%>"/>
             <div class="overflow-x-auto border-t-2 border-zinc-800 py-2 md:py-4">
               <div class="item-center flex justify-between gap-8">
                 <div class="flex items-center">
@@ -68,9 +69,9 @@
                         <div class="ml-5 rounded-3xl bg-lime-400 px-2 py-1 text-center text-sm font-semibold md:ml-10 md:px-3 md:text-lg"><%=applications.getString("STATUS_NAME")%></div>
                     <%}else{%>
                         <div class="ml-5 rounded-3xl bg-rose-400 px-2 py-1 text-center text-sm font-semibold md:ml-10 md:px-3 md:text-lg"><%=applications.getString("STATUS_NAME")%></div>
-               <%}%>
+                    <%}%>
                 </div>
-                <button class="mr-1 rounded-2xl bg-yellow-400 px-2 py-1 text-sm font-semibold hover:bg-yellow-500 focus:ring-4 focus:ring-blue-400 md:text-lg lg:px-5" data-modal-target="withdrawModal" data-modal-toggle="withdrawModal" type="button">Withdraw Application</button>
+                <button class="mr-1 rounded-2xl bg-yellow-400 px-2 py-1 text-sm font-semibold hover:bg-yellow-500 focus:ring-4 focus:ring-blue-400 md:text-lg lg:px-5" data-modal-target="withdrawModal<%=appID%>" data-modal-toggle="withdrawModal<%=appID%>" type="button">Withdraw Application</button>
               </div>
               <div class="text-extralight mt-1 text-base md:text-xl"><%=applications.getString("EMP_NAME")%></div>
               <div class="text-extralight mt-1 text-base md:text-xl"><%=applications.getString("JOB_LOCATION")%></div>
@@ -81,17 +82,17 @@
               </div>
               <div class="text-thin mt-3 text-xs md:text-base">Applied two weeks ago</div>
             </div>
-          </form>
+        </form>
               
         <!-- Withdraw Modal -->
-        <div id="withdrawModal" tabindex="-1" aria-hidden="true" class="fixed left-0 right-0 top-0 z-50 hidden h-[calc(100%-1rem)] max-h-full w-full overflow-y-auto overflow-x-hidden p-4 md:inset-0">
+        <div id="withdrawModal<%=appID%>" tabindex="-1" aria-hidden="true" class="fixed left-0 right-0 top-0 z-50 hidden h-[calc(100%-1rem)] max-h-full w-full overflow-y-auto overflow-x-hidden p-4 md:inset-0">
           <div class="relative max-h-full w-full max-w-lg">
             <!-- Modal content -->
             <div class="relative rounded-2xl bg-slate-300 shadow">
               <!-- Modal header -->
               <div class="flex items-start justify-between rounded-t border-b border-neutral-600 p-4">
                 <h3 class="flex-1 text-lg font-semibold text-zinc-800 md:text-2xl">Confirm Job Application Withdrawal</h3>
-                <button type="button" class="ml-auto inline-flex items-center rounded-lg bg-transparent p-1.5 text-sm text-zinc-800 hover:bg-slate-600 hover:text-stone-100" data-modal-hide="withdrawModal">
+                <button type="button" class="ml-auto inline-flex items-center rounded-lg bg-transparent p-1.5 text-sm text-zinc-800 hover:bg-slate-600 hover:text-stone-100" data-modal-hide="withdrawModal<%=appID%>">
                   <svg aria-hidden="true" class="h-7 w-7" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
                   <span class="sr-only">Close modal</span>
                 </button>
@@ -102,13 +103,15 @@
               </div>
               <!-- Modal footer -->
               <div class="flex items-center space-x-2 rounded-b border-t border-gray-200 p-4 dark:border-gray-600">
-                <button data-modal-hide="withdrawModal" type="submit" form="deleteForm<%=appID%>" name="app-id" value="<%=appID%>"  class="rounded-2xl bg-yellow-400 px-5 py-2 text-center text-sm font-semibold text-zinc-800 hover:bg-yellow-500 focus:outline-none focus:ring-4 focus:ring-blue-400 md:text-base">Confirm Submit</button>
-                <button data-modal-hide="withdrawModal" type="button" class="rounded-2xl border border-neutral-600 bg-neutral-600 px-5 py-2 text-sm text-stone-100 hover:bg-neutral-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-blue-400 md:text-base">Back</button>
+                <button data-modal-hide="withdrawModal<%=appID%>" name="app-id" form="deleteForm<%=appID%>" value="<%=appID%>" type="submit" class="rounded-2xl bg-yellow-400 px-5 py-2 text-center text-sm font-semibold text-zinc-800 hover:bg-yellow-500 focus:outline-none focus:ring-4 focus:ring-blue-400 md:text-base">Confirm Submit</button>
+                <button data-modal-hide="withdrawModal<%=appID%>" type="button" class="rounded-2xl border border-neutral-600 bg-neutral-600 px-5 py-2 text-sm text-stone-100 hover:bg-neutral-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-blue-400 md:text-base">Back</button>
               </div>
             </div>
           </div>
-        </div>
-          <%}%>
+        </div>   
+              
+        <%}%>
+         
         </div>
       </div>
     </div>
@@ -197,7 +200,8 @@
 
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
-    <script src="/public/js/navbar.js" defer></script>
-    <script src="/public/js/appliedCategories.js" defer></script>
+    <script src="./public/js/navbar.js" defer></script>
+    <script src="./public/js/appliedCategories.js" defer></script>
+    <script src="./public/js/appliedJobModal.js" defer></script>
   </body>
 </html>
