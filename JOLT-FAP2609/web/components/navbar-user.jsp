@@ -85,7 +85,7 @@
       <div class="h-[60px]">
         <a href="<%=loginLogoutURL%>" class="text-lg">
           <div class="flex h-full cursor-pointer items-center justify-between border-b-2 border-zinc-800 pl-10 pr-10 font-semibold hover:bg-yellow-400">
-            <div class="">Login</div>
+            <div class=""><%=loginLogoutButton%></div>
             <svg class="feather feather-chevron-right h-12 w-12" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
           </div>
         </a>
