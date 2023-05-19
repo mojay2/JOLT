@@ -29,7 +29,6 @@
         <param-name>databaseName</param-name>
         <param-value>JoltDB</param-value>
     </context-param>
-    
     <!--captcha servlets-->
     <servlet>
         <servlet-name>StickyCaptcha</servlet-name>
@@ -61,23 +60,23 @@
     </servlet>
     <servlet>
         <servlet-name>SearchJobFeed</servlet-name>
-        <servlet-class>controller.SearchJobFeed</servlet-class>
+        <servlet-class>controller.userservlets.SearchJobFeed</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>PrintJobInfo</servlet-name>
-        <servlet-class>controller.PrintJobInfo</servlet-class>
+        <servlet-class>controller.userservlets.PrintJobInfo</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>EditProfile</servlet-name>
-        <servlet-class>controller.EditProfile</servlet-class>
+        <servlet-class>controller.userservlets.EditProfile</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ViewApplicant</servlet-name>
-        <servlet-class>controller.ViewApplicant</servlet-class>
+        <servlet-class>controller.employerservlets.ViewApplicant</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>EditCredentials</servlet-name>
-        <servlet-class>controller.EditCredentials</servlet-class>
+        <servlet-class>controller.userservlets.EditCredentials</servlet-class>
         <init-param>
             <param-name>cipher</param-name>
             <param-value>AES/ECB/PKCS5Padding</param-value>
@@ -86,7 +85,6 @@
             <param-name>key</param-name>
             <param-value>ics_2609ics_2609</param-value>
         </init-param>
-
     </servlet>
     <servlet-mapping>
         <servlet-name>AudioCaptcha</servlet-name>
@@ -103,11 +101,11 @@
     <!--other servlets-->
     <servlet>
         <servlet-name>CreateJobServlet</servlet-name>
-        <servlet-class>controller.CreateJobServlet</servlet-class>
+        <servlet-class>controller.employerservlets.CreateJobServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>LoadEmployerJobs</servlet-name>
-        <servlet-class>controller.LoadEmployerJobs</servlet-class>
+        <servlet-class>controller.employerservlets.LoadEmployerJobs</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>LoginServlet</servlet-name>
@@ -121,7 +119,6 @@
             <param-value>ics_2609ics_2609</param-value>
         </init-param>
     </servlet>
-    
     <!-- errors -->
     <error-page>
         <!-- Missing resource -->
@@ -133,14 +130,13 @@
         <error-code>500</error-code>
         <location>/error500.jsp</location>
     </error-page>
-    
     <servlet>
         <servlet-name>LogoutServlet</servlet-name>
         <servlet-class>controller.LogoutServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>LoadJobFeed</servlet-name>
-        <servlet-class>controller.LoadJobFeed</servlet-class>
+        <servlet-class>controller.userservlets.LoadJobFeed</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ViewJobListing</servlet-name>
@@ -148,23 +144,23 @@
     </servlet>
     <servlet>
         <servlet-name>CreateJobApp</servlet-name>
-        <servlet-class>controller.CreateJobApp</servlet-class>
+        <servlet-class>controller.employerservlets.CreateJobApp</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>LoadJobCandidates</servlet-name>
-        <servlet-class>controller.LoadJobCandidates</servlet-class>
+        <servlet-class>controller.employerservlets.LoadJobCandidates</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>UpdateAppStatus</servlet-name>
-        <servlet-class>controller.UpdateAppStatus</servlet-class>
+        <servlet-class>controller.employerservlets.UpdateAppStatus</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>LoadAppliedJobs</servlet-name>
-        <servlet-class>controller.LoadAppliedJobs</servlet-class>
+        <servlet-class>controller.userservlets.LoadAppliedJobs</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>DeleteJobApplication</servlet-name>
-        <servlet-class>controller.DeleteJobApplication</servlet-class>
+        <servlet-class>controller.userservlets.DeleteJobApplication</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>UpdateAppStatus2</servlet-name>
@@ -172,7 +168,7 @@
     </servlet>
     <servlet>
         <servlet-name>DeleteJobListing</servlet-name>
-        <servlet-class>controller.DeleteJobListing</servlet-class>
+        <servlet-class>controller.employerservlets.DeleteJobListing</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ViewJobListingTest</servlet-name>
@@ -180,7 +176,7 @@
     </servlet>
     <servlet>
         <servlet-name>ViewProfile</servlet-name>
-        <servlet-class>controller.ViewProfile</servlet-class>
+        <servlet-class>controller.userservlets.ViewProfile</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>LoadProfileModalTest</servlet-name>
@@ -192,7 +188,7 @@
     </servlet>
     <servlet>
         <servlet-name>ViewJobInfo</servlet-name>
-        <servlet-class>controller.ViewJobInfo</servlet-class>
+        <servlet-class>controller.userservlets.ViewJobInfo</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>CreateJobServlet</servlet-name>

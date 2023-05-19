@@ -1,4 +1,4 @@
-package controller;
+package controller.userservlets;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -13,10 +13,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-public class CreateJobServlet extends HttpServlet {
+public class ViewProfile extends HttpServlet {
 
-    Connection conn;
-
+Connection conn;
     public void init() throws ServletException {
             ServletContext context = getServletContext();
             try {	
@@ -42,59 +41,25 @@ public class CreateJobServlet extends HttpServlet {
             }
     }
 
+    //This servlet returns an entry from the USER table corresponding to the logged in USERID
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {	
                 if (conn != null) {
                     HttpSession session = request.getSession();
-                    Integer loggedUser = (Integer)session.getAttribute("logged-id");
+                    Integer userID = (Integer)session.getAttribute("logged-id");
 
-                    //get employee id from user id
-                    String query = "SELECT * FROM EMPLOYERS WHERE USER_ID = ?";
+                    String query = "SELECT * FROM USERS "
+                                + "INNER JOIN JOBSEEKERS ON JOBSEEKERS.USER_ID = USERS.USER_ID "
+                                + "WHERE JOBSEEKERS.USER_ID = ?"
+                    ;
+
                     PreparedStatement ps = conn.prepareStatement(query);
-                    ps.setInt(1, loggedUser);
-                    ps.executeQuery();
-                    ResultSet employee = ps.executeQuery();
-                    int empID = 0;
-                    if(employee.next()){
-                        empID = employee.getInt("EMP_ID");
-                    }
+                    ps.setInt(1, userID);
+                    ResultSet user = ps.executeQuery();
 
-                    //Check for null select values
-                    int jobLevel = Integer.parseInt(request.getParameter("job-level"));
-                    int jobIndustry = Integer.parseInt(request.getParameter("job-industry"));
-                    int jobType = Integer.parseInt(request.getParameter("job-type"));
-                    if(jobLevel == -1 || jobIndustry == -1 || jobType == -1 ){
-                        session.setAttribute("feedback-message", "Invalid User Input");
-                        response.sendRedirect("create-job-listing.jsp");
-                        return;
-                    }
-
-                    //empid, title, location, level, desc, resp, reqs, benefit, industry, salarymin, salarymax, jobtype
-                    String query2 = "INSERT INTO JOBS (EMP_ID, JOB_TITLE, "
-                    + "JOB_LOCATION, JOB_LEVEL, JOB_DESC, JOB_RESP, JOB_REQS, "
-                    + "JOB_BENEFIT, INDUSTRY_ID, JOB_SALARY_MIN, JOB_SALARY_MAX,"
-                    + " JOB_TYPE) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-
-                    PreparedStatement ps2 = conn.prepareStatement(query2);            
-
-                    ps2.setInt(1, empID);  
-                    ps2.setString(2, request.getParameter("job-title"));                    
-                    ps2.setString(3, request.getParameter("job-location"));
-                    ps2.setInt(4, Integer.parseInt(request.getParameter("job-level")));
-                    ps2.setString(5, request.getParameter("job-desc"));
-                    ps2.setString(6, request.getParameter("job-resp"));
-                    ps2.setString(7, request.getParameter("job-reqs"));                    
-                    ps2.setString(8, request.getParameter("job-benefit"));                    
-                    ps2.setInt(9, Integer.parseInt(request.getParameter("job-industry")));
-                    ps2.setString(10, request.getParameter("salary-min"));
-                    ps2.setString(11, request.getParameter("salary-max"));
-                    ps2.setInt(12,   Integer.parseInt(request.getParameter("job-type")));
-
-                    ps2.executeUpdate(); 
-
-                    session.setAttribute("feedback-message", "Successfully Created Job Listing");
-                    response.sendRedirect("employer-home");
+                    request.setAttribute("user", user);
+                    request.getRequestDispatcher("user-profile.jsp").forward(request,response);
                 } else {
                     request.setAttribute("error-message", "Connection Error");
                     request.getRequestDispatcher("error.jsp").forward(request,response);
@@ -102,10 +67,8 @@ public class CreateJobServlet extends HttpServlet {
         } catch (SQLException sqle){
                 request.setAttribute("error-message", sqle.getMessage());
                 request.getRequestDispatcher("error.jsp").forward(request,response);
-        } catch (Exception e){
-                request.setAttribute("error-message", e.toString());
-                request.getRequestDispatcher("error.jsp").forward(request,response);
-        }
+        } 
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

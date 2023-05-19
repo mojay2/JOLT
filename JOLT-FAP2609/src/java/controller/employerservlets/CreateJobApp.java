@@ -1,4 +1,4 @@
-package controller;
+package controller.employerservlets;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-public class LoadJobFeed extends HttpServlet {
+public class CreateJobApp extends HttpServlet {
 
     Connection conn;
 
@@ -44,28 +44,55 @@ public class LoadJobFeed extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
         try {	
                 if (conn != null) {
                     HttpSession session = request.getSession();
-                    Integer userID = (Integer)session.getAttribute("logged-id");
-                    String query;
-                    PreparedStatement ps;
+                    Integer loggedUser = (Integer)session.getAttribute("logged-id");
 
-                    query = "SELECT * FROM JOBS "
-                               + "INNER JOIN EMPLOYERS ON JOBS.EMP_ID = EMPLOYERS.EMP_ID "
-                               + "INNER JOIN INDUSTRIES ON INDUSTRY_ID = IND_ID "
-                               + "INNER JOIN TYPES ON JOB_TYPE = TYPE_ID "
-                               + "INNER JOIN LEVELS ON JOB_LEVEL = LEVEL_ID "
-                               + "ORDER BY JOB_ID DESC"
-                    ;
+                    if(loggedUser == null){
+                        response.sendRedirect("login.jsp");
+                        return;
+                    }
+
+                    //get jobseeker id from user id
+                    String query = "SELECT * FROM JOBSEEKERS WHERE USER_ID = ?";
+                    PreparedStatement ps = conn.prepareStatement(query);
+                    ps.setInt(1, loggedUser);
+                    ps.executeQuery();
+                    ResultSet jobSeeker = ps.executeQuery();
+                    int seekerID = 0;
+                    if(jobSeeker.next()){
+                        seekerID = jobSeeker.getInt("SEEKER_ID");
+                    }
+
+                    int jobID = Integer.parseInt(request.getParameter("job-id"));
+                    int empID = Integer.parseInt(request.getParameter("emp-id"));
+
+                    //Check if an application already exists
+                    query = "SELECT * FROM APPLICATIONS WHERE JOB_ID = ? AND SEEKER_ID = ?";
                     ps = conn.prepareStatement(query);
+                    ps.setInt(1, jobID);
+                    ps.setInt(2, seekerID);
+                    ps.executeQuery();
+                    ResultSet appCheck = ps.executeQuery();
+                    if(appCheck.next()){
+                        session.setAttribute("feedback-message", "You have already Applied for this job.");
+                        response.sendRedirect("LoadJobFeed"); 
+                    }else{
+                        //Create a new application 
+                        String query2 = "INSERT INTO APPLICATIONS (SEEKER_ID,"
+                                        + "EMPLOYER_ID, JOB_ID) VALUES (?,?,?)";
 
-                    ResultSet jobs = ps.executeQuery();
+                        PreparedStatement ps2 = conn.prepareStatement(query2);            
 
-                    request.setAttribute("jobs", jobs);
-                    request.setAttribute("search", request.getParameter("search")); 
-                    request.getRequestDispatcher("job-feed.jsp").forward(request,response);
+                        ps2.setInt(1, seekerID);  
+                        ps2.setInt(2, empID);                    
+                        ps2.setInt(3, jobID);
+
+                        ps2.executeUpdate(); 
+                        session.setAttribute("feedback-message", "Successfully Applied");
+                        response.sendRedirect("LoadAppliedJobs"); 
+                    }
                 } else {
                     request.setAttribute("error-message", "Connection Error");
                     request.getRequestDispatcher("error.jsp").forward(request,response);
@@ -73,8 +100,10 @@ public class LoadJobFeed extends HttpServlet {
         } catch (SQLException sqle){
                 request.setAttribute("error-message", sqle.getMessage());
                 request.getRequestDispatcher("error.jsp").forward(request,response);
-        } 
-
+        } catch (Exception e){
+                request.setAttribute("error-message", e.toString());
+                request.getRequestDispatcher("error.jsp").forward(request,response);
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
