@@ -14,93 +14,93 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import nl.captcha.Captcha;
 
-
 public class LoginServlet extends HttpServlet {
 
-Connection conn;
+    Connection conn;
+
     public void init() throws ServletException {
-            ServletContext context = getServletContext();
-            try {	
-                    Class.forName(context.getInitParameter("jdbcClassName"));
-                    //System.out.println("jdbcClassName: " + config.getInitParameter("jdbcClassName"));
-                    String username = context.getInitParameter("dbUserName");
-                    String password = context.getInitParameter("dbPassword");
-                    StringBuffer url = new StringBuffer(context.getInitParameter("jdbcDriverURL"))
-                            .append("://")
-                            .append(context.getInitParameter("dbHostName"))
-                            .append(":")
-                            .append(context.getInitParameter("dbPort"))
-                            .append("/")
-                            .append(context.getInitParameter("databaseName"));
-                    conn = 
-                      DriverManager.getConnection(url.toString(),username,password);
-            } catch (SQLException sqle){
-                    System.out.println("SQLException error occured - " 
-                            + sqle.getMessage());
-            } catch (ClassNotFoundException nfe){
-                    System.out.println("ClassNotFoundException error occured - " 
+        ServletContext context = getServletContext();
+        try {
+            Class.forName(context.getInitParameter("jdbcClassName"));
+            //System.out.println("jdbcClassName: " + config.getInitParameter("jdbcClassName"));
+            String username = context.getInitParameter("dbUserName");
+            String password = context.getInitParameter("dbPassword");
+            StringBuffer url = new StringBuffer(context.getInitParameter("jdbcDriverURL"))
+                    .append("://")
+                    .append(context.getInitParameter("dbHostName"))
+                    .append(":")
+                    .append(context.getInitParameter("dbPort"))
+                    .append("/")
+                    .append(context.getInitParameter("databaseName"));
+            conn
+                    = DriverManager.getConnection(url.toString(), username, password);
+        } catch (SQLException sqle) {
+            System.out.println("SQLException error occured - "
+                    + sqle.getMessage());
+        } catch (ClassNotFoundException nfe) {
+            System.out.println("ClassNotFoundException error occured - "
                     + nfe.getMessage());
-            }
+        }
     }
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {	
-                if (conn != null) {
-                    HttpSession session = request.getSession(); 
+        try {
+            if (conn != null) {
+                HttpSession session = request.getSession();
 
-                    //Verify captcha
-                    Captcha captcha = (Captcha) session.getAttribute(Captcha.NAME);
-                    String answer = request.getParameter("answer");
-                    if (!captcha.isCorrect(answer)) {
-                        session.setAttribute("feedback-message", "Incorrect Captcha");
-                        response.sendRedirect("login.jsp");
-                        return;
-                    }
-                    
+                //Verify captcha
+                Captcha captcha = (Captcha) session.getAttribute(Captcha.NAME);
+                String answer = request.getParameter("answer");
+                if (!captcha.isCorrect(answer)) {
+                    session.setAttribute("feedback-message", "Incorrect Captcha");
+                    response.sendRedirect("login.jsp");
+                    return;
+                }
 
-                    //Verify login credentials
-                    String keyString = getServletConfig().getInitParameter("key");
-                    String cipherType = getServletConfig().getInitParameter("cipher");
-                    String ecryptedUserPass = model.Security.encrypt(request.getParameter("password"), cipherType, keyString);
-                    
-                    String query = "SELECT * FROM USERS WHERE USER_EMAIL = ? "
- + "                                AND USER_PASSWORD = ? "
- + "                                AND USER_TYPE = ?";
-                    PreparedStatement ps = conn.prepareStatement(query);            
+                // Verify login credentials
+                String keyString = getServletConfig().getInitParameter("key");
+                String cipherType = getServletConfig().getInitParameter("cipher");
+                String encryptedUserPass = model.Security.encrypt(request.getParameter("password"), cipherType, keyString);
 
-                    ps.setString(1, request.getParameter("email"));            
-                    ps.setString(2, ecryptedUserPass);
-                    ps.setString(3, request.getParameter("user-type"));
+                String query = "SELECT * FROM USERS WHERE USER_EMAIL = ? "
+                        + "AND USER_PASSWORD = ?";
+                PreparedStatement ps = conn.prepareStatement(query);
 
-                    ResultSet loggedUser = ps.executeQuery();
+                ps.setString(1, request.getParameter("email"));
+                ps.setString(2, encryptedUserPass);
 
-                    if(loggedUser.next()){   
-                        //Successful login
-                        int userID = loggedUser.getInt("USER_ID"); 
-                        int userType = loggedUser.getInt("USER_TYPE");
+                ResultSet loggedUser = ps.executeQuery();
 
+                if (loggedUser.next()) {
+                    // Successful login
+                    int userID = loggedUser.getInt("USER_ID");
+                    int userType = loggedUser.getInt("USER_TYPE");
+
+                    if (userType != Integer.parseInt(request.getParameter("user-type"))) {
+                        response.sendRedirect("unauthorized-access.jsp");
+                    } else {
                         session.setAttribute("logged-id", userID);
 
-                        if(userType == 1){
+                        if (userType == 1) {
                             session.setAttribute("logged-usertype", "jobseeker");
-                            request.getRequestDispatcher("/LoadJobFeed").forward(request,response);
-                        }
-                        else{
+                            request.getRequestDispatcher("/LoadJobFeed").forward(request, response);
+                        } else {
                             session.setAttribute("logged-usertype", "employer");
-                            request.getRequestDispatcher("/employer-home").forward(request,response);
+                            request.getRequestDispatcher("/employer-home").forward(request, response);
                         }
-                    }
-                    else{
-                        session.setAttribute("feedback-message", "Wrong Login Credentials");
-                        request.getRequestDispatcher("login.jsp").forward(request,response);
                     }
                 } else {
-                    response.sendRedirect("error.jsp");
+                    response.sendRedirect("invalid-login.jsp");
+                    //session.setAttribute("feedback-message", "Wrong Login Credentials");
+                    //request.getRequestDispatcher("login.jsp").forward(request,response);
                 }
-        } catch (SQLException sqle){
-                response.sendRedirect("error.jsp");
-        } 
+            } else {
+                response.sendRedirect("error500.jsp");
+            }
+        } catch (SQLException sqle) {
+            response.sendRedirect("error500.jsp");
+        }
 
     }
 
