@@ -160,7 +160,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
                   <div class="relative w-full max-w-2xl max-h-full">
                     <!-- Modal content -->
                     <div
-                      class="relative bg-white rounded-lg shadow dark:bg-gray-700"
+                      class="relative bg-slate-300 rounded-lg shadow dark:bg-slate-300"
                     >
                       <!-- Modal header -->
                       <div
@@ -178,12 +178,12 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
                         <div class="space-y-0 pl-10">
                           <h3
                             id ="name"
-                            class="text-xl font-bold text-gray-900 dark:text-white"
+                            class="text-xl font-bold text-black dark:text-black"
                           >
                           </h3>
                           <h4
-                              id="title"
-                            class="text-xl font-semibold text-gray-900 dark:text-white"
+                            id="title"
+                            class="text-xl font-semibold text-black dark:text-black"
                           >
                           </h4>
 
@@ -194,32 +194,33 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
                           >
                             <button
                               type="button"
-                              class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-l-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white"
+                               class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-slate-200 border border-gray-200 rounded-l-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-slate-200 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-slate-300 dark:focus:ring-blue-500 dark:focus:text-white"
                             >
                               <img src="./public/assets/images/linkedin.svg" alt="" />
                             </button>
                             <button
                               type="button"
-                              class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-white border-t border-b border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white"
+                              class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-slate-200 border-t border-b border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-slate-200 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-slate-300 dark:focus:ring-blue-500 dark:focus:text-white"
                             >
                               <img src="./public/assets/images/github.svg" alt="" />
                             </button>
                             <button
                               type="button"
                               class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-white border-t border-b border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white"
+
                             >
                               <img src="./public/assets/images/link.svg" alt="" />
                             </button>
                             <button
                               type="button"
-                              class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-white border-t border-b border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white"
+                              class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-slate-200 border-t border-b border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-slate-200 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-slate-300 dark:focus:ring-blue-500 dark:focus:text-white"
                             >
                               <img src="./public/assets/images/twitter.svg" alt="" />
                             </button>
 
                             <button
                               type="button"
-                              class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-r-md hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white"
+                              class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-slate-200 border border-gray-200 rounded-r-md hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-slate-200 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-slate-300 dark:focus:ring-blue-500 dark:focus:text-white"
                             >
                               <img src="./public/assets/images/facebook.svg" alt="" />
                             </button>
@@ -252,11 +253,11 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
                       <!-- About me -->
                       <div class="p-6 space-y-3">
                         <h2
-                          class="border-b-4 text-2xl leading-relaxed text-gray-500 dark:text-gray-400"
+                            class="border-b-4 border-black text-2xl leading-relaxed text-black dark:text-black"
                         >
                           About Me
                         </h2>
-                        <p id="about" class="text-sm text-gray-500 dark:text-gray-400">
+                        <p id="about" class="text-sm text-black dark:text-black">
                           Lorem ipsum dolor sit amet consectetur adipisicing
                           elit. Quas debitis ad rerum laboriosam qui provident a
                           placeat minus, eos nobis facilis ut unde voluptatum
@@ -264,40 +265,40 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
                         </p>
                         <!-- Education -->
                         <h2
-                          class="border-b-4 text-2xl leading-relaxed text-gray-500 dark:text-gray-400"
+                          class="border-b-4 border-black text-2xl leading-relaxed text-black dark:text-black"
                         >
                           Education
                         </h2>
-                        <h3 id="course" class="text-base text-gray-500 dark:text-gray-400">
+                        <h3 id="course" class="text-base text-black dark:text-black">
                           BS Computer Science
                         </h3>
-                        <p id="school" class="text-sm text-gray-500 dark:text-gray-400">
+                        <p id="school" class="text-sm text-black dark:text-black">
                             University of Santo Tomas </p>
-                        <p id="educ_date" class="text-sm text-gray-500 dark:text-gray-400">
+                        <p id="educ_date" class="text-sm text-black dark:text-black">
                           2021 - 2025
                         </p>
                         <!-- Experience -->
                         <h2
-                          class="border-b-4 text-2xl leading-relaxed text-gray-500 dark:text-gray-400"
+                          class="border-b-4 border-black text-2xl leading-relaxed text-black dark:text-black"
                         >
                           Experience
                         </h2>
-                        <p id="job_title" class="text-sm text-gray-500 dark:text-gray-400">
+                        <p id="job_title" class="text-sm text-black dark:text-black">
                             job title </p>
-                        <p id="company" class="text-sm text-gray-500 dark:text-gray-400">
+                        <p id="company" class="text-sm text-black dark:text-black">
                             24 Chicken Enterprises </p>
-                        <p id="job_date" class="text-sm text-gray-500 dark:text-gray-400">
+                        <p id="job_date" class="text-sm text-black dark:text-black">
                           2022 - Present
                         </p>
 
                         <!-- Skills -->
                         <h2
-                          class="border-b-4 text-2xl leading-relaxed text-gray-500 dark:text-gray-400"
+                          class="border-b-4 border-black text-2xl leading-relaxed text-black dark:text-black"
                         >
                           Skills
                         </h2>
                         <ul id="skills"
-                          class="list-disc list-inside text-sm text-gray-500 dark:text-gray-400"
+                          class="list-disc list-inside text-sm text-black dark:text-black"
                         >
                           <li>Strong problem-solving and analytical skills</li>
                           <li>
@@ -309,14 +310,14 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
 
                       <!-- Modal footer -->
                       <div
-                        class="justify-around flex items-center p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600"
+                         class="justify-around flex items-center p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600"
                       >
                         <h2
-                          class="border-b-4 text-2xl leading-relaxed text-gray-500 dark:text-gray-400"
+                          class="border-b-4 border-black text-2xl leading-relaxed text-black dark:text-black"
                         >
                           Contact Details
                         </h2>
-                        <p class="text-sm text-gray-500 dark:text-gray-400">
+                        <p class="text-sm text-black dark:text-black">
                           Number
                           <br />
                           Email
@@ -327,7 +328,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
                         </p>
                         <p
                             id ="contact-details"
-                          class="text-right text-sm text-gray-500 dark:text-gray-400"
+                          class="text-right text-sm text-blue-600 dark:text-blue-600"
                         >
                           09123456789
                           <br />
