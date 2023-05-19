@@ -23,7 +23,7 @@
     <!-- Navbar -->
     <nav class="border-b-2 border-zinc-800 bg-slate-200" id="navbar">
       <div class="flex max-w-full flex-wrap items-center justify-between p-3"> 
-       <a href="jobfeed.jsp" class="ml-3 flex flex-col items-center sm:ml-10 lg:ml-16">
+       <a href="index.jsp" class="ml-3 flex flex-col items-center sm:ml-10 lg:ml-16">
           <img src="./public/assets/logo/JoltLogo.png" class="mb-1 h-14" alt="JOLT Logo" />
           <span class="text-sm text-neutral-600">(Job Opportunities Listing Tool)</span>
         </a>
