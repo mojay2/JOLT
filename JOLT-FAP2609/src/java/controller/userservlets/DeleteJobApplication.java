@@ -1,4 +1,4 @@
-package controller;
+package controller.userservlets;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -12,9 +12,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-public class UpdateAppStatus extends HttpServlet {
+public class DeleteJobApplication extends HttpServlet {
 
     Connection conn;
+
     public void init() throws ServletException {
             ServletContext context = getServletContext();
             try {	
@@ -48,23 +49,15 @@ public class UpdateAppStatus extends HttpServlet {
                     Integer loggedUser = (Integer)session.getAttribute("logged-id");
 
                     int appID = Integer.parseInt(request.getParameter("app-id"));
-                    int newStatus = Integer.parseInt(request.getParameter("app-status"));
 
-                    String query = "UPDATE APPLICATIONS SET APP_STATUS = ? "
-                    + "WHERE APP_ID = ?";
+                    String query = "DELETE FROM APPLICATIONS WHERE APP_ID = ?" ;
 
                     PreparedStatement ps = conn.prepareStatement(query);            
-
-                    ps.setInt(1, newStatus);  
-                    ps.setInt(2, appID);                    
-
+                    ps.setInt(1, appID);                    
                     ps.executeUpdate(); 
-session.setAttribute("feedback-message", "Successfully Updated Application Status");
-                    if(request.getParameter("job-id") != null){
-                        request.setAttribute("job-id", request.getParameter("job-id"));
-                    }
-                    request.getRequestDispatcher("LoadJobCandidates").forward(request,response);
-                    response.sendRedirect("LoadJobCandidates"); 
+
+                    session.setAttribute("feedback-message", "Successfully Withdrew Application");
+                    response.sendRedirect("LoadAppliedJobs"); 
                 } else {
                     request.setAttribute("error-message", "Connection Error");
                     request.getRequestDispatcher("error.jsp").forward(request,response);

@@ -1,9 +1,11 @@
-package controller;
+package controller.employerservlets;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -12,10 +14,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-public class DeleteJobApplication extends HttpServlet {
+public class ViewApplicant extends HttpServlet {
 
-    Connection conn;
-
+Connection conn;
     public void init() throws ServletException {
             ServletContext context = getServletContext();
             try {	
@@ -43,21 +44,47 @@ public class DeleteJobApplication extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {	
+
+            response.setContentType("application/json");
+        try(PrintWriter out = response.getWriter()) {	
                 if (conn != null) {
                     HttpSession session = request.getSession();
-                    Integer loggedUser = (Integer)session.getAttribute("logged-id");
+                    Integer userID = (Integer)session.getAttribute("logged-id");
 
-                    int appID = Integer.parseInt(request.getParameter("app-id"));
+                    int appID = Integer.parseInt(request.getParameter("id"));
+                    //get job info using job id
+                    String query = "SELECT * FROM APPLICATIONS "
+                                + "INNER JOIN JOBSEEKERS ON JOBSEEKERS.SEEKER_ID = APPLICATIONS.SEEKER_ID "
+                                + "INNER JOIN USERS ON USERS.USER_ID = JOBSEEKERS.USER_ID "
+                                + "WHERE APPLICATIONS.APP_ID = ?"
+                    ;
 
-                    String query = "DELETE FROM APPLICATIONS WHERE APP_ID = ?" ;
+                    PreparedStatement ps = conn.prepareStatement(query);
+                    ps.setInt(1, appID);
+                    ResultSet applicant = ps.executeQuery();
 
-                    PreparedStatement ps = conn.prepareStatement(query);            
-                    ps.setInt(1, appID);                    
-                    ps.executeUpdate(); 
-
-                    session.setAttribute("feedback-message", "Successfully Withdrew Application");
-                    response.sendRedirect("LoadAppliedJobs"); 
+                    //Convert resultset into JSON
+                    String json = "{}";
+                    if(applicant.next()){
+                        json = "{\"fname\":\"" + applicant.getString("SEEKER_FNAME")
+                        + "\",\"email\":\"" + applicant.getString("USER_EMAIL")
+                        + "\",\"lname\":\"" + applicant.getString("SEEKER_LNAME")
+                        + "\",\"title\":\"" + applicant.getString("SEEKER_TITLE")
+                        + "\",\"about\":\"" + applicant.getString("SEEKER_ABOUT")
+                        + "\",\"course\":\"" + applicant.getString("SEEKER_EDUC_COURSE")
+                        + "\",\"school\":\"" + applicant.getString("SEEKER_EDUC_SCHOOL")
+                        + "\",\"educ_date\":\"" + applicant.getString("SEEKER_EDUC_BATCH")
+                        + "\",\"experience\":\"" + applicant.getString("SEEKER_EXP_TITLE")
+                        + "\",\"company\":\"" + applicant.getString("SEEKER_EXP_COMPANY")
+                        + "\",\"job_date\":\"" + applicant.getString("SEEKER_EXP_BATCH")
+                        + "\",\"skills\":\"" + splitAndFormat(applicant.getString("SEEKER_SKILLS"))
+                        + "\",\"address\":\"" + applicant.getString("SEEKER_ADDRESS")
+                        + "\",\"number\":\"" + applicant.getString("SEEKER_NUMBER")
+                        + "\",\"zoomid\":\"" + applicant.getString("SEEKER_ZOOMID")
+                        + "\"}";
+                    }
+                    out.print(json);
+                    out.flush();
                 } else {
                     request.setAttribute("error-message", "Connection Error");
                     request.getRequestDispatcher("error.jsp").forward(request,response);
@@ -65,10 +92,20 @@ public class DeleteJobApplication extends HttpServlet {
         } catch (SQLException sqle){
                 request.setAttribute("error-message", sqle.getMessage());
                 request.getRequestDispatcher("error.jsp").forward(request,response);
-        } catch (Exception e){
-                request.setAttribute("error-message", e.toString());
-                request.getRequestDispatcher("error.jsp").forward(request,response);
+        } 
+
+    }
+
+    String splitAndFormat(String input){
+        String output = "";
+        String[] arr = input.split("\\*");
+        for(String bullet: arr){
+            if(bullet.trim().isEmpty()){
+                continue;
+            }
+            output += "<li>"+bullet+"</li>";
         }
+        return output;
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

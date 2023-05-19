@@ -1,4 +1,4 @@
-package controller;
+package controller.employerservlets;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-public class DeleteJobListing extends HttpServlet {
+public class UpdateAppStatus extends HttpServlet {
 
     Connection conn;
     public void init() throws ServletException {
@@ -47,16 +47,24 @@ public class DeleteJobListing extends HttpServlet {
                     HttpSession session = request.getSession();
                     Integer loggedUser = (Integer)session.getAttribute("logged-id");
 
-                    int jobID = Integer.parseInt(request.getParameter("job-id"));
+                    int appID = Integer.parseInt(request.getParameter("app-id"));
+                    int newStatus = Integer.parseInt(request.getParameter("app-status"));
 
-                    String query = "DELETE FROM JOBS WHERE JOB_ID = ?" ;
+                    String query = "UPDATE APPLICATIONS SET APP_STATUS = ? "
+                    + "WHERE APP_ID = ?";
 
                     PreparedStatement ps = conn.prepareStatement(query);            
-                    ps.setInt(1, jobID);                    
-                    ps.executeUpdate(); 
 
-                    session.setAttribute("feedback-message", "Successfully Deleted Job Listing");
-                    response.sendRedirect("employer-home"); 
+                    ps.setInt(1, newStatus);  
+                    ps.setInt(2, appID);                    
+
+                    ps.executeUpdate(); 
+session.setAttribute("feedback-message", "Successfully Updated Application Status");
+                    if(request.getParameter("job-id") != null){
+                        request.setAttribute("job-id", request.getParameter("job-id"));
+                    }
+                    request.getRequestDispatcher("LoadJobCandidates").forward(request,response);
+                    response.sendRedirect("LoadJobCandidates"); 
                 } else {
                     request.setAttribute("error-message", "Connection Error");
                     request.getRequestDispatcher("error.jsp").forward(request,response);
