@@ -134,8 +134,6 @@
         <location>/error500.jsp</location>
     </error-page>
     
-
-    
     <servlet>
         <servlet-name>LogoutServlet</servlet-name>
         <servlet-class>controller.LogoutServlet</servlet-class>
