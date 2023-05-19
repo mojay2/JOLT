@@ -1,7 +1,7 @@
 <%-- 
     Document   : error
     Created on : 05 6, 23, 10:34:54 PM
-    Author     : Jay
+    Author     : lance
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
