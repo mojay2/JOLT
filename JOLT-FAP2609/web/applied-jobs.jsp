@@ -60,7 +60,9 @@
             <div class="overflow-x-auto border-t-2 border-zinc-800 py-2 md:py-4">
               <div class="item-center flex justify-between gap-8">
                 <div class="flex items-center">
-                  <button type="button" data-modal-target="jobModal" data-modal-toggle="jobModal">
+                  <button type="button" 
+                          id="jobFeedBtn" data-id="<%=applications.getInt("JOB_ID")%>" 
+                          data-modal-target="jobModal" data-modal-toggle="jobModal">
                     <div class="overflow-x-auto text-left text-lg font-bold md:text-2xl"><%=applications.getString("JOB_TITLE")%></div>
                   </button>
                     <%if(applications.getInt("APP_STATUS") == 0){%>
@@ -109,7 +111,7 @@
             </div>
           </div>
         </div>   
-              
+            
         <%}%>
          
         </div>
@@ -124,15 +126,17 @@
           <!-- Modal body -->
           <div class="space-y-3 p-6">
             <div class="flex items-center justify-between">
-              <div class="text-2xl font-bold md:text-4xl">Marketing Manager</div>
+              <div id="job-title" class="text-2xl font-bold md:text-4xl"></div>
               <div class="flex flex-row">
-                <button>
-                  <svg class="feather feather-printer h-6 w-6 text-zinc-800 md:h-8 md:w-8" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="6 9 6 2 18 2 18 9"></polyline>
-                    <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
-                    <rect x="6" y="14" width="12" height="8"></rect>
-                  </svg>
-                </button>
+                <a id="print-link" href = "#">
+                    <button>
+                      <svg class="feather feather-printer h-6 w-6 text-zinc-800 md:h-8 md:w-8" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="6 9 6 2 18 2 18 9"></polyline>
+                        <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+                        <rect x="6" y="14" width="12" height="8"></rect>
+                      </svg>
+                    </button>
+                </a>
                 <button type="button" class="ml-3 inline-flex h-10 w-10 items-center rounded-lg bg-transparent p-1.5 text-sm text-zinc-800 hover:bg-slate-600 hover:text-stone-100" data-modal-hide="jobModal">
                   <svg aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
                   <span class="sr-only">Close modal</span>
@@ -140,33 +144,29 @@
               </div>
             </div>
             <div class="mt-0 text-sm font-light text-neutral-600 md:mt-1">
-              <span class="font-semibold">24 Chicken</span>
+              <span id="emp-name" class="font-semibold"></span>
               |
-              <span class="font-semibold">Manila, Philippines</span>
+              <span id="job-location" class="font-semibold"></span>
               |
-              <span class="font-">Sales</span>
+              <span id="job-industry" class="font-"></span>
               | Posted 2 days ago
             </div>
             <div class="mt-2 flex gap-1 border-b-2 border-neutral-600 pb-3 text-[10px] text-stone-100 md:text-sm">
-              <div class="rounded-full border-2 border-neutral-600 bg-blue-600 px-2 py-1">₱ 500,000 / month</div>
-              <div class="rounded-full border-2 border-neutral-600 bg-blue-600 px-2 py-1">Full Time</div>
-              <div class="rounded-full border-2 border-neutral-600 bg-blue-600 px-2 py-1">Senior</div>
+              <div id="job-salary" class="rounded-full border-2 border-neutral-600 bg-blue-600 px-2 py-1"></div>
+              <div id="job-type" class="rounded-full border-2 border-neutral-600 bg-blue-600 px-2 py-1"></div>
+              <div id="job-level" class="rounded-full border-2 border-neutral-600 bg-blue-600 px-2 py-1"></div>
             </div>
-            <div class="mt-2 text-sm md:text-base">We are seeking an experienced Marketing Manager to lead our marketing efforts and drive growth for our business. The ideal candidate will have a proven track record of developing and executing successful marketing campaigns, as well as the ability to analyze data and identify opportunities for optimization.</div>
+            <div id="job-desc" class="mt-2 text-sm md:text-base"></div>
 
             <!-- Company Overview -->
             <div class="mt-4 border-b-2 border-neutral-600 pb-3 text-xl font-bold md:text-3xl">Company Overview</div>
-            <div class="mt-2 text-sm md:text-base">[Company Name] is a leading provider of [product/service] solutions for [target audience]. Our mission is to [company mission statement]. We pride ourselves on our commitment to innovation, excellence, and customer satisfaction.</div>
+            <div id="emp-overview" class="mt-2 text-sm md:text-base"></div>
 
             <!-- Responsibilities -->
             <div class="mt-4 border-b-2 border-neutral-600 pb-3 text-xl font-bold md:text-3xl">Responsibilities</div>
             <div class="mt-2 text-sm md:text-base">
               <ul class="ml-4 list-outside list-disc">
-                <li>Develop and execute comprehensive marketing strategies to increase brand awareness and drive sales.</li>
-                <li>Collaborate with internal teams to create compelling content and collateral for various channels.</li>
-                <li>Manage and optimize digital marketing campaigns across multiple platforms, including social media, email, and search.</li>
-                <li>Analyze marketing data and provide regular reports on campaign performance and ROI.</li>
-                <li>Monitor industry trends and competitor activity to inform marketing strategy and identify new opportunities.</li>
+                  <p id="job-resp"></p>
               </ul>
             </div>
 
@@ -174,11 +174,7 @@
             <div class="mt-4 border-b-2 border-neutral-600 pb-3 text-xl font-bold md:text-3xl">Requirements</div>
             <div class="mt-2 text-sm md:text-base">
               <ul class="ml-4 list-outside list-disc">
-                <li>Bachelor's degree in Marketing or related field.</li>
-                <li>5+ years of experience in marketing, with a focus on digital marketing.</li>
-                <li>Demonstrated success in developing and executing marketing campaigns.</li>
-                <li>Strong analytical skills and the ability to use data to inform decision-making.</li>
-                <li>Excellent communication and collaboration skills.</li>
+                <p id="job-reqs"></p>
               </ul>
             </div>
 
@@ -186,11 +182,7 @@
             <div class="mt-4 border-b-2 border-neutral-600 pb-3 text-xl font-bold md:text-3xl">Requirements</div>
             <div class="mt-2 text-sm md:text-base">
               <ul class="ml-4 list-outside list-disc">
-                <li>Competitive salary and bonus opportunities.</li>
-                <li>Comprehensive health, dental, and vision insurance.</li>
-                <li>401(k) with employer match.</li>
-                <li>Generous paid time off policy.</li>
-                <li>Flexible work arrangements.</li>
+                <p id="job-benefits"></p>
               </ul>
             </div>
           </div>
