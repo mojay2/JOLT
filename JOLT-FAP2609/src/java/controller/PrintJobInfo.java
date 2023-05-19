@@ -105,7 +105,7 @@ Connection conn;
                         PdfPCell emp = new PdfPCell(new Paragraph(rs.getString("EMP_NAME") , paragraphFontBold));
                         PdfPCell loc = new PdfPCell(new Paragraph(rs.getString("JOB_LOCATION") , paragraphFontBold));
                         PdfPCell ind = new PdfPCell(new Paragraph(rs.getString("IND_NAME"), paragraphFontBold));
-                        PdfPCell date = new PdfPCell(new Paragraph("Insert Date" , paragraphFontBold));
+                        PdfPCell date = new PdfPCell(new Paragraph("Posted 2 days ago" , paragraphFontBold));
                         emp.setHorizontalAlignment(1);
                         loc.setHorizontalAlignment(1);
                         ind.setHorizontalAlignment(1);

@@ -58,6 +58,7 @@ function loadJobInfoModal(jobID){
                 if(!applyBtnModal.classList.contains('hidden')){
                     applyBtnModal.classList.add('hidden');
                 }
+                document.getElementById('print-link-modal').href = "PrintJobInfo?job="+job.jobid;
 
                 document.getElementById('job-title-modal').innerHTML = job.jobtitle;
                 document.getElementById('emp-name-modal').innerHTML = job.empname;

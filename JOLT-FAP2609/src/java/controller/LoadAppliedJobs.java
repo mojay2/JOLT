@@ -61,7 +61,7 @@ Connection conn;
                     }
 
 
-                    if(request.getParameter("status")==null){
+                    if(request.getParameter("status")==null || request.getParameter("status").equals("")){
                     //get all JOB APPLICATIONS with the JOBSEEKERID
                         query = "SELECT * FROM APPLICATIONS "
                                     + "INNER JOIN JOBSEEKERS ON JOBSEEKERS.SEEKER_ID = APPLICATIONS.SEEKER_ID "
