@@ -75,7 +75,7 @@
         <div class="relative mt-8 flex flex-col gap-5 lg:flex-row">
           <div class="">
             <!-- Job Cards -->
-            <div class="flex flex-none flex-col gap-3 lg:w-80">
+            <div class="flex flex-none flex-col gap-3 w-full lg:w-[350px]">
               <!-- Start Card Template -->
               <%ResultSet jobs = (ResultSet)request.getAttribute("jobs");
                 int counter = 0;
