@@ -30,7 +30,7 @@
     <!-- Hero Section -->
     <section id="hero" class="container mx-auto w-3/4 text-zinc-800 lg:mt-20 lg:w-10/12">
       <div class="flex min-h-[90vh] items-center">
-        <div class="flex flex-initial flex-col gap-4 md:gap-12">
+        <div class="flex flex-initial flex-col md:pb-40 gap-4 md:gap-12">
           <div class="text-5xl font-bold leading-tight md:text-5xl lg:text-7xl">Your <span class="drop-shadow-lg text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-cyan-600">dream job</span> is just right around the corner!</div>
           <div class="w-3/4 text-base font-light md:text-2xl md:leading-[33px] lg:w-2/3">Welcome to our job finder website! We connect job seekers with the best employers, providing the perfect platform for you to find your dream job.</div>
           <div class="rounded-3xl bg-blue-600 p-4 md:rounded-full md:p-10">
@@ -296,29 +296,6 @@
             <img src="./public/assets/logo/JoltLogo.png" class="mb-2 h-28" alt="" />
           </div>
           <div class="mx-auto my-0 text-center font-light text-neutral-600">(Job Opportunities Listing Tool)</div>
-          <!-- Social Links Container -->
-          <div class="flex justify-center space-x-4">
-            <!-- Link 1 -->
-            <a href="#">
-              <img src="./public/assets/images/linkedin.svg" alt="" class="h-8" />
-            </a>
-            <!-- Link 2 -->
-            <a href="#">
-              <img src="./public/assets/images/facebook.svg" alt="" class="h-8" />
-            </a>
-            <!-- Link 3 -->
-            <a href="#">
-              <img src="./public/assets/images/twitter.svg" alt="" class="h-8" />
-            </a>
-            <!-- Link 4 -->
-            <a href="#">
-              <img src="./public/assets/images/github.svg" alt="" class="h-8" />
-            </a>
-            <!-- Link 5 -->
-            <a href="#">
-              <img src="./public/assets/images/link.svg" alt="" class="h-8" />
-            </a>
-          </div>
         </div>
         <!-- List Container -->
         <div class="flex justify-around space-x-32">
