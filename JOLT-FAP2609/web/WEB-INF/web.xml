@@ -121,6 +121,19 @@
             <param-value>ics_2609ics_2609</param-value>
         </init-param>
     </servlet>
+    
+    <!-- errors -->
+    <error-page>
+        <!-- Missing resource -->
+        <error-code>404</error-code>
+        <location>/error404.jsp</location>
+    </error-page>
+    <error-page>
+        <!-- Uncaught exception -->
+        <error-code>500</error-code>
+        <location>/error500.jsp</location>
+    </error-page>
+    
     <servlet>
         <servlet-name>LogoutServlet</servlet-name>
         <servlet-class>controller.LogoutServlet</servlet-class>
