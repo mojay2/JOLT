@@ -23,8 +23,8 @@
     <link rel="apple-touch-icon" sizes="180x180" href="./public/assets/favicon/apple-touch-icon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="./public/assets/favicon/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="./public/assets/favicon/favicon-16x16.png" />
-    <link rel="manifest" href="/public/assets/favicon/site.webmanifest" />
-    <link rel="mask-icon" href="/public/assets/favicon/safari-pinned-tab.svg" color="#facc15" />
+    <link rel="manifest" href="./public/assets/favicon/site.webmanifest" />
+    <link rel="mask-icon" href="./public/assets/favicon/safari-pinned-tab.svg" color="#facc15" />
     <meta name="msapplication-TileColor" content="#e2e8f0" />
     <meta name="theme-color" content="#ffffff" />
     <title>JOLT - Job Feed</title>
@@ -36,8 +36,8 @@
     <%@include file="./components/navbar-user.jsp"%>
 
     <!-- Content -->
-    <div class="container mx-auto">
-      <div class="bl mx-auto my-10 w-4/5 lg:w-3/5" id="container">
+    <div class="container-lg mx-auto">
+      <div class="mx-auto my-10 w-4/5 lg:w-3/5" id="container">
         <!-- Search -->
         <form action = "SearchJobFeed" method="get">
           <div class="mx-auto flex w-full flex-col items-center justify-around gap-y-4 divide-y-2 divide-zinc-800 rounded-2xl border-[3px] border-zinc-800 p-3 text-zinc-800 md:flex-row md:divide-x-2 md:divide-y-0">
@@ -75,7 +75,7 @@
         <div class="relative mt-8 flex flex-col gap-5 lg:flex-row">
           <div class="">
             <!-- Job Cards -->
-            <div class="flex flex-none basis-auto flex-col gap-3">
+            <div class="flex flex-none flex-col gap-3 lg:w-80">
               <!-- Start Card Template -->
               <%ResultSet jobs = (ResultSet)request.getAttribute("jobs");
                 int counter = 0;
@@ -89,7 +89,7 @@
                         <div class="text-lg font-bold md:text-2xl"><%=jobs.getString("JOB_TITLE")%></div>
                         <div class="text-base md:text-xl"><%=jobs.getString("EMP_NAME")%></div>
                         <div class="text-base md:text-xl"><%=jobs.getString("JOB_LOCATION")%></div>
-                        <div class="mt-2 flex gap-1 text-[10px] text-stone-100 md:text-xs">
+                        <div class="mt-2 flex gap-1 text-xs text-stone-100 md:text-[10px]">
                           <div class="rounded-full border-2 border-neutral-600 bg-blue-600 px-1 py-1 md:px-2">₱ <%=jobs.getString("JOB_SALARY_MAX")%> / month</div>
                           <div class="rounded-full border-2 border-neutral-600 bg-blue-600 px-1 py-1 md:px-2"><%=jobs.getString("TYPE_NAME")%></div>
                           <div class="rounded-full border-2 border-neutral-600 bg-blue-600 px-1 py-1 md:px-2"><%=jobs.getString("LEVEL_NAME")%></div>
@@ -240,6 +240,7 @@
       </div>
     </div>
 
+            
     <!-- Job Modal -->
     <div id="jobFeedModal" tabindex="-1" aria-hidden="true" class="fixed top-0 z-50 hidden h-[calc(100%-1rem)] max-h-full w-full justify-center overflow-y-auto overflow-x-hidden p-4 md:inset-0">
       <div class="relative max-h-full w-full max-w-2xl">
@@ -250,13 +251,15 @@
             <div class="flex items-center justify-between">
               <div id="job-title-modal" class="text-2xl font-bold md:text-4xl"></div>
               <div class="flex flex-row">
-                <button>
-                  <svg class="feather feather-printer h-6 w-6 text-zinc-800 md:h-8 md:w-8" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="6 9 6 2 18 2 18 9"></polyline>
-                    <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
-                    <rect x="6" y="14" width="12" height="8"></rect>
-                  </svg>
-                </button>
+                  <a id="print-link-modal" href = "#">
+                    <button>
+                      <svg class="feather feather-printer h-6 w-6 text-zinc-800 md:h-8 md:w-8" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="6 9 6 2 18 2 18 9"></polyline>
+                        <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+                        <rect x="6" y="14" width="12" height="8"></rect>
+                      </svg>
+                    </button>
+                  </a>
                 <button id="jobFeedClose" type="button" class="ml-3 inline-flex h-10 w-10 items-center rounded-lg bg-transparent p-1.5 text-sm text-zinc-800 hover:bg-slate-600 hover:text-stone-100">
                   <svg aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
                   <span class="sr-only">Close modal</span>

@@ -1,27 +1,25 @@
 window.addEventListener("load", function () {
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
-  const category = urlParams.get("category");
+  const status = urlParams.get("status");
 
   var appliedBtn = document.getElementById("applied");
   var pendingBtn = document.getElementById("pending");
   var acceptedBtn = document.getElementById("accepted");
   var rejectedBtn = document.getElementById("rejected");
 
-  switch (category) {
-    case "applied":
-      appliedBtn.classList.add("border-yellow-400");
-      break;
+console.log(status);
 
-    case "pending":
+  switch (status) {
+    case '0':
       pendingBtn.classList.add("border-yellow-400");
       break;
 
-    case "accepted":
+    case '1':
       acceptedBtn.classList.add("border-yellow-400");
       break;
 
-    case "rejected":
+    case '2':
       rejectedBtn.classList.add("border-yellow-400");
       break;
 
