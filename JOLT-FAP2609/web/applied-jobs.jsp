@@ -1,9 +1,9 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.sql.ResultSet"%>
 <%
-    session = request.getSession();
-    Integer id = (Integer)session.getAttribute("logged-id");
-    String errMessage = (String)session.getAttribute("error-message");
+  session = request.getSession();
+  Integer id = (Integer) session.getAttribute("logged-id");
+  String errMessage = (String) session.getAttribute("error-message");
 %>
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
@@ -52,10 +52,12 @@
         <!-- Applications Cards -->
         <div class="relative mt-8 text-zinc-800">
           <!-- Card (Pending) -->
-          <%ResultSet applications = (ResultSet)request.getAttribute("applications");
-            while (applications.next()) {
-            int appID = applications.getInt("APP_ID");%>
-            <form id="deleteForm<%=appID%>" method="get" action="DeleteJobApplication">
+          <%ResultSet applications = (ResultSet) request.getAttribute("applications");
+            if (applications.next()) {
+              do {
+                int appID = applications.getInt("APP_ID");%>
+          
+          <form id="deleteForm<%=appID%>" method="get" action="DeleteJobApplication">
             <input type="hidden" name="app-id" value="<%=appID%>"/>
             <div class="overflow-x-auto border-t-2 border-zinc-800 py-2 md:py-4">
               <div class="item-center flex justify-between gap-8">
@@ -65,13 +67,13 @@
                           data-modal-target="jobModal" data-modal-toggle="jobModal">
                     <div class="overflow-x-auto text-left text-lg font-bold md:text-2xl"><%=applications.getString("JOB_TITLE")%></div>
                   </button>
-                    <%if(applications.getInt("APP_STATUS") == 0){%>
-                        <div class="ml-5 rounded-3xl bg-orange-400 px-2 py-1 text-center text-sm font-semibold md:ml-10 md:px-3 md:text-lg"><%=applications.getString("STATUS_NAME")%></div>
-                    <%}else if(applications.getInt("APP_STATUS") == 1){%> 
-                        <div class="ml-5 rounded-3xl bg-lime-400 px-2 py-1 text-center text-sm font-semibold md:ml-10 md:px-3 md:text-lg"><%=applications.getString("STATUS_NAME")%></div>
-                    <%}else{%>
-                        <div class="ml-5 rounded-3xl bg-rose-400 px-2 py-1 text-center text-sm font-semibold md:ml-10 md:px-3 md:text-lg"><%=applications.getString("STATUS_NAME")%></div>
-                    <%}%>
+                  <%if (applications.getInt("APP_STATUS") == 0) {%>
+                  <div class="ml-5 rounded-3xl bg-orange-400 px-2 py-1 text-center text-sm font-semibold md:ml-10 md:px-3 md:text-lg"><%=applications.getString("STATUS_NAME")%></div>
+                  <%} else if (applications.getInt("APP_STATUS") == 1) {%> 
+                  <div class="ml-5 rounded-3xl bg-lime-400 px-2 py-1 text-center text-sm font-semibold md:ml-10 md:px-3 md:text-lg"><%=applications.getString("STATUS_NAME")%></div>
+                  <%} else {%>
+                  <div class="ml-5 rounded-3xl bg-rose-400 px-2 py-1 text-center text-sm font-semibold md:ml-10 md:px-3 md:text-lg"><%=applications.getString("STATUS_NAME")%></div>
+                  <%}%>
                 </div>
                 <button class="mr-1 rounded-2xl bg-yellow-400 px-2 py-1 text-sm font-semibold hover:bg-yellow-500 focus:ring-4 focus:ring-blue-400 md:text-lg lg:px-5" data-modal-target="withdrawModal<%=appID%>" data-modal-toggle="withdrawModal<%=appID%>" type="button">Withdraw Application</button>
               </div>
@@ -84,36 +86,41 @@
               </div>
               <div class="text-thin mt-3 text-xs md:text-base">Applied two weeks ago</div>
             </div>
-        </form>
-              
-        <!-- Withdraw Modal -->
-        <div id="withdrawModal<%=appID%>" tabindex="-1" aria-hidden="true" class="fixed left-0 right-0 top-0 z-50 hidden h-[calc(100%-1rem)] max-h-full w-full overflow-y-auto overflow-x-hidden p-4 md:inset-0">
-          <div class="relative max-h-full w-full max-w-lg">
-            <!-- Modal content -->
-            <div class="relative rounded-2xl bg-slate-300 shadow">
-              <!-- Modal header -->
-              <div class="flex items-start justify-between rounded-t border-b border-neutral-600 p-4">
-                <h3 class="flex-1 text-lg font-semibold text-zinc-800 md:text-2xl">Confirm Job Application Withdrawal</h3>
-                <button type="button" class="ml-auto inline-flex items-center rounded-lg bg-transparent p-1.5 text-sm text-zinc-800 hover:bg-slate-600 hover:text-stone-100" data-modal-hide="withdrawModal<%=appID%>">
-                  <svg aria-hidden="true" class="h-7 w-7" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-                  <span class="sr-only">Close modal</span>
-                </button>
-              </div>
-              <!-- Modal body -->
-              <div class="space-y-2 p-4">
-                <p class="text-sm leading-relaxed text-slate-800 md:text-base">Are you sure you want to withdraw your job application? This action cannot be undone.</p>
-              </div>
-              <!-- Modal footer -->
-              <div class="flex items-center space-x-2 rounded-b border-t border-gray-200 p-4 dark:border-gray-600">
-                <button data-modal-hide="withdrawModal<%=appID%>" name="app-id" form="deleteForm<%=appID%>" value="<%=appID%>" type="submit" class="rounded-2xl bg-yellow-400 px-5 py-2 text-center text-sm font-semibold text-zinc-800 hover:bg-yellow-500 focus:outline-none focus:ring-4 focus:ring-blue-400 md:text-base">Confirm Submit</button>
-                <button data-modal-hide="withdrawModal<%=appID%>" type="button" class="rounded-2xl border border-neutral-600 bg-neutral-600 px-5 py-2 text-sm text-stone-100 hover:bg-neutral-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-blue-400 md:text-base">Back</button>
+          </form>
+
+          <!-- Withdraw Modal -->
+          <div id="withdrawModal<%=appID%>" tabindex="-1" aria-hidden="true" class="fixed left-0 right-0 top-0 z-50 hidden h-[calc(100%-1rem)] max-h-full w-full overflow-y-auto overflow-x-hidden p-4 md:inset-0">
+            <div class="relative max-h-full w-full max-w-lg">
+              <!-- Modal content -->
+              <div class="relative rounded-2xl bg-slate-300 shadow">
+                <!-- Modal header -->
+                <div class="flex items-start justify-between rounded-t border-b border-neutral-600 p-4">
+                  <h3 class="flex-1 text-lg font-semibold text-zinc-800 md:text-2xl">Confirm Job Application Withdrawal</h3>
+                  <button type="button" class="ml-auto inline-flex items-center rounded-lg bg-transparent p-1.5 text-sm text-zinc-800 hover:bg-slate-600 hover:text-stone-100" data-modal-hide="withdrawModal<%=appID%>">
+                    <svg aria-hidden="true" class="h-7 w-7" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                    <span class="sr-only">Close modal</span>
+                  </button>
+                </div>
+                <!-- Modal body -->
+                <div class="space-y-2 p-4">
+                  <p class="text-sm leading-relaxed text-slate-800 md:text-base">Are you sure you want to withdraw your job application? This action cannot be undone.</p>
+                </div>
+                <!-- Modal footer -->
+                <div class="flex items-center space-x-2 rounded-b border-t border-gray-200 p-4 dark:border-gray-600">
+                  <button data-modal-hide="withdrawModal<%=appID%>" name="app-id" form="deleteForm<%=appID%>" value="<%=appID%>" type="submit" class="rounded-2xl bg-yellow-400 px-5 py-2 text-center text-sm font-semibold text-zinc-800 hover:bg-yellow-500 focus:outline-none focus:ring-4 focus:ring-blue-400 md:text-base">Confirm Submit</button>
+                  <button data-modal-hide="withdrawModal<%=appID%>" type="button" class="rounded-2xl border border-neutral-600 bg-neutral-600 px-5 py-2 text-sm text-stone-100 hover:bg-neutral-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-blue-400 md:text-base">Back</button>
+                </div>
               </div>
             </div>
+          </div>   
+          <%} while (applications.next());
+          } else {%>
+          <div id="empty-search" class="h-full flex flex-col items-center justify-center p-4 text-zinc-800">
+            <img src="./public/assets/images/error.png" alt="error image" class="h-auto w-[300px] border-b-4 border-zinc-800 px-4 pb-6 lg:w-[500px]" />
+            <h1 class="md: mt-6 text-xl font-bold lg:text-4xl">No Applications Found</h1>
+            <p class="font-lg mt-6 w-5/6 text-center text-base lg:w-full lg:text-2xl">Looks like you haven't submitted any job applications yet. Don't worry! Go to the job feed page and find your dream job now.</p>
           </div>
-        </div>   
-            
-        <%}%>
-         
+          <%}%>
         </div>
       </div>
     </div>
@@ -129,13 +136,13 @@
               <div id="job-title" class="text-2xl font-bold md:text-4xl"></div>
               <div class="flex flex-row">
                 <a id="print-link" href = "#">
-                    <button>
-                      <svg class="feather feather-printer h-6 w-6 text-zinc-800 md:h-8 md:w-8" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <polyline points="6 9 6 2 18 2 18 9"></polyline>
-                        <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
-                        <rect x="6" y="14" width="12" height="8"></rect>
-                      </svg>
-                    </button>
+                  <button>
+                    <svg class="feather feather-printer h-6 w-6 text-zinc-800 md:h-8 md:w-8" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="6 9 6 2 18 2 18 9"></polyline>
+                    <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+                    <rect x="6" y="14" width="12" height="8"></rect>
+                    </svg>
+                  </button>
                 </a>
                 <button type="button" class="ml-3 inline-flex h-10 w-10 items-center rounded-lg bg-transparent p-1.5 text-sm text-zinc-800 hover:bg-slate-600 hover:text-stone-100" data-modal-hide="jobModal">
                   <svg aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
@@ -166,7 +173,7 @@
             <div class="mt-4 border-b-2 border-neutral-600 pb-3 text-xl font-bold md:text-3xl">Responsibilities</div>
             <div class="mt-2 text-sm md:text-base">
               <ul class="ml-4 list-outside list-disc">
-                  <p id="job-resp"></p>
+                <p id="job-resp"></p>
               </ul>
             </div>
 
