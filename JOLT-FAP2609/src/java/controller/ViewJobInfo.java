@@ -127,7 +127,7 @@ Connection conn;
             if(bullet.trim().isEmpty()){
                 continue;
             }
-            output += "<li>"+bullet+"</li>";
+            output += "<li>"+bullet.trim()+"</li>";
         }
         return output;
     }
