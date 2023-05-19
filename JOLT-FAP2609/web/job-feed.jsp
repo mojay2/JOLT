@@ -73,7 +73,7 @@
 
         <!-- Cards Container -->
         <div class="relative mt-8 flex flex-col gap-5 lg:flex-row">
-          <div class="">
+          <div id="cards-container" class="">
             <!-- Job Cards -->
             <div class="flex flex-none flex-col gap-3 w-full lg:w-[350px]">
               <!-- Start Card Template -->

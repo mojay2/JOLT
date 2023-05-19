@@ -3,6 +3,7 @@ const viewButtons = document.querySelectorAll('#jobFeedBtn');
 const jobLoader = document.getElementById("job-loader");
 const skeleton = document.getElementById("skeleton");
 const emptySearch = document.getElementById("empty-search");
+const jobCont = document.getElementById("cards-container");
 const applyBtn = document.getElementById("apply-now");
 const applyBtnDisabled = document.getElementById("already-applied");
 
@@ -17,6 +18,7 @@ function loadFirstJob(){
         skeleton.classList.add("lg:hidden"); 
         emptySearch.classList.remove("hidden");        
         emptySearch.classList.add("flex");
+        jobCont.classList.add("hidden");
     }else{
         loadJobInfo(jobID);
     }
