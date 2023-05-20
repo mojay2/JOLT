@@ -18,27 +18,7 @@ public class LoadJobCandidates extends HttpServlet {
 Connection conn;
     public void init() throws ServletException {
             ServletContext context = getServletContext();
-            try {	
-                    Class.forName(context.getInitParameter("jdbcClassName"));
-                    //System.out.println("jdbcClassName: " + config.getInitParameter("jdbcClassName"));
-                    String username = context.getInitParameter("dbUserName");
-                    String password = context.getInitParameter("dbPassword");
-                    StringBuffer url = new StringBuffer(context.getInitParameter("jdbcDriverURL"))
-                            .append("://")
-                            .append(context.getInitParameter("dbHostName"))
-                            .append(":")
-                            .append(context.getInitParameter("dbPort"))
-                            .append("/")
-                            .append(context.getInitParameter("databaseName"));
-                    conn = 
-                      DriverManager.getConnection(url.toString(),username,password);
-            } catch (SQLException sqle){
-                    System.out.println("SQLException error occured - " 
-                            + sqle.getMessage());
-            } catch (ClassNotFoundException nfe){
-                    System.out.println("ClassNotFoundException error occured - " 
-                    + nfe.getMessage());
-            }
+            conn = (Connection)context.getAttribute("connection");
     }
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)

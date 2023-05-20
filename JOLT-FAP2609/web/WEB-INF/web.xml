@@ -148,7 +148,7 @@
     </servlet>
     <servlet>
         <servlet-name>CreateJobApp</servlet-name>
-        <servlet-class>controller.employerservlets.CreateJobApp</servlet-class>
+        <servlet-class>controller.userservlets.CreateJobApp</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>LoadJobCandidates</servlet-name>
