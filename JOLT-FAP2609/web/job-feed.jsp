@@ -78,9 +78,8 @@
             <div class="flex flex-none flex-col gap-3 w-full lg:w-[350px]">
               <!-- Start Card Template -->
               <%ResultSet jobs = (ResultSet)request.getAttribute("jobs");%>
-                <%-- Counter to determine the first job --%>
-                <%!int counter = 0;%>
-                <%!int firstJobID = 0;%>
+                <%int counter = 0;%>
+                <%int firstJobID = 0;%>
                 <%while (jobs.next()) {
                     counter++;
                     if(counter == 1){
